@@ -36,7 +36,7 @@ public section.
       value(APPLICATION_LOG) type ref to ZBC_APPLICATION_LOG
     exceptions
       OBJECT_NOT_FOUND .
-  methods ADD_MESSAGE
+  methods ADD
     importing
       !MSGTY type SYMSGTY default 'E'
       !MSGID type SYMSGID
@@ -46,12 +46,12 @@ public section.
       !MSGV3 type ANY optional
       !MSGV4 type ANY optional
       !PROBCLASS type BALPROBCL optional .
-  methods ADD_MESSAGE_TEXT
+  methods ADD_TEXT
     importing
       !MSGTY type SYMSGTY default 'E'
       !MSG type CLIKE
       !PROBCLASS type BALPROBCL optional .
-  methods ADD_MESSAGE_STRUC
+  methods ADD_STRUC
     importing
       !MSGTY type SYMSGTY default 'E'
       !STRUC type ANY
@@ -85,48 +85,7 @@ CLASS ZBC_APPLICATION_LOG IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZBC_APPLICATION_LOG->ADD_EXCEPTION
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] EXCEPTION                      TYPE REF TO CX_ROOT
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-METHOD add_exception.
-  DATA: lk_exception TYPE bal_s_exc.
-  DATA: lk_message   TYPE bal_s_msg.
-  DATA: lo_exception TYPE REF TO cx_root.
-  DATA: lv_prog_name TYPE syrepid,
-        lv_prog_incl TYPE syrepid.
-  DATA: lv_prog_line TYPE i.
-  DATA: lv_message   TYPE string.
-
-  lo_exception = exception.
-  WHILE lo_exception IS NOT INITIAL.
-    CLEAR: lk_exception, lk_message, lv_message.
-    lk_exception-msgty = 'E'.
-    lk_exception-exception = lo_exception.
-    lk_exception-detlevel  = '1'.
-    lk_exception-probclass = '1'.
-    GET TIME STAMP FIELD lk_exception-time_stmp.
-    APPEND lk_exception TO log_exceptions.
-
-    "Add message of where exception occured
-    lo_exception->get_source_position( IMPORTING program_name = lv_prog_name include_name = lv_prog_incl source_line  = lv_prog_line ).
-    lv_message = |Exception occurred in program | && lv_prog_name && |, | && |include | && lv_prog_incl && |, | && |line | && lv_prog_line.
-    add_message_text( msg = lv_message ).
-
-    "Add message of exception
-    CLEAR lv_message.
-    lv_message = lo_exception->get_text( ).
-    IF lv_message IS NOT INITIAL.
-      add_message_text( msg = lv_message ).
-    ENDIF.
-
-    lo_exception = lo_exception->previous.
-  ENDWHILE.
-ENDMETHOD.
-
-
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZBC_APPLICATION_LOG->ADD_MESSAGE
+* | Instance Public Method ZBC_APPLICATION_LOG->ADD
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] MSGTY                          TYPE        SYMSGTY (default ='E')
 * | [--->] MSGID                          TYPE        SYMSGID
@@ -137,7 +96,7 @@ ENDMETHOD.
 * | [--->] MSGV4                          TYPE        ANY(optional)
 * | [--->] PROBCLASS                      TYPE        BALPROBCL(optional)
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-METHOD add_message.
+METHOD ADD.
   DATA:  lk_message         TYPE bal_s_msg.
   lk_message-msgty     = msgty.
   lk_message-msgno     = msgno.
@@ -165,13 +124,54 @@ ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZBC_APPLICATION_LOG->ADD_MESSAGE_STRUC
+* | Instance Public Method ZBC_APPLICATION_LOG->ADD_EXCEPTION
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] EXCEPTION                      TYPE REF TO CX_ROOT
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD add_exception.
+  DATA: lk_exception TYPE bal_s_exc.
+  DATA: lk_message   TYPE bal_s_msg.
+  DATA: lo_exception TYPE REF TO cx_root.
+  DATA: lv_prog_name TYPE syrepid,
+        lv_prog_incl TYPE syrepid.
+  DATA: lv_prog_line TYPE i.
+  DATA: lv_message   TYPE string.
+
+  lo_exception = exception.
+  WHILE lo_exception IS NOT INITIAL.
+    CLEAR: lk_exception, lk_message, lv_message.
+    lk_exception-msgty = 'E'.
+    lk_exception-exception = lo_exception.
+    lk_exception-detlevel  = '1'.
+    lk_exception-probclass = '1'.
+    GET TIME STAMP FIELD lk_exception-time_stmp.
+    APPEND lk_exception TO log_exceptions.
+
+    "Add message of where exception occured
+    lo_exception->get_source_position( IMPORTING program_name = lv_prog_name include_name = lv_prog_incl source_line  = lv_prog_line ).
+    lv_message = |Exception occurred in program | && lv_prog_name && |, | && |include | && lv_prog_incl && |, | && |line | && lv_prog_line.
+    add_text( msg = lv_message ).
+
+    "Add message of exception
+    CLEAR lv_message.
+    lv_message = lo_exception->get_text( ).
+    IF lv_message IS NOT INITIAL.
+      add_text( msg = lv_message ).
+    ENDIF.
+
+    lo_exception = lo_exception->previous.
+  ENDWHILE.
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZBC_APPLICATION_LOG->ADD_STRUC
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] MSGTY                          TYPE        SYMSGTY (default ='E')
 * | [--->] STRUC                          TYPE        ANY
 * | [--->] PROBCLASS                      TYPE        BALPROBCL(optional)
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-METHOD add_message_struc.
+METHOD ADD_STRUC.
   DATA: lk_message     TYPE bal_s_msg.
   DATA: lo_data_type   TYPE REF TO cl_abap_typedescr.
   DATA: lo_data        TYPE REF TO data.
@@ -243,13 +243,13 @@ ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZBC_APPLICATION_LOG->ADD_MESSAGE_TEXT
+* | Instance Public Method ZBC_APPLICATION_LOG->ADD_TEXT
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] MSGTY                          TYPE        SYMSGTY (default ='E')
 * | [--->] MSG                            TYPE        CLIKE
 * | [--->] PROBCLASS                      TYPE        BALPROBCL(optional)
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-METHOD add_message_text.
+METHOD ADD_TEXT.
   TYPES: BEGIN OF ltk_string,
            part1   TYPE symsgv,
            part2   TYPE symsgv,
