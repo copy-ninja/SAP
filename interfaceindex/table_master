@@ -1,0 +1,21 @@
+* Key: INTERFACE_ID
+MANDT	MANDT	CLNT	3	0	Client
+INTERFACE_ID	/PSTECH/BCINTFID	CHAR	5	0	Interface ID
+INTERFACE_TYPE	/PSTECH/BCINTFTYPE	CHAR	1	0	Interface Type
+INTERFACE_DIR	/PSTECH/BCINTFDIR	CHAR	1	0	Interface Direction
+INTERFACE_DESC	DESCRIPTIO	CHAR	80	0	Description
+KEY1_DATATYPE	ROLLNAME	CHAR	30	0	Data element (semantic domain)
+KEY2_DATATYPE	ROLLNAME	CHAR	30	0	Data element (semantic domain)
+KEY3_DATATYPE	ROLLNAME	CHAR	30	0	Data element (semantic domain)
+KEY4_DATATYPE	ROLLNAME	CHAR	30	0	Data element (semantic domain)
+OBJECT	BALOBJ_D	CHAR	20	0	Application Log: Object Name (Application Code)
+SUBOBJECT	BALSUBOBJ	CHAR	20	0	Application Log: Subobject
+DEL_EXPIRY		NUMC	5	0	Days before log expires (0 = no expiry)
+DEL_BEFORE	DEL_BEFORE	CHAR	1	0	Application Log: Keep log until expiry
+.INCLUDE	/PSTECH/AUDITLOG	STRU	0	0	Change Audit Log
+ERNAM	ERNAM	CHAR	12	0	Name of Person who Created the Object
+ERDAT	ERDAT	DATS	8	0	Date on Which Record Was Created
+ERZET	ERZET	TIMS	6	0	Entry time
+AENAM	AENAM	CHAR	12	0	Name of Person Who Changed Object
+AEDAT	AEDAT	DATS	8	0	Changed On
+AEZET	AEZET	TIMS	6	0	Time last change was made
