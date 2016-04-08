@@ -1,213 +1,274 @@
-report  /pstech/bci_intf_monitor.
+REPORT  /pstech/bci_intf_monitor3.
 
 ************************ Selection Screen ******************************
-data: s_intfms type /pstech/bcintfms.
-data: s_intfmm type /pstech/bcintfmm.
-data: s_xmlstr type c length 255.
-selection-screen begin of block b10 with frame title text-b10.
-select-options: s_intfid for s_intfms-interface_id no intervals.
-select-options: s_intfk1 for s_intfms-interface_key1.
-select-options: s_intfk2 for s_intfms-interface_key2.
-select-options: s_intfk3 for s_intfms-interface_key3.
-select-options: s_intfk4 for s_intfms-interface_key4.
-select-options: s_intfmi for s_intfms-interface_msgid.
-select-options: s_intfty for s_intfmm-interface_type no intervals.
-select-options: s_intfdi for s_intfmm-interface_dir no intervals.
-selection-screen begin of line.
-selection-screen comment (31) text-a02 for field s_exfrdt.
-parameters: s_exfrdt type datum default sy-datum.
-selection-screen comment 44(1) text-a03 for field s_exfrtm.
-parameters: s_exfrtm type uzeit.
-selection-screen end of line.
-selection-screen begin of line.
-selection-screen comment (31) text-a04 for field s_extodt.
-parameters: s_extodt type datum default sy-datum.
-selection-screen comment 44(1) text-a03 for field s_extotm.
-parameters: s_extotm type uzeit default '240000'.
-selection-screen end of line.
-parameters: s_intfmx type tbmaxsel default '500'.
-selection-screen begin of block b11 with frame title text-b11.
-selection-screen begin of line.
-selection-screen comment (8) text-a05 for field s_xmle1.
-select-options: s_xmle1 for s_xmlstr visible length 15 no-extension no intervals lower case.
-selection-screen comment 35(8) text-a06 for field s_xmlv1.
-select-options: s_xmlv1 for s_xmlstr visible length 15 no-extension no intervals lower case.
-parameters: s_xmlo1 as listbox visible length 8 default '1'.
-selection-screen end of line.
-selection-screen begin of line.
-selection-screen comment (8) text-a05 for field s_xmle2.
-select-options: s_xmle2 for s_xmlstr visible length 15 no-extension no intervals lower case.
-selection-screen comment 35(8) text-a06 for field s_xmlv2.
-select-options: s_xmlv2 for s_xmlstr visible length 15 no-extension no intervals lower case.
-selection-screen end of line.
-selection-screen end of block b11.
-selection-screen end of block b10.
-selection-screen begin of block b20 with frame title text-b20.
-selection-screen begin of block b22 with frame title text-b22.
-parameters: s_parrfc type spta_rfcgr memory id spta_rfcgr.
-parameters: s_parmax type syindex default '0'.
-selection-screen end of block b22.
-selection-screen begin of block b21 with frame title text-b21.
-parameters: s_alvvar type disvariant-variant.
-selection-screen end of block b21.
-selection-screen end of block b20.
+DATA: s_intfms TYPE /pstech/bcintfms.
+DATA: s_intfmm TYPE /pstech/bcintfmm.
+DATA: s_xmlstr TYPE c LENGTH 255.
+SELECTION-SCREEN BEGIN OF BLOCK b10 WITH FRAME TITLE text-b10.
+SELECT-OPTIONS: s_intfid FOR s_intfms-interface_id NO INTERVALS.
+SELECT-OPTIONS: s_intfk1 FOR s_intfms-interface_key1.
+SELECT-OPTIONS: s_intfk2 FOR s_intfms-interface_key2.
+SELECT-OPTIONS: s_intfk3 FOR s_intfms-interface_key3.
+SELECT-OPTIONS: s_intfk4 FOR s_intfms-interface_key4.
+SELECT-OPTIONS: s_intfmi FOR s_intfms-interface_msgid.
+SELECT-OPTIONS: s_intfty FOR s_intfmm-interface_type NO INTERVALS.
+SELECT-OPTIONS: s_intfdi FOR s_intfmm-interface_dir NO INTERVALS.
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT (31) text-a02 FOR FIELD s_exfrdt.
+PARAMETERS: s_exfrdt TYPE datum DEFAULT sy-datum.
+SELECTION-SCREEN COMMENT 44(1) text-a03 FOR FIELD s_exfrtm.
+PARAMETERS: s_exfrtm TYPE uzeit.
+SELECTION-SCREEN END OF LINE.
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT (31) text-a04 FOR FIELD s_extodt.
+PARAMETERS: s_extodt TYPE datum DEFAULT sy-datum.
+SELECTION-SCREEN COMMENT 44(1) text-a03 FOR FIELD s_extotm.
+PARAMETERS: s_extotm TYPE uzeit DEFAULT '240000'.
+SELECTION-SCREEN END OF LINE.
+PARAMETERS: s_intfmx TYPE tbmaxsel DEFAULT '500'.
+SELECTION-SCREEN BEGIN OF BLOCK b11 WITH FRAME TITLE text-b11.
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT (8) text-a05 FOR FIELD s_xmle1.
+SELECT-OPTIONS: s_xmle1 FOR s_xmlstr VISIBLE LENGTH 15 NO-EXTENSION NO INTERVALS LOWER CASE.
+SELECTION-SCREEN COMMENT 35(8) text-a06 FOR FIELD s_xmlv1.
+SELECT-OPTIONS: s_xmlv1 FOR s_xmlstr VISIBLE LENGTH 15 NO-EXTENSION NO INTERVALS LOWER CASE.
+PARAMETERS: s_xmlo1 AS LISTBOX VISIBLE LENGTH 8 DEFAULT '1'.
+SELECTION-SCREEN END OF LINE.
+SELECTION-SCREEN BEGIN OF LINE.
+SELECTION-SCREEN COMMENT (8) text-a05 FOR FIELD s_xmle2.
+SELECT-OPTIONS: s_xmle2 FOR s_xmlstr VISIBLE LENGTH 15 NO-EXTENSION NO INTERVALS LOWER CASE.
+SELECTION-SCREEN COMMENT 35(8) text-a06 FOR FIELD s_xmlv2.
+SELECT-OPTIONS: s_xmlv2 FOR s_xmlstr VISIBLE LENGTH 15 NO-EXTENSION NO INTERVALS LOWER CASE.
+SELECTION-SCREEN END OF LINE.
+SELECTION-SCREEN END OF BLOCK b11.
+SELECTION-SCREEN END OF BLOCK b10.
+SELECTION-SCREEN BEGIN OF BLOCK b20 WITH FRAME TITLE text-b20.
+SELECTION-SCREEN BEGIN OF BLOCK b22 WITH FRAME TITLE text-b22.
+PARAMETERS: s_parrfc TYPE spta_rfcgr MEMORY ID spta_rfcgr.
+PARAMETERS: s_parmax TYPE syindex DEFAULT '0'.
+SELECTION-SCREEN END OF BLOCK b22.
+SELECTION-SCREEN BEGIN OF BLOCK b21 WITH FRAME TITLE text-b21.
+PARAMETERS: s_alvvar TYPE disvariant-variant.
+SELECTION-SCREEN END OF BLOCK b21.
+SELECTION-SCREEN END OF BLOCK b20.
 
 ************************ Data Definitions ****************************
-class lcl_alv_events_handle definition.
-  public section.
-    methods command     for event added_function of cl_salv_events       importing e_salv_function.
-    methods doubleclick for event double_click   of cl_salv_events_table importing row column.
-    methods linkclick   for event link_click     of cl_salv_events_table importing row column.
-endclass.                    "lcl_alv_events_handle DEFINITION
+CLASS lcl_gui_tree DEFINITION INHERITING FROM cl_uac_gui_tree_base.
+  PUBLIC SECTION.
+    METHODS constructor
+       IMPORTING
+         !id_parent TYPE REF TO cl_gui_container
+         !id_lifetime TYPE i OPTIONAL
+         !id_name TYPE string OPTIONAL
+         !id_style TYPE i OPTIONAL
+         !id_class_id TYPE string OPTIONAL
+         !id_tree_text TYPE uac_value
+         !id_tree_style TYPE uac_style_id OPTIONAL
+         !id_expand_no_children TYPE uac_flag DEFAULT true
+         !id_multi_selection TYPE uac_flag DEFAULT false
+       EXCEPTIONS
+         cntl_error
+         system_error
+         error_cntl_create
+         gui_type_not_supported .
+    METHODS set_styles
+      IMPORTING
+        !it_node_style TYPE uac_t_node_style OPTIONAL
+        !it_cell_style TYPE uac_t_cell_style OPTIONAL
+        !it_column_style TYPE uac_t_column_style OPTIONAL
+      EXCEPTIONS
+        cntl_error .
+    METHODS register_events
+      IMPORTING
+        !cell_selected TYPE uac_flag DEFAULT false
+        !cell_double_click TYPE uac_flag DEFAULT false
+        !cell_context_menu TYPE uac_flag DEFAULT false
+        !cell_value_changed TYPE uac_flag DEFAULT false
+        !cell_dropdown TYPE uac_flag DEFAULT false
+        !node_selected TYPE uac_flag DEFAULT false
+        !node_double_click TYPE uac_flag DEFAULT false
+        !node_context_menu TYPE uac_flag DEFAULT false
+        !node_value_changed TYPE uac_flag DEFAULT false
+        !multi_selection_change TYPE uac_flag DEFAULT false
+        !keypressed TYPE uac_flag DEFAULT false
+        !column_double_click TYPE uac_flag DEFAULT false
+        !column_context_menu TYPE uac_flag DEFAULT false
+        !column_order_changed TYPE uac_flag DEFAULT false
+        !sort_order_changed TYPE uac_flag DEFAULT false
+        !group_context_menu TYPE uac_flag DEFAULT false
+        !application_event TYPE uac_flag DEFAULT false
+        !group_changes TYPE uac_flag DEFAULT false
+        !control_context_menu TYPE uac_flag DEFAULT false
+      EXCEPTIONS
+        cntl_error .
+    METHODS change_node_leaf
+      IMPORTING
+        !id_tree_id TYPE uac_tree_id DEFAULT cd_tree1_id
+        !id_node_id TYPE uac_node_id
+        !id_is_leaf TYPE uac_flag .
+  PROTECTED SECTION.
+    DATA md_tree_id TYPE uac_tree_id .
+ENDCLASS.                    "lcl_gui_tree DEFINITION
+*----------------------------------------------------------------------*
+*       CLASS lcl_alv_events_handle DEFINITION
+*----------------------------------------------------------------------*
 *
-class lcl_tool_events_handle definition.
-  public section.
-    methods command     for event function_selected of cl_gui_toolbar importing fcode.
-endclass.                    "lcl_tool_events_handle DEFINITION
+*----------------------------------------------------------------------*
+CLASS lcl_alv_events_handle DEFINITION.
+  PUBLIC SECTION.
+    METHODS command     FOR EVENT added_function OF cl_salv_events       IMPORTING e_salv_function.
+    METHODS doubleclick FOR EVENT double_click   OF cl_salv_events_table IMPORTING row column.
+    METHODS linkclick   FOR EVENT link_click     OF cl_salv_events_table IMPORTING row column.
+ENDCLASS.                    "lcl_alv_events_handle DEFINITION
 *
-class lcl_tree_events_handle definition.
-  public section.
-    methods node_open         for event open_folder_for_1st_time   of /pstech/cl_bc_gui_edit_tree importing tree_id node_id.
-    methods node_menu_request for event node_context_menu_request  of /pstech/cl_bc_gui_edit_tree importing tree_id node_id.
-    methods node_menu_select  for event node_context_menu_selected of /pstech/cl_bc_gui_edit_tree importing tree_id node_id fcode.
-endclass.                    "lcl_tree_events_handle DEFINITION
-type-pools: spta, vrm.
-types: begin of gtk_intfms.
-        include type /pstech/bcintfms.
-types:  interface_type   type /pstech/bcintfmm-interface_type,
-        interface_dir    type /pstech/bcintfmm-interface_dir,
-        interface_desc   type /pstech/bcintfmm-interface_desc,
-        key1_datatype    type /pstech/bcintfmm-key1_datatype,
-        key2_datatype    type /pstech/bcintfmm-key2_datatype,
-        key3_datatype    type /pstech/bcintfmm-key3_datatype,
-        key4_datatype    type /pstech/bcintfmm-key4_datatype.
-types:  intf_msgid_ico   type c length 4,
-        intf_istat_ico   type c length 4, "interface stat
-        intf_astat_ico   type c length 4, "application stat
-        intf_alog_ico    type c length 4, "application log stat
-        idoc_docnum      type edidc-docnum,
-        proxy_msgguid    type sxmspmast-msgguid,
-        proxy_pid        type sxmspmast-pid,
-        proxy_msgstate   type sxmspmast-msgstate,
-        proxy_eo_refid   type sxmspmast-eo_refid,
-        proxy_eo_refval  type sxmspmast-eo_refval,
-        proxy_exetimest  type sxmspmast-exetimest,
-        proxy_inittimest type sxmspmast-inittimest,
-        proxy_sendtimest type sxmspmast-sendtimest,
-        log_msgty        type symsgty,
-        log_msgid        type symsgid,
-        log_msgno        type symsgno,
-        log_msgtxt       type c length 500,
-       end of gtk_intfms.
-types: gti_intfms type standard table of gtk_intfms.
-types: begin of gtk_log_table,
-         log_ico         type c length 4,
-         log_msg         type c length 500,
-       end of gtk_log_table.
-types: begin of gtk_parallel_data,
-           import type gtk_intfms occurs 0,
-           export type gtk_intfms occurs 0,
-         end of gtk_parallel_data.
-types: begin of gtk_parallel_struc,
-           intfms type gtk_intfms,
-           xmle1  like s_xmle1 occurs 0,
-           xmlv1  like s_xmlv1 occurs 0,
-           xmle2  like s_xmle2 occurs 0,
-           xmlv2  like s_xmlv2 occurs 0,
-           xmlo1  type c,
-         end of gtk_parallel_struc.
+CLASS lcl_tool_events_handle DEFINITION.
+  PUBLIC SECTION.
+    METHODS command     FOR EVENT function_selected OF cl_gui_toolbar IMPORTING fcode.
+ENDCLASS.                    "lcl_tool_events_handle DEFINITION
+*
+CLASS lcl_tree_events_handle DEFINITION.
+  PUBLIC SECTION.
+    METHODS node_open         FOR EVENT open_folder_for_1st_time   OF lcl_gui_tree IMPORTING tree_id node_id.
+    METHODS node_menu_request FOR EVENT node_context_menu_request  OF lcl_gui_tree IMPORTING tree_id node_id.
+    METHODS node_menu_select  FOR EVENT node_context_menu_selected OF lcl_gui_tree IMPORTING tree_id node_id fcode.
+ENDCLASS.                    "lcl_tree_events_handle DEFINITION
+TYPE-POOLS: spta, vrm.
+TYPES: BEGIN OF gtk_intfms.
+        INCLUDE TYPE /pstech/bcintfms.
+TYPES:  interface_type   TYPE /pstech/bcintfmm-interface_type,
+        interface_dir    TYPE /pstech/bcintfmm-interface_dir,
+        interface_desc   TYPE /pstech/bcintfmm-interface_desc,
+        key1_datatype    TYPE /pstech/bcintfmm-key1_datatype,
+        key2_datatype    TYPE /pstech/bcintfmm-key2_datatype,
+        key3_datatype    TYPE /pstech/bcintfmm-key3_datatype,
+        key4_datatype    TYPE /pstech/bcintfmm-key4_datatype.
+TYPES:  intf_msgid_ico   TYPE c LENGTH 4,
+        intf_istat_ico   TYPE c LENGTH 4, "interface stat
+        intf_astat_ico   TYPE c LENGTH 4, "application stat
+        intf_alog_ico    TYPE c LENGTH 4, "application log stat
+        idoc_docnum      TYPE edidc-docnum,
+        proxy_msgguid    TYPE sxmspmast-msgguid,
+        proxy_pid        TYPE sxmspmast-pid,
+        proxy_msgstate   TYPE sxmspmast-msgstate,
+        proxy_eo_refid   TYPE sxmspmast-eo_refid,
+        proxy_eo_refval  TYPE sxmspmast-eo_refval,
+        proxy_exetimest  TYPE sxmspmast-exetimest,
+        proxy_inittimest TYPE sxmspmast-inittimest,
+        proxy_sendtimest TYPE sxmspmast-sendtimest,
+        log_msgty        TYPE symsgty,
+        log_msgid        TYPE symsgid,
+        log_msgno        TYPE symsgno,
+        log_msgtxt       TYPE c LENGTH 500,
+       END OF gtk_intfms.
+TYPES: gti_intfms TYPE STANDARD TABLE OF gtk_intfms.
+TYPES: BEGIN OF gtk_log_table,
+         log_ico         TYPE c LENGTH 4,
+         log_msg         TYPE c LENGTH 500,
+       END OF gtk_log_table.
+TYPES: BEGIN OF gtk_parallel_data,
+           import TYPE gtk_intfms OCCURS 0,
+           export TYPE gtk_intfms OCCURS 0,
+         END OF gtk_parallel_data.
+TYPES: BEGIN OF gtk_parallel_struc,
+           intfms TYPE gtk_intfms,
+           xmle1  LIKE s_xmle1 OCCURS 0,
+           xmlv1  LIKE s_xmlv1 OCCURS 0,
+           xmle2  LIKE s_xmle2 OCCURS 0,
+           xmlv2  LIKE s_xmlv2 OCCURS 0,
+           xmlo1  TYPE c,
+         END OF gtk_parallel_struc.
 
-data: gi_log_table                type standard table of gtk_log_table.
-data: go_main_alv_table           type ref to cl_salv_table,
-      go_log_table                type ref to cl_salv_table.
-data: go_proxy_xml                type ref to cl_proxy_xml_edit.
-data: go_idoc_tree                type ref to /pstech/cl_bc_gui_edit_tree,
-      go_proxy_tree               type ref to /pstech/cl_bc_gui_edit_tree.
-data: go_main_container           type ref to cl_gui_custom_container.
-data: go_main_alv_container       type ref to cl_gui_container,
-      go_main_view_container      type ref to cl_gui_container,
-      go_view_tool_container      type ref to cl_gui_container,
-      go_view_obj_container       type ref to cl_gui_container.
-data: go_main_split_container     type ref to cl_gui_splitter_container,
-      go_view_split_container     type ref to cl_gui_splitter_container.
-data: go_view_toolbar             type ref to cl_gui_toolbar.
+DATA: gi_log_table                TYPE STANDARD TABLE OF gtk_log_table.
+DATA: go_main_alv_table           TYPE REF TO cl_salv_table,
+      go_log_table                TYPE REF TO cl_salv_table.
+DATA: go_proxy_xml                TYPE REF TO cl_proxy_xml_edit.
+DATA: go_idoc_tree                TYPE REF TO lcl_gui_tree,
+      go_proxy_tree               TYPE REF TO lcl_gui_tree.
+DATA: go_main_container           TYPE REF TO cl_gui_custom_container.
+DATA: go_main_alv_container       TYPE REF TO cl_gui_container,
+      go_main_view_container      TYPE REF TO cl_gui_container,
+      go_view_tool_container      TYPE REF TO cl_gui_container,
+      go_view_obj_container       TYPE REF TO cl_gui_container.
+DATA: go_main_split_container     TYPE REF TO cl_gui_splitter_container,
+      go_view_split_container     TYPE REF TO cl_gui_splitter_container.
+DATA: go_view_toolbar             TYPE REF TO cl_gui_toolbar.
 
-data: gi_proxy_xml_button         type ttb_button,
-      gi_proxy_tree_button        type ttb_button,
-      gi_idoc_tree_button         type ttb_button.
+DATA: gi_proxy_xml_button         TYPE ttb_button,
+      gi_proxy_tree_button        TYPE ttb_button,
+      gi_idoc_tree_button         TYPE ttb_button.
 
-data: gi_proxy_tree_context       type uac_t_context_menu,
-      gi_idoc_tree_context        type uac_t_context_menu.
+DATA: gi_proxy_tree_context       TYPE uac_t_context_menu,
+      gi_idoc_tree_context        TYPE uac_t_context_menu.
 
-data: gi_tree_search_result       type uac_t_node_long.
-data: gv_tree_search_index        type sytabix.
+DATA: gi_tree_search_result       TYPE uac_t_node_long.
+DATA: gv_tree_search_index        TYPE sytabix.
 
-data: gv_xml_document             type xstring.
+DATA: gv_xml_document             TYPE xstring.
 
-data: gi_intfms          type standard table of gtk_intfms.
-data: gk_intfms_par      type gtk_parallel_data.
-data: gk_intfms          type gtk_intfms.
+DATA: gi_intfms          TYPE STANDARD TABLE OF gtk_intfms.
+DATA: gk_intfms_par      TYPE gtk_parallel_data.
+DATA: gk_intfms          TYPE gtk_intfms.
 
-initialization.
-  perform screen_alvvar_default changing s_alvvar.
-  perform data_display_settings.
+INITIALIZATION.
+  PERFORM screen_alvvar_default CHANGING s_alvvar.
+  PERFORM data_display_settings.
 
-at selection-screen on value-request for s_alvvar.
-  perform screen_alvvar_searchvalue changing s_alvvar.
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR s_alvvar.
+  PERFORM screen_alvvar_searchvalue CHANGING s_alvvar.
 
-at selection-screen on value-request for s_intfid-low.
-  perform screen_intfid_searchvalue.
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR s_intfid-low.
+  PERFORM screen_intfid_searchvalue.
 
-start-of-selection.
-  perform data_retrieve.
+START-OF-SELECTION.
+  PERFORM data_retrieve.
 
-  call screen 1001.
+  CALL SCREEN 1001.
 
 *&---------------------------------------------------------------------*
 *&      Form  data_retrieve
 *&---------------------------------------------------------------------*
-form data_retrieve.
-  data  li_intfms                type standard table of gtk_intfms.
-  data  li_intfmm                type standard table of /pstech/bcintfmm.
-  field-symbols: <lk_intfms>     type gtk_intfms.
-  field-symbols: <lk_intfmm>     type /pstech/bcintfmm.
+FORM data_retrieve.
+  DATA  li_intfms                TYPE STANDARD TABLE OF gtk_intfms.
+  DATA  li_intfmm                TYPE STANDARD TABLE OF /pstech/bcintfmm.
+  FIELD-SYMBOLS: <lk_intfms>     TYPE gtk_intfms.
+  FIELD-SYMBOLS: <lk_intfmm>     TYPE /pstech/bcintfmm.
 
-  select * into table li_intfmm from /pstech/bcintfmm
-    where interface_id    in s_intfid   and
-          interface_type  in s_intfty   and
-          interface_dir   in s_intfdi.
+  SELECT * INTO TABLE li_intfmm FROM /pstech/bcintfmm
+    WHERE interface_id    IN s_intfid   AND
+          interface_type  IN s_intfty   AND
+          interface_dir   IN s_intfdi.
 
-  loop at li_intfmm assigning <lk_intfmm>.
-    authority-check object 'ZBC_INTF'
-             id '/PSTECH/II' field <lk_intfmm>-interface_id
-             id 'ACTVT' field '03'.
-    if sy-subrc ne 0.
-      delete li_intfmm index sy-tabix.
-    endif.
-  endloop.
-  sort li_intfmm by interface_id.
+  LOOP AT li_intfmm ASSIGNING <lk_intfmm>.
+    AUTHORITY-CHECK OBJECT 'ZBC_INTF'
+             ID '/PSTECH/II' FIELD <lk_intfmm>-interface_id
+             ID 'ACTVT' FIELD '03'.
+    IF sy-subrc NE 0.
+      DELETE li_intfmm INDEX sy-tabix.
+    ENDIF.
+  ENDLOOP.
+  SORT li_intfmm BY interface_id.
 
-  if li_intfmm[] is not initial.
-    select * up to s_intfmx rows
-      into table gi_intfms from /pstech/bcintfms
-      for all entries in li_intfmm
-      where interface_id    eq li_intfmm-interface_id and
-            interface_key1  in s_intfk1   and
-            interface_key2  in s_intfk2   and
-            interface_key3  in s_intfk3   and
-            interface_key4  in s_intfk4   and
-            interface_msgid in s_intfmi   and
-        ( ( execute_date    eq s_exfrdt   and
-            execute_time    ge s_exfrtm ) or
-            execute_date    gt s_exfrdt ) and
-        ( ( execute_date    eq s_extodt   and
-            execute_time    le s_extotm ) or
-            execute_date    lt s_extodt ).
-  endif.
+  IF li_intfmm[] IS NOT INITIAL.
+    SELECT * UP TO s_intfmx ROWS
+      INTO TABLE gi_intfms FROM /pstech/bcintfms
+      FOR ALL ENTRIES IN li_intfmm
+      WHERE interface_id    EQ li_intfmm-interface_id AND
+            interface_key1  IN s_intfk1   AND
+            interface_key2  IN s_intfk2   AND
+            interface_key3  IN s_intfk3   AND
+            interface_key4  IN s_intfk4   AND
+            interface_msgid IN s_intfmi   AND
+        ( ( execute_date    EQ s_exfrdt   AND
+            execute_time    GE s_exfrtm ) OR
+            execute_date    GT s_exfrdt ) AND
+        ( ( execute_date    EQ s_extodt   AND
+            execute_time    LE s_extotm ) OR
+            execute_date    LT s_extodt ).
+  ENDIF.
 
-  loop at gi_intfms assigning <lk_intfms>.
-    read table li_intfmm assigning <lk_intfmm> with key interface_id = <lk_intfms>-interface_id binary search.
-    if sy-subrc = 0.
+  LOOP AT gi_intfms ASSIGNING <lk_intfms>.
+    READ TABLE li_intfmm ASSIGNING <lk_intfmm> WITH KEY interface_id = <lk_intfms>-interface_id BINARY SEARCH.
+    IF sy-subrc = 0.
       <lk_intfms>-interface_type = <lk_intfmm>-interface_type.
       <lk_intfms>-interface_dir  = <lk_intfmm>-interface_dir.
       <lk_intfms>-interface_desc = <lk_intfmm>-interface_desc.
@@ -215,33 +276,33 @@ form data_retrieve.
       <lk_intfms>-key2_datatype  = <lk_intfmm>-key2_datatype.
       <lk_intfms>-key3_datatype  = <lk_intfmm>-key3_datatype.
       <lk_intfms>-key4_datatype  = <lk_intfmm>-key4_datatype.
-    endif.
+    ENDIF.
 
-    case <lk_intfms>-interface_type.
-      when '0'.
+    CASE <lk_intfms>-interface_type.
+      WHEN '0'.
         <lk_intfms>-proxy_msgguid  = <lk_intfms>-interface_msgid.
         <lk_intfms>-intf_msgid_ico = '@R4@'.
-      when '1'.
+      WHEN '1'.
         <lk_intfms>-idoc_docnum = <lk_intfms>-interface_msgid.
         <lk_intfms>-intf_msgid_ico = '@G5@'.
-    endcase.
-  endloop.
+    ENDCASE.
+  ENDLOOP.
 
-  if s_parrfc is initial.
-    perform data_retrieve_serial.
-  else.
-    perform data_retrieve_parallel.
-  endif.
+  IF s_parrfc IS INITIAL.
+    PERFORM data_retrieve_serial.
+  ELSE.
+    PERFORM data_retrieve_parallel.
+  ENDIF.
 
-  sort gi_intfms by execute_date ascending execute_time ascending proxy_sendtimest ascending.
-endform.                    "data_retrieve
+  SORT gi_intfms BY execute_date ASCENDING execute_time ASCENDING proxy_sendtimest ASCENDING.
+ENDFORM.                    "data_retrieve
 *&---------------------------------------------------------------------*
 *&      Form  data_retrieve_parallel
 *&---------------------------------------------------------------------*
-form data_retrieve_parallel.
+FORM data_retrieve_parallel.
   gk_intfms_par-import[] = gi_intfms[].
-  call function 'SPTA_PARA_PROCESS_START_2'
-    exporting
+  CALL FUNCTION 'SPTA_PARA_PROCESS_START_2'
+    EXPORTING
       server_group             = s_parrfc
       max_no_of_tasks          = s_parmax
       before_rfc_callback_form = 'DATA_RETRIEVE_PARA_PIPELINING'
@@ -249,277 +310,277 @@ form data_retrieve_parallel.
       after_rfc_callback_form  = 'DATA_RETRIEVE_PARA_SYNC'
       callback_prog            = sy-repid.
   gi_intfms[] = gk_intfms_par-export[].
-endform.                    "data_retrieve_parallel
+ENDFORM.                    "data_retrieve_parallel
 *&---------------------------------------------------------------------*
 *&      Form  data_retrieve_para_pipelining
 *&---------------------------------------------------------------------*
-form data_retrieve_para_pipelining using lk_before_rfc_imp  type spta_t_before_rfc_imp
-                               changing lk_before_rfc_exp  type spta_t_before_rfc_exp
-                                        li_rfcdata         type spta_t_indxtab
-                                        li_object_failed   type spta_t_failed_objects
-                                        li_object_pending  type spta_t_pending_objects
+FORM data_retrieve_para_pipelining USING lk_before_rfc_imp  TYPE spta_t_before_rfc_imp
+                               CHANGING lk_before_rfc_exp  TYPE spta_t_before_rfc_exp
+                                        li_rfcdata         TYPE spta_t_indxtab
+                                        li_object_failed   TYPE spta_t_failed_objects
+                                        li_object_pending  TYPE spta_t_pending_objects
                                         lk_user_param.
-  data: lk_intfms_par type gtk_parallel_struc.
+  DATA: lk_intfms_par TYPE gtk_parallel_struc.
 
-  if gk_intfms_par-import[] is initial.
-    clear lk_before_rfc_exp-start_rfc. exit.
-  else.
+  IF gk_intfms_par-import[] IS INITIAL.
+    CLEAR lk_before_rfc_exp-start_rfc. EXIT.
+  ELSE.
     lk_before_rfc_exp-start_rfc = 'X'.
-  endif.
+  ENDIF.
 
-  read table gk_intfms_par-import into lk_intfms_par-intfms index 1.
+  READ TABLE gk_intfms_par-import INTO lk_intfms_par-intfms INDEX 1.
   lk_intfms_par-xmle1[] = s_xmle1[].
   lk_intfms_par-xmlv1[] = s_xmlv1[].
   lk_intfms_par-xmle2[] = s_xmle2[].
   lk_intfms_par-xmlv2[] = s_xmlv2[].
   lk_intfms_par-xmlo1   = s_xmlo1.
-  delete gk_intfms_par-import index 1.
+  DELETE gk_intfms_par-import INDEX 1.
 
-  call function 'SPTA_INDX_PACKAGE_ENCODE'
-    exporting
+  CALL FUNCTION 'SPTA_INDX_PACKAGE_ENCODE'
+    EXPORTING
       data    = lk_intfms_par
-    importing
+    IMPORTING
       indxtab = li_rfcdata.
 
-endform.                    "data_retrieve_para_pipelining
+ENDFORM.                    "data_retrieve_para_pipelining
 *&---------------------------------------------------------------------*
 *&      Form  data_retrieve_para_process
 *&---------------------------------------------------------------------*
-form data_retrieve_para_process using lk_in_rfc_imp  type spta_t_in_rfc_imp
-                            changing lk_in_rfc_exp  type spta_t_in_rfc_exp
-                                     li_rfcdata     type spta_t_indxtab.
-  data: lk_intfms_par type gtk_parallel_struc.
-  data: lk_log_msg               type bal_s_msg.
-  data: lk_log_msghndl           type balmsghndl.
-  data  li_log_header            type balhdr_t.
-  data: lk_log_header            type balhdr.
-  data: lv_idoc_status           type edi_status.
-  data: lv_idoc_status_statva    type edi_statva.
-  data: lv_idoc_status_stalight  type edi_slight.
-  data: li_msg_payload           type sxms_messagepayload_tab.
-  data: lo_xms_persist_adm       type ref to cl_xms_persist_adm.
-  data: li_xml_contents          type srt_xml_data_tab.
-  data: lv_xml_tagname           type string,
-        lv_xml_tagnamespace      type string.
-  data: lv_xml_filter1 type c,
-        lv_xml_filter2 type c.
-  field-symbols: <lk_xml_contents> type srt_xml_data.
-  field-symbols: <lk_msg_payload>  type sxms_messagepayload.
+FORM data_retrieve_para_process USING lk_in_rfc_imp  TYPE spta_t_in_rfc_imp
+                            CHANGING lk_in_rfc_exp  TYPE spta_t_in_rfc_exp
+                                     li_rfcdata     TYPE spta_t_indxtab.
+  DATA: lk_intfms_par TYPE gtk_parallel_struc.
+  DATA: lk_log_msg               TYPE bal_s_msg.
+  DATA: lk_log_msghndl           TYPE balmsghndl.
+  DATA  li_log_header            TYPE balhdr_t.
+  DATA: lk_log_header            TYPE balhdr.
+  DATA: lv_idoc_status           TYPE edi_status.
+  DATA: lv_idoc_status_statva    TYPE edi_statva.
+  DATA: lv_idoc_status_stalight  TYPE edi_slight.
+  DATA: li_msg_payload           TYPE sxms_messagepayload_tab.
+  DATA: lo_xms_persist_adm       TYPE REF TO cl_xms_persist_adm.
+  DATA: li_xml_contents          TYPE srt_xml_data_tab.
+  DATA: lv_xml_tagname           TYPE string,
+        lv_xml_tagnamespace      TYPE string.
+  DATA: lv_xml_filter1 TYPE c,
+        lv_xml_filter2 TYPE c.
+  FIELD-SYMBOLS: <lk_xml_contents> TYPE srt_xml_data.
+  FIELD-SYMBOLS: <lk_msg_payload>  TYPE sxms_messagepayload.
 
 
-  call function 'SPTA_INDX_PACKAGE_DECODE'
-    exporting
+  CALL FUNCTION 'SPTA_INDX_PACKAGE_DECODE'
+    EXPORTING
       indxtab = li_rfcdata
-    importing
+    IMPORTING
       data    = lk_intfms_par.
 
   "Proxy
-  case lk_intfms_par-intfms-interface_type .
-    when '0'.
-      if ( lk_intfms_par-xmle1 is not initial and lk_intfms_par-xmlv1 is not initial ) or
-         ( lk_intfms_par-xmle2 is not initial and lk_intfms_par-xmlv2 is not initial ).
-        create object lo_xms_persist_adm.
-      endif.
-      select single pid msgstate eo_refid eo_refval exetimest inittimest sendtimest from sxmspmast
-        into (lk_intfms_par-intfms-proxy_pid,       lk_intfms_par-intfms-proxy_msgstate,   lk_intfms_par-intfms-proxy_eo_refid, lk_intfms_par-intfms-proxy_eo_refval,
+  CASE lk_intfms_par-intfms-interface_type .
+    WHEN '0'.
+      IF ( lk_intfms_par-xmle1 IS NOT INITIAL AND lk_intfms_par-xmlv1 IS NOT INITIAL ) OR
+         ( lk_intfms_par-xmle2 IS NOT INITIAL AND lk_intfms_par-xmlv2 IS NOT INITIAL ).
+        CREATE OBJECT lo_xms_persist_adm.
+      ENDIF.
+      SELECT SINGLE pid msgstate eo_refid eo_refval exetimest inittimest sendtimest FROM sxmspmast
+        INTO (lk_intfms_par-intfms-proxy_pid,       lk_intfms_par-intfms-proxy_msgstate,   lk_intfms_par-intfms-proxy_eo_refid, lk_intfms_par-intfms-proxy_eo_refval,
               lk_intfms_par-intfms-proxy_exetimest, lk_intfms_par-intfms-proxy_inittimest, lk_intfms_par-intfms-proxy_sendtimest)
-        where msgguid = lk_intfms_par-intfms-proxy_msgguid.
-      select single icon_id from sxmsmstat into lk_intfms_par-intfms-intf_istat_ico where msgstate = lk_intfms_par-intfms-proxy_msgstate.
-      clear: lv_xml_filter1, lv_xml_filter2.
+        WHERE msgguid = lk_intfms_par-intfms-proxy_msgguid.
+      SELECT SINGLE icon_id FROM sxmsmstat INTO lk_intfms_par-intfms-intf_istat_ico WHERE msgstate = lk_intfms_par-intfms-proxy_msgstate.
+      CLEAR: lv_xml_filter1, lv_xml_filter2.
 
-      if ( lk_intfms_par-xmle1 is not initial and lk_intfms_par-xmlv1 is not initial ) or
-         ( lk_intfms_par-xmle2 is not initial and lk_intfms_par-xmlv2 is not initial ).
-        clear: li_msg_payload[], li_xml_contents[].
-        try.
+      IF ( lk_intfms_par-xmle1 IS NOT INITIAL AND lk_intfms_par-xmlv1 IS NOT INITIAL ) OR
+         ( lk_intfms_par-xmle2 IS NOT INITIAL AND lk_intfms_par-xmlv2 IS NOT INITIAL ).
+        CLEAR: li_msg_payload[], li_xml_contents[].
+        TRY.
             lo_xms_persist_adm->get_xi_payload(
-              exporting
+              EXPORTING
                 im_msgguid         = lk_intfms_par-intfms-proxy_msgguid
                 im_pid             = lk_intfms_par-intfms-proxy_pid
                 im_version         = '000'
-              importing
+              IMPORTING
                 ex_messagepayload  = li_msg_payload ).
-          catch cx_xms_syserr_persist.
-        endtry.
+          CATCH cx_xms_syserr_persist.
+        ENDTRY.
 
-        read table li_msg_payload assigning <lk_msg_payload> index 1.
-        if sy-subrc = 0.
-          cl_soap_xml_parser=>get_data( exporting xdoc = <lk_msg_payload>-payload  importing data = li_xml_contents ).
-          loop at li_xml_contents assigning <lk_xml_contents>.
-            clear: lv_xml_tagname, lv_xml_tagnamespace.
-            split <lk_xml_contents>-tag_name at ':' into lv_xml_tagnamespace lv_xml_tagname.
-            if lv_xml_tagname is initial. lv_xml_tagname = lv_xml_tagnamespace. endif.
-            if ( lk_intfms_par-xmle1 is not initial and lk_intfms_par-xmlv1 is not initial ) and ( lv_xml_tagname in lk_intfms_par-xmle1 and <lk_xml_contents>-tag_value in lk_intfms_par-xmlv1 ) .
+        READ TABLE li_msg_payload ASSIGNING <lk_msg_payload> INDEX 1.
+        IF sy-subrc = 0.
+          cl_soap_xml_parser=>get_data( EXPORTING xdoc = <lk_msg_payload>-payload  IMPORTING data = li_xml_contents ).
+          LOOP AT li_xml_contents ASSIGNING <lk_xml_contents>.
+            CLEAR: lv_xml_tagname, lv_xml_tagnamespace.
+            SPLIT <lk_xml_contents>-tag_name AT ':' INTO lv_xml_tagnamespace lv_xml_tagname.
+            IF lv_xml_tagname IS INITIAL. lv_xml_tagname = lv_xml_tagnamespace. ENDIF.
+            IF ( lk_intfms_par-xmle1 IS NOT INITIAL AND lk_intfms_par-xmlv1 IS NOT INITIAL ) AND ( lv_xml_tagname IN lk_intfms_par-xmle1 AND <lk_xml_contents>-tag_value IN lk_intfms_par-xmlv1 ) .
               lv_xml_filter1 = 'X'.
-            endif.
-            if ( lk_intfms_par-xmle2 is not initial and lk_intfms_par-xmlv2 is not initial ) and ( lv_xml_tagname in lk_intfms_par-xmle2 and <lk_xml_contents>-tag_value in lk_intfms_par-xmlv2 ) .
+            ENDIF.
+            IF ( lk_intfms_par-xmle2 IS NOT INITIAL AND lk_intfms_par-xmlv2 IS NOT INITIAL ) AND ( lv_xml_tagname IN lk_intfms_par-xmle2 AND <lk_xml_contents>-tag_value IN lk_intfms_par-xmlv2 ) .
               lv_xml_filter2 = 'X'.
-            endif.
-          endloop.
-        endif.
+            ENDIF.
+          ENDLOOP.
+        ENDIF.
 
-        if ( lk_intfms_par-xmle1 is not initial and lk_intfms_par-xmlv1 is not initial ) and ( lk_intfms_par-xmle2 is not initial and lk_intfms_par-xmlv2 is not initial ).
-          if lk_intfms_par-xmlo1 = '1'. "Or
-            if lv_xml_filter1 is not initial or  lv_xml_filter2 is not initial. else. clear lk_intfms_par-intfms. endif.
-          else.
-            if lv_xml_filter1 is not initial and lv_xml_filter2 is not initial. else. clear lk_intfms_par-intfms. endif.
-          endif.
-        else.
-          if ( lk_intfms_par-xmle1 is not initial and lk_intfms_par-xmlv1 is not initial ) and lv_xml_filter1 is initial.
-            clear lk_intfms_par-intfms.
-          endif.
-          if ( lk_intfms_par-xmle2 is not initial and lk_intfms_par-xmlv2 is not initial ) and lv_xml_filter2 is initial.
-            clear lk_intfms_par-intfms.
-          endif.
-        endif.
-      endif.
+        IF ( lk_intfms_par-xmle1 IS NOT INITIAL AND lk_intfms_par-xmlv1 IS NOT INITIAL ) AND ( lk_intfms_par-xmle2 IS NOT INITIAL AND lk_intfms_par-xmlv2 IS NOT INITIAL ).
+          IF lk_intfms_par-xmlo1 = '1'. "Or
+            IF lv_xml_filter1 IS NOT INITIAL OR  lv_xml_filter2 IS NOT INITIAL. ELSE. CLEAR lk_intfms_par-intfms. ENDIF.
+          ELSE.
+            IF lv_xml_filter1 IS NOT INITIAL AND lv_xml_filter2 IS NOT INITIAL. ELSE. CLEAR lk_intfms_par-intfms. ENDIF.
+          ENDIF.
+        ELSE.
+          IF ( lk_intfms_par-xmle1 IS NOT INITIAL AND lk_intfms_par-xmlv1 IS NOT INITIAL ) AND lv_xml_filter1 IS INITIAL.
+            CLEAR lk_intfms_par-intfms.
+          ENDIF.
+          IF ( lk_intfms_par-xmle2 IS NOT INITIAL AND lk_intfms_par-xmlv2 IS NOT INITIAL ) AND lv_xml_filter2 IS INITIAL.
+            CLEAR lk_intfms_par-intfms.
+          ENDIF.
+        ENDIF.
+      ENDIF.
 
-    when '1'.
+    WHEN '1'.
       "IDoc
-      select single status   into lv_idoc_status          from edidc    where docnum = lk_intfms_par-intfms-idoc_docnum.
-      select single statva   into lv_idoc_status_statva   from teds3    where status = lv_idoc_status.
-      select single stalight into lv_idoc_status_stalight from stalight where statva = lv_idoc_status_statva.
-      case lv_idoc_status_stalight.
-        when '1'.
+      SELECT SINGLE status   INTO lv_idoc_status          FROM edidc    WHERE docnum = lk_intfms_par-intfms-idoc_docnum.
+      SELECT SINGLE statva   INTO lv_idoc_status_statva   FROM teds3    WHERE status = lv_idoc_status.
+      SELECT SINGLE stalight INTO lv_idoc_status_stalight FROM stalight WHERE statva = lv_idoc_status_statva.
+      CASE lv_idoc_status_stalight.
+        WHEN '1'.
           lk_intfms_par-intfms-intf_istat_ico = '@5D@'.
-        when '2'.
+        WHEN '2'.
           lk_intfms_par-intfms-intf_istat_ico = '@5B@'.
-        when '3'.
+        WHEN '3'.
           lk_intfms_par-intfms-intf_istat_ico = '@5C@'.
-      endcase.
-  endcase.
+      ENDCASE.
+  ENDCASE.
 
   "Logs
-  if lk_intfms_par-intfms-lognumber is not initial.
-    select single * into lk_log_header from balhdr where lognumber = lk_intfms_par-intfms-lognumber.
-    call function 'BAL_LOG_EXIST'
-      exporting
+  IF lk_intfms_par-intfms-lognumber IS NOT INITIAL.
+    SELECT SINGLE * INTO lk_log_header FROM balhdr WHERE lognumber = lk_intfms_par-intfms-lognumber.
+    CALL FUNCTION 'BAL_LOG_EXIST'
+      EXPORTING
         i_log_handle  = lk_log_header-log_handle
-      exceptions
+      EXCEPTIONS
         log_not_found = 1.
-    if sy-subrc ne 0.
-      append lk_log_header to li_log_header.
-      call function 'BAL_DB_LOAD'
-        exporting
+    IF sy-subrc NE 0.
+      APPEND lk_log_header TO li_log_header.
+      CALL FUNCTION 'BAL_DB_LOAD'
+        EXPORTING
           i_t_log_header = li_log_header
-        exceptions
-          others         = 0.
-    endif.
+        EXCEPTIONS
+          OTHERS         = 0.
+    ENDIF.
 
     lk_log_msghndl-log_handle = lk_log_header-log_handle.
     lk_log_msghndl-msgnumber  = lk_log_header-last_msgnr.
 
-    if lk_log_header-last_msgnr > 1.
+    IF lk_log_header-last_msgnr > 1.
       lk_intfms_par-intfms-intf_alog_ico = '@DH@'.
-    endif.
+    ENDIF.
 
-    call function 'BAL_LOG_MSG_READ'
-      exporting
+    CALL FUNCTION 'BAL_LOG_MSG_READ'
+      EXPORTING
         i_s_msg_handle = lk_log_msghndl
-      importing
+      IMPORTING
         e_s_msg        = lk_log_msg
-      exceptions
+      EXCEPTIONS
         log_not_found  = 1
         msg_not_found  = 2
-        others         = 3.
-    case lk_log_msg-msgty.
-      when 'A' or 'E'. lk_intfms_par-intfms-intf_astat_ico = '@5C@'.
-      when 'I' or 'S'. lk_intfms_par-intfms-intf_astat_ico = '@5B@'.
-      when 'W'       . lk_intfms_par-intfms-intf_astat_ico = '@5D@'.
-    endcase.
-    message id lk_log_msg-msgid type lk_log_msg-msgty number lk_log_msg-msgno with lk_log_msg-msgv1 lk_log_msg-msgv2 lk_log_msg-msgv3 lk_log_msg-msgv4 into lk_intfms_par-intfms-log_msgtxt.
-  endif.
+        OTHERS         = 3.
+    CASE lk_log_msg-msgty.
+      WHEN 'A' OR 'E'. lk_intfms_par-intfms-intf_astat_ico = '@5C@'.
+      WHEN 'I' OR 'S'. lk_intfms_par-intfms-intf_astat_ico = '@5B@'.
+      WHEN 'W'       . lk_intfms_par-intfms-intf_astat_ico = '@5D@'.
+    ENDCASE.
+    MESSAGE ID lk_log_msg-msgid TYPE lk_log_msg-msgty NUMBER lk_log_msg-msgno WITH lk_log_msg-msgv1 lk_log_msg-msgv2 lk_log_msg-msgv3 lk_log_msg-msgv4 INTO lk_intfms_par-intfms-log_msgtxt.
+  ENDIF.
 
-  call function 'SPTA_INDX_PACKAGE_ENCODE'
-    exporting
+  CALL FUNCTION 'SPTA_INDX_PACKAGE_ENCODE'
+    EXPORTING
       data    = lk_intfms_par-intfms
-    importing
+    IMPORTING
       indxtab = li_rfcdata.
 
-endform.                    "data_retrieve_para_process
+ENDFORM.                    "data_retrieve_para_process
 *&---------------------------------------------------------------------*
 *&      Form  data_retrieve_para_sync
 *&---------------------------------------------------------------------*
-form data_retrieve_para_sync using li_rfcdata         type spta_t_indxtab
-                                  lv_rfcsubrc        type sy-subrc
-                                  lv_rfcmsg          type spta_t_rfcmsg
-                                  li_object_pending  type spta_t_pending_objects
-                                  lk_after_rfc_imp   type spta_t_after_rfc_imp
-                         changing lk_after_rfc_exp   type spta_t_after_rfc_exp
+FORM data_retrieve_para_sync USING li_rfcdata         TYPE spta_t_indxtab
+                                  lv_rfcsubrc        TYPE sy-subrc
+                                  lv_rfcmsg          TYPE spta_t_rfcmsg
+                                  li_object_pending  TYPE spta_t_pending_objects
+                                  lk_after_rfc_imp   TYPE spta_t_after_rfc_imp
+                         CHANGING lk_after_rfc_exp   TYPE spta_t_after_rfc_exp
                                   lv_user_param.
-  data: lk_intfms type gtk_intfms.
+  DATA: lk_intfms TYPE gtk_intfms.
 
-  call function 'SPTA_INDX_PACKAGE_DECODE'
-    exporting
+  CALL FUNCTION 'SPTA_INDX_PACKAGE_DECODE'
+    EXPORTING
       indxtab = li_rfcdata
-    importing
+    IMPORTING
       data    = lk_intfms.
 
-  if lk_intfms is not initial.
-    append lk_intfms to gk_intfms_par-export.
-  endif.
+  IF lk_intfms IS NOT INITIAL.
+    APPEND lk_intfms TO gk_intfms_par-export.
+  ENDIF.
 
-endform.                    "data_retrieve_par_sync
+ENDFORM.                    "data_retrieve_par_sync
 *&---------------------------------------------------------------------*
 *&      Form  data_retrieve_serial
 *&---------------------------------------------------------------------*
-form data_retrieve_serial.
-  types: begin of ltk_proxy_info,
-           msgguid                type sxmspmast-msgguid,
-           pid                    type sxmspmast-pid,
-           msgstate               type sxmspmast-msgstate,
-           eo_refid               type sxmspmast-eo_refid,
-           eo_refval              type sxmspmast-eo_refval,
-           exetimest              type sxmspmast-exetimest,
-           inittimest             type sxmspmast-inittimest,
-           sendtimest             type sxmspmast-sendtimest,
-          end of ltk_proxy_info.
-  types: begin of ltk_idoc_info,
-          docnum                 type edidc-docnum,
-          status                 type edidc-status,
-          end of ltk_idoc_info.
+FORM data_retrieve_serial.
+  TYPES: BEGIN OF ltk_proxy_info,
+           msgguid                TYPE sxmspmast-msgguid,
+           pid                    TYPE sxmspmast-pid,
+           msgstate               TYPE sxmspmast-msgstate,
+           eo_refid               TYPE sxmspmast-eo_refid,
+           eo_refval              TYPE sxmspmast-eo_refval,
+           exetimest              TYPE sxmspmast-exetimest,
+           inittimest             TYPE sxmspmast-inittimest,
+           sendtimest             TYPE sxmspmast-sendtimest,
+          END OF ltk_proxy_info.
+  TYPES: BEGIN OF ltk_idoc_info,
+          docnum                 TYPE edidc-docnum,
+          status                 TYPE edidc-status,
+          END OF ltk_idoc_info.
 
-  data: lk_log_msg               type bal_s_msg.
-  data: lk_log_msghndl           type balmsghndl.
-  data  li_log_header            type balhdr_t.
-  data: li_log_handle            type bal_t_logh,
-        li_log_loaded            type bal_t_logh.
-  data  li_intfms                type standard table of gtk_intfms.
-  data  li_proxy_info            type standard table of ltk_proxy_info.
-  data  li_edidc                 type standard table of ltk_idoc_info.
-  data  li_intfmm                type standard table of /pstech/bcintfmm.
-  data: lv_idoc_status_statva    type edi_statva.
-  data: lv_idoc_status_stalight  type edi_slight.
-  data: li_msg_payload            type sxms_messagepayload_tab.
-  data: lo_xms_persist_adm       type ref to cl_xms_persist_adm.
-  data: li_xml_contents           type srt_xml_data_tab.
-  data: lv_xml_tagname            type string,
-        lv_xml_tagnamespace       type string.
-  data: lv_xml_filter1 type c,
-        lv_xml_filter2 type c.
-  field-symbols: <lk_intfms>     type gtk_intfms.
-  field-symbols: <lk_intfmm>     type /pstech/bcintfmm.
-  field-symbols: <lk_proxy_info> type ltk_proxy_info.
-  field-symbols: <lk_idoc_info>  type ltk_idoc_info.
-  field-symbols: <lk_log_header> type balhdr.
-  field-symbols: <lk_xml_contents> type srt_xml_data.
-  field-symbols: <lk_msg_payload>  type sxms_messagepayload.
+  DATA: lk_log_msg               TYPE bal_s_msg.
+  DATA: lk_log_msghndl           TYPE balmsghndl.
+  DATA  li_log_header            TYPE balhdr_t.
+  DATA: li_log_handle            TYPE bal_t_logh,
+        li_log_loaded            TYPE bal_t_logh.
+  DATA  li_intfms                TYPE STANDARD TABLE OF gtk_intfms.
+  DATA  li_proxy_info            TYPE STANDARD TABLE OF ltk_proxy_info.
+  DATA  li_edidc                 TYPE STANDARD TABLE OF ltk_idoc_info.
+  DATA  li_intfmm                TYPE STANDARD TABLE OF /pstech/bcintfmm.
+  DATA: lv_idoc_status_statva    TYPE edi_statva.
+  DATA: lv_idoc_status_stalight  TYPE edi_slight.
+  DATA: li_msg_payload            TYPE sxms_messagepayload_tab.
+  DATA: lo_xms_persist_adm       TYPE REF TO cl_xms_persist_adm.
+  DATA: li_xml_contents           TYPE srt_xml_data_tab.
+  DATA: lv_xml_tagname            TYPE string,
+        lv_xml_tagnamespace       TYPE string.
+  DATA: lv_xml_filter1 TYPE c,
+        lv_xml_filter2 TYPE c.
+  FIELD-SYMBOLS: <lk_intfms>     TYPE gtk_intfms.
+  FIELD-SYMBOLS: <lk_intfmm>     TYPE /pstech/bcintfmm.
+  FIELD-SYMBOLS: <lk_proxy_info> TYPE ltk_proxy_info.
+  FIELD-SYMBOLS: <lk_idoc_info>  TYPE ltk_idoc_info.
+  FIELD-SYMBOLS: <lk_log_header> TYPE balhdr.
+  FIELD-SYMBOLS: <lk_xml_contents> TYPE srt_xml_data.
+  FIELD-SYMBOLS: <lk_msg_payload>  TYPE sxms_messagepayload.
 
   "Proxy
   li_intfms[] = gi_intfms[].
-  delete li_intfms where interface_type ne '0'.
-  delete gi_intfms where interface_type eq '0'.
-  if li_intfms[] is not initial.
-    if ( s_xmle1 is not initial and s_xmlv1 is not initial ) or
-       ( s_xmle2 is not initial and s_xmlv2 is not initial ).
-      create object lo_xms_persist_adm.
-    endif.
-    select msgguid pid msgstate eo_refid eo_refval exetimest inittimest sendtimest from sxmspmast into table li_proxy_info for all entries in li_intfms
-      where msgguid = li_intfms-proxy_msgguid.
-    loop at li_intfms assigning <lk_intfms>.
-      clear: lv_xml_filter1, lv_xml_filter2.
-      read table li_proxy_info assigning <lk_proxy_info> with key msgguid = <lk_intfms>-proxy_msgguid.
-      if sy-subrc = 0.
-        select single icon_id from sxmsmstat into <lk_intfms>-intf_istat_ico where msgstate = <lk_proxy_info>-msgstate.
+  DELETE li_intfms WHERE interface_type NE '0'.
+  DELETE gi_intfms WHERE interface_type EQ '0'.
+  IF li_intfms[] IS NOT INITIAL.
+    IF ( s_xmle1 IS NOT INITIAL AND s_xmlv1 IS NOT INITIAL ) OR
+       ( s_xmle2 IS NOT INITIAL AND s_xmlv2 IS NOT INITIAL ).
+      CREATE OBJECT lo_xms_persist_adm.
+    ENDIF.
+    SELECT msgguid pid msgstate eo_refid eo_refval exetimest inittimest sendtimest FROM sxmspmast INTO TABLE li_proxy_info FOR ALL ENTRIES IN li_intfms
+      WHERE msgguid = li_intfms-proxy_msgguid.
+    LOOP AT li_intfms ASSIGNING <lk_intfms>.
+      CLEAR: lv_xml_filter1, lv_xml_filter2.
+      READ TABLE li_proxy_info ASSIGNING <lk_proxy_info> WITH KEY msgguid = <lk_intfms>-proxy_msgguid.
+      IF sy-subrc = 0.
+        SELECT SINGLE icon_id FROM sxmsmstat INTO <lk_intfms>-intf_istat_ico WHERE msgstate = <lk_proxy_info>-msgstate.
         <lk_intfms>-proxy_pid        = <lk_proxy_info>-pid.
         <lk_intfms>-proxy_msgstate   = <lk_proxy_info>-msgstate.
         <lk_intfms>-proxy_eo_refid   = <lk_proxy_info>-eo_refid.
@@ -529,156 +590,156 @@ form data_retrieve_serial.
         <lk_intfms>-proxy_sendtimest = <lk_proxy_info>-sendtimest.
 
         "XML filters
-        if ( s_xmle1 is not initial and s_xmlv1 is not initial ) or
-           ( s_xmle2 is not initial and s_xmlv2 is not initial ).
-          clear: li_msg_payload[], li_xml_contents[].
-          try.
+        IF ( s_xmle1 IS NOT INITIAL AND s_xmlv1 IS NOT INITIAL ) OR
+           ( s_xmle2 IS NOT INITIAL AND s_xmlv2 IS NOT INITIAL ).
+          CLEAR: li_msg_payload[], li_xml_contents[].
+          TRY.
               lo_xms_persist_adm->get_xi_payload(
-                exporting
+                EXPORTING
                   im_msgguid         = <lk_intfms>-proxy_msgguid
                   im_pid             = <lk_intfms>-proxy_pid
                   im_version         = '000'
-                importing
+                IMPORTING
                   ex_messagepayload  = li_msg_payload ).
-            catch cx_xms_syserr_persist.
-          endtry.
+            CATCH cx_xms_syserr_persist.
+          ENDTRY.
 
-          read table li_msg_payload assigning <lk_msg_payload> index 1.
-          if sy-subrc = 0.
+          READ TABLE li_msg_payload ASSIGNING <lk_msg_payload> INDEX 1.
+          IF sy-subrc = 0.
 
-            cl_soap_xml_parser=>get_data( exporting xdoc = <lk_msg_payload>-payload  importing data = li_xml_contents ).
-            loop at li_xml_contents assigning <lk_xml_contents>.
-              clear: lv_xml_tagname, lv_xml_tagnamespace.
-              split <lk_xml_contents>-tag_name at ':' into lv_xml_tagnamespace lv_xml_tagname.
-              if lv_xml_tagname is initial. lv_xml_tagname = lv_xml_tagnamespace. endif.
+            cl_soap_xml_parser=>get_data( EXPORTING xdoc = <lk_msg_payload>-payload  IMPORTING data = li_xml_contents ).
+            LOOP AT li_xml_contents ASSIGNING <lk_xml_contents>.
+              CLEAR: lv_xml_tagname, lv_xml_tagnamespace.
+              SPLIT <lk_xml_contents>-tag_name AT ':' INTO lv_xml_tagnamespace lv_xml_tagname.
+              IF lv_xml_tagname IS INITIAL. lv_xml_tagname = lv_xml_tagnamespace. ENDIF.
 
-              if ( s_xmle1 is not initial and s_xmlv1 is not initial ) and ( lv_xml_tagname in s_xmle1 and <lk_xml_contents>-tag_value in s_xmlv1 ) .
+              IF ( s_xmle1 IS NOT INITIAL AND s_xmlv1 IS NOT INITIAL ) AND ( lv_xml_tagname IN s_xmle1 AND <lk_xml_contents>-tag_value IN s_xmlv1 ) .
                 lv_xml_filter1 = 'X'.
-              endif.
-              if ( s_xmle2 is not initial and s_xmlv2 is not initial ) and ( lv_xml_tagname in s_xmle2 and <lk_xml_contents>-tag_value in s_xmlv2 ) .
+              ENDIF.
+              IF ( s_xmle2 IS NOT INITIAL AND s_xmlv2 IS NOT INITIAL ) AND ( lv_xml_tagname IN s_xmle2 AND <lk_xml_contents>-tag_value IN s_xmlv2 ) .
                 lv_xml_filter2 = 'X'.
-              endif..
-            endloop.
-          endif.
+              ENDIF..
+            ENDLOOP.
+          ENDIF.
 
-          if     ( s_xmle1 is not initial and s_xmlv1 is not initial ) and ( s_xmle2 is not initial and s_xmlv2 is not initial ) .
-            if     s_xmlo1 = '1'. "Or
-              if lv_xml_filter1 is not initial or lv_xml_filter2 is not initial.   append <lk_intfms> to gi_intfms.  endif.
-            else.
-              if lv_xml_filter1 is not initial and lv_xml_filter2 is not initial.  append <lk_intfms> to gi_intfms.  endif.
-            endif.
-          else.
-            if ( s_xmle1 is not initial and s_xmlv1 is not initial ) and lv_xml_filter1 is not initial.
-              append <lk_intfms> to gi_intfms.
-            endif.
-            if ( s_xmle2 is not initial and s_xmlv2 is not initial ) and lv_xml_filter2 is not initial.
-              append <lk_intfms> to gi_intfms.
-            endif.
-          endif.
-        else.
-          append <lk_intfms> to gi_intfms.
-        endif.
-      endif.
-    endloop.
-  endif.
+          IF     ( s_xmle1 IS NOT INITIAL AND s_xmlv1 IS NOT INITIAL ) AND ( s_xmle2 IS NOT INITIAL AND s_xmlv2 IS NOT INITIAL ) .
+            IF     s_xmlo1 = '1'. "Or
+              IF lv_xml_filter1 IS NOT INITIAL OR lv_xml_filter2 IS NOT INITIAL.   APPEND <lk_intfms> TO gi_intfms.  ENDIF.
+            ELSE.
+              IF lv_xml_filter1 IS NOT INITIAL AND lv_xml_filter2 IS NOT INITIAL.  APPEND <lk_intfms> TO gi_intfms.  ENDIF.
+            ENDIF.
+          ELSE.
+            IF ( s_xmle1 IS NOT INITIAL AND s_xmlv1 IS NOT INITIAL ) AND lv_xml_filter1 IS NOT INITIAL.
+              APPEND <lk_intfms> TO gi_intfms.
+            ENDIF.
+            IF ( s_xmle2 IS NOT INITIAL AND s_xmlv2 IS NOT INITIAL ) AND lv_xml_filter2 IS NOT INITIAL.
+              APPEND <lk_intfms> TO gi_intfms.
+            ENDIF.
+          ENDIF.
+        ELSE.
+          APPEND <lk_intfms> TO gi_intfms.
+        ENDIF.
+      ENDIF.
+    ENDLOOP.
+  ENDIF.
 
   "IDoc
   li_intfms[] = gi_intfms[].
-  delete li_intfms where interface_type ne '1'.
-  if li_intfms[] is not initial.
-    select docnum status from edidc into table li_edidc for all entries in li_intfms where docnum = li_intfms-idoc_docnum.
-    loop at gi_intfms assigning <lk_intfms> where interface_type eq '1'.
-      read table li_edidc assigning <lk_idoc_info> with key docnum = <lk_intfms>-idoc_docnum.
-      if sy-subrc = 0.
-        select single statva   into lv_idoc_status_statva   from teds3    where status = <lk_idoc_info>-status.
-        select single stalight into lv_idoc_status_stalight from stalight where statva = lv_idoc_status_statva.
-        case lv_idoc_status_stalight.
-          when '1'.
+  DELETE li_intfms WHERE interface_type NE '1'.
+  IF li_intfms[] IS NOT INITIAL.
+    SELECT docnum status FROM edidc INTO TABLE li_edidc FOR ALL ENTRIES IN li_intfms WHERE docnum = li_intfms-idoc_docnum.
+    LOOP AT gi_intfms ASSIGNING <lk_intfms> WHERE interface_type EQ '1'.
+      READ TABLE li_edidc ASSIGNING <lk_idoc_info> WITH KEY docnum = <lk_intfms>-idoc_docnum.
+      IF sy-subrc = 0.
+        SELECT SINGLE statva   INTO lv_idoc_status_statva   FROM teds3    WHERE status = <lk_idoc_info>-status.
+        SELECT SINGLE stalight INTO lv_idoc_status_stalight FROM stalight WHERE statva = lv_idoc_status_statva.
+        CASE lv_idoc_status_stalight.
+          WHEN '1'.
             <lk_intfms>-intf_istat_ico = '@5D@'.
-          when '2'.
+          WHEN '2'.
             <lk_intfms>-intf_istat_ico = '@5B@'.
-          when '3'.
+          WHEN '3'.
             <lk_intfms>-intf_istat_ico = '@5C@'.
-        endcase.
-      endif.
-    endloop.
-  endif.
+        ENDCASE.
+      ENDIF.
+    ENDLOOP.
+  ENDIF.
 
   "Logs
   li_intfms[] = gi_intfms[].
-  delete li_intfms where lognumber is initial.
-  if li_intfms[] is not initial.
-    select * into table li_log_header from balhdr for all entries in li_intfms where lognumber = li_intfms-lognumber.
-    loop at li_log_header assigning <lk_log_header>.
-      call function 'BAL_LOG_EXIST'
-        exporting
+  DELETE li_intfms WHERE lognumber IS INITIAL.
+  IF li_intfms[] IS NOT INITIAL.
+    SELECT * INTO TABLE li_log_header FROM balhdr FOR ALL ENTRIES IN li_intfms WHERE lognumber = li_intfms-lognumber.
+    LOOP AT li_log_header ASSIGNING <lk_log_header>.
+      CALL FUNCTION 'BAL_LOG_EXIST'
+        EXPORTING
           i_log_handle  = <lk_log_header>-log_handle
-        exceptions
+        EXCEPTIONS
           log_not_found = 1.
-      if sy-subrc = 0.
-        delete li_log_header.
-      endif.
-    endloop.
+      IF sy-subrc = 0.
+        DELETE li_log_header.
+      ENDIF.
+    ENDLOOP.
 
     "load logs from database
-    call function 'BAL_DB_LOAD'
-      exporting
+    CALL FUNCTION 'BAL_DB_LOAD'
+      EXPORTING
         i_t_log_header = li_log_header
-      exceptions
-        others         = 0.
-  endif.
+      EXCEPTIONS
+        OTHERS         = 0.
+  ENDIF.
 
-  loop at gi_intfms assigning <lk_intfms> where lognumber is not initial.
-    read table li_log_header assigning <lk_log_header> with table key mandant = sy-mandt lognumber = <lk_intfms>-lognumber.
-    if sy-subrc = 0.
+  LOOP AT gi_intfms ASSIGNING <lk_intfms> WHERE lognumber IS NOT INITIAL.
+    READ TABLE li_log_header ASSIGNING <lk_log_header> WITH TABLE KEY mandant = sy-mandt lognumber = <lk_intfms>-lognumber.
+    IF sy-subrc = 0.
       lk_log_msghndl-log_handle = <lk_log_header>-log_handle.
       lk_log_msghndl-msgnumber  = <lk_log_header>-last_msgnr.
 
-      if <lk_log_header>-last_msgnr > 1.
+      IF <lk_log_header>-last_msgnr > 1.
         <lk_intfms>-intf_alog_ico = '@DH@'.
-      endif.
+      ENDIF.
 
-      call function 'BAL_LOG_MSG_READ'
-        exporting
+      CALL FUNCTION 'BAL_LOG_MSG_READ'
+        EXPORTING
           i_s_msg_handle = lk_log_msghndl
-        importing
+        IMPORTING
           e_s_msg        = lk_log_msg
-        exceptions
+        EXCEPTIONS
           log_not_found  = 1
           msg_not_found  = 2
-          others         = 3.
-      case lk_log_msg-msgty.
-        when 'A' or 'E'. <lk_intfms>-intf_astat_ico = '@5C@'.
-        when 'I' or 'S'. <lk_intfms>-intf_astat_ico = '@5B@'.
-        when 'W'       . <lk_intfms>-intf_astat_ico = '@5D@'.
-      endcase.
-      message id lk_log_msg-msgid type lk_log_msg-msgty number lk_log_msg-msgno with lk_log_msg-msgv1 lk_log_msg-msgv2 lk_log_msg-msgv3 lk_log_msg-msgv4 into <lk_intfms>-log_msgtxt.
-    endif.
-  endloop.
+          OTHERS         = 3.
+      CASE lk_log_msg-msgty.
+        WHEN 'A' OR 'E'. <lk_intfms>-intf_astat_ico = '@5C@'.
+        WHEN 'I' OR 'S'. <lk_intfms>-intf_astat_ico = '@5B@'.
+        WHEN 'W'       . <lk_intfms>-intf_astat_ico = '@5D@'.
+      ENDCASE.
+      MESSAGE ID lk_log_msg-msgid TYPE lk_log_msg-msgty NUMBER lk_log_msg-msgno WITH lk_log_msg-msgv1 lk_log_msg-msgv2 lk_log_msg-msgv3 lk_log_msg-msgv4 INTO <lk_intfms>-log_msgtxt.
+    ENDIF.
+  ENDLOOP.
 
-endform.                    "data_retrieve_serial
+ENDFORM.                    "data_retrieve_serial
 *&---------------------------------------------------------------------*
 *&      Form  data_display_main_alv_config
 *&---------------------------------------------------------------------*
-form data_display_main_alv_config.
-  data lo_alv_functions      type ref to cl_salv_functions.
-  data lo_alv_columns        type ref to cl_salv_columns_table.
-  data lo_alv_column         type ref to cl_salv_column_table.
-  data lo_alv_layout         type ref to cl_salv_layout.
-  data lo_alv_events         type ref to cl_salv_events_table.
-  data lo_alv_selections     type ref to cl_salv_selections.
-  data lo_alv_events_handle  type ref to lcl_alv_events_handle.
-  data lo_alv_functions_list type ref to cl_salv_functions_list.
-  data lk_alv_layout_key     type salv_s_layout_key.
-  data lo_elem_type          type ref to cl_abap_elemdescr.
-  data lk_elem_ddic          type dfies.
-  data lo_msg                type ref to cx_root.
-  data lv_msg                type string.
-  data: lv_alv_longtext type scrtext_l.
-  data: lv_alv_medtext  type scrtext_m.
-  field-symbols: <lk_intfms> type gtk_intfms.
+FORM data_display_main_alv_config.
+  DATA lo_alv_functions      TYPE REF TO cl_salv_functions.
+  DATA lo_alv_columns        TYPE REF TO cl_salv_columns_table.
+  DATA lo_alv_column         TYPE REF TO cl_salv_column_table.
+  DATA lo_alv_layout         TYPE REF TO cl_salv_layout.
+  DATA lo_alv_events         TYPE REF TO cl_salv_events_table.
+  DATA lo_alv_selections     TYPE REF TO cl_salv_selections.
+  DATA lo_alv_events_handle  TYPE REF TO lcl_alv_events_handle.
+  DATA lo_alv_functions_list TYPE REF TO cl_salv_functions_list.
+  DATA lk_alv_layout_key     TYPE salv_s_layout_key.
+  DATA lo_elem_type          TYPE REF TO cl_abap_elemdescr.
+  DATA lk_elem_ddic          TYPE dfies.
+  DATA lo_msg                TYPE REF TO cx_root.
+  DATA lv_msg                TYPE string.
+  DATA: lv_alv_longtext TYPE scrtext_l.
+  DATA: lv_alv_medtext  TYPE scrtext_m.
+  FIELD-SYMBOLS: <lk_intfms> TYPE gtk_intfms.
 
-  try.
+  TRY.
       lo_alv_functions_list  = go_main_alv_table->get_functions( ).
       lo_alv_functions_list->set_group_export( ).
       lo_alv_functions_list->set_group_filter( ).
@@ -746,56 +807,56 @@ form data_display_main_alv_config.
       lo_alv_column->set_short_text( text-ks6 ).
 
 
-      read table gi_intfms assigning <lk_intfms> index 1.
-      if sy-subrc = 0.
+      READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX 1.
+      IF sy-subrc = 0.
         lo_alv_column ?= lo_alv_columns->get_column( 'INTERFACE_KEY1' ).
         lo_alv_column->set_long_text( text-k01 ).
         lo_alv_column->set_medium_text( text-k01 ).
         lo_alv_column->set_short_text( text-k01 ).
-        if <lk_intfms>-key1_datatype is not initial.
+        IF <lk_intfms>-key1_datatype IS NOT INITIAL.
           lo_elem_type ?= cl_abap_elemdescr=>describe_by_name( <lk_intfms>-key1_datatype ).
           lk_elem_ddic = lo_elem_type->get_ddic_field( ).
           lo_alv_column->set_long_text( lk_elem_ddic-scrtext_l ).
           lo_alv_column->set_medium_text( lk_elem_ddic-scrtext_m ).
           lo_alv_column->set_short_text( lk_elem_ddic-scrtext_s ).
-        endif.
+        ENDIF.
 
         lo_alv_column ?= lo_alv_columns->get_column( 'INTERFACE_KEY2' ).
         lo_alv_column->set_long_text( text-k02 ).
         lo_alv_column->set_medium_text( text-k02 ).
         lo_alv_column->set_short_text( text-k02 ).
-        if <lk_intfms>-key2_datatype is not initial.
+        IF <lk_intfms>-key2_datatype IS NOT INITIAL.
           lo_elem_type ?= cl_abap_elemdescr=>describe_by_name( <lk_intfms>-key2_datatype ).
           lk_elem_ddic = lo_elem_type->get_ddic_field( ).
           lo_alv_column->set_long_text( lk_elem_ddic-scrtext_l ).
           lo_alv_column->set_medium_text( lk_elem_ddic-scrtext_m ).
           lo_alv_column->set_short_text( lk_elem_ddic-scrtext_s ).
-        endif.
+        ENDIF.
 
         lo_alv_column ?= lo_alv_columns->get_column( 'INTERFACE_KEY3' ).
         lo_alv_column->set_long_text( text-k03 ).
         lo_alv_column->set_medium_text( text-k03 ).
         lo_alv_column->set_short_text( text-k03 ).
-        if <lk_intfms>-key3_datatype is not initial.
+        IF <lk_intfms>-key3_datatype IS NOT INITIAL.
           lo_elem_type ?= cl_abap_elemdescr=>describe_by_name( <lk_intfms>-key3_datatype ).
           lk_elem_ddic = lo_elem_type->get_ddic_field( ).
           lo_alv_column->set_long_text( lk_elem_ddic-scrtext_l ).
           lo_alv_column->set_medium_text( lk_elem_ddic-scrtext_m ).
           lo_alv_column->set_short_text( lk_elem_ddic-scrtext_s ).
-        endif.
+        ENDIF.
 
         lo_alv_column ?= lo_alv_columns->get_column( 'INTERFACE_KEY4' ).
         lo_alv_column->set_long_text( text-k04 ).
         lo_alv_column->set_medium_text( text-k04 ).
         lo_alv_column->set_short_text( text-k04 ).
-        if <lk_intfms>-key4_datatype is not initial.
+        IF <lk_intfms>-key4_datatype IS NOT INITIAL.
           lo_elem_type ?= cl_abap_elemdescr=>describe_by_name( <lk_intfms>-key4_datatype ).
           lk_elem_ddic = lo_elem_type->get_ddic_field( ).
           lo_alv_column->set_long_text( lk_elem_ddic-scrtext_l ).
           lo_alv_column->set_medium_text( lk_elem_ddic-scrtext_m ).
           lo_alv_column->set_short_text( lk_elem_ddic-scrtext_s ).
-        endif.
-      endif.
+        ENDIF.
+      ENDIF.
 
       "Layouts
       lo_alv_layout = go_main_alv_table->get_layout( ).
@@ -803,54 +864,54 @@ form data_display_main_alv_config.
       lo_alv_layout->set_key( lk_alv_layout_key ).
       lo_alv_layout->set_save_restriction( lo_alv_layout->restrict_none ).
       lo_alv_layout->set_default( abap_true ).
-      if s_alvvar is not initial.
+      IF s_alvvar IS NOT INITIAL.
         lo_alv_layout->set_initial_layout( s_alvvar ).
-      endif.
+      ENDIF.
 
       "Events
       lo_alv_events = go_main_alv_table->get_event( ).
-      create object lo_alv_events_handle.
-      set handler lo_alv_events_handle->command     for lo_alv_events.
-      set handler lo_alv_events_handle->doubleclick for lo_alv_events.
-      set handler lo_alv_events_handle->linkclick   for lo_alv_events.
+      CREATE OBJECT lo_alv_events_handle.
+      SET HANDLER lo_alv_events_handle->command     FOR lo_alv_events.
+      SET HANDLER lo_alv_events_handle->doubleclick FOR lo_alv_events.
+      SET HANDLER lo_alv_events_handle->linkclick   FOR lo_alv_events.
 
       go_main_alv_table->display( ).
-    catch cx_salv_not_found cx_salv_wrong_call cx_salv_existing.
-  endtry.
+    CATCH cx_salv_not_found cx_salv_wrong_call cx_salv_existing.
+  ENDTRY.
 
-endform.                    "data_display_alv_settings
+ENDFORM.                    "data_display_alv_settings
 *&---------------------------------------------------------------------*
 *&      Form  data_display_proxy_tree
 *&---------------------------------------------------------------------*
-form data_display_proxy_tree using lk_intfms type gtk_intfms.
-  data: li_proxy_toolbar_event    type cntl_simple_events,
-        lk_proxy_toolbar_event    type cntl_simple_event.
-  data: lo_proxy_toolbar_handle   type ref to lcl_tool_events_handle.
-  data: li_msg_payload            type sxms_messagepayload_tab.
-  data: lo_xms_persist_adm        type ref to cl_xms_persist_adm.
-  data: li_proxy_tree_button      type ttb_button.
-  data: lo_proxy_tree_handle type ref to lcl_tree_events_handle.
-  field-symbols: <lk_msg_payload> type sxms_messagepayload.
+FORM data_display_proxy_tree USING lk_intfms TYPE gtk_intfms.
+  DATA: li_proxy_toolbar_event    TYPE cntl_simple_events,
+        lk_proxy_toolbar_event    TYPE cntl_simple_event.
+  DATA: lo_proxy_toolbar_handle   TYPE REF TO lcl_tool_events_handle.
+  DATA: li_msg_payload            TYPE sxms_messagepayload_tab.
+  DATA: lo_xms_persist_adm        TYPE REF TO cl_xms_persist_adm.
+  DATA: li_proxy_tree_button      TYPE ttb_button.
+  DATA: lo_proxy_tree_handle TYPE REF TO lcl_tree_events_handle.
+  FIELD-SYMBOLS: <lk_msg_payload> TYPE sxms_messagepayload.
 
-  clear: gi_tree_search_result, gv_tree_search_index.
+  CLEAR: gi_tree_search_result, gv_tree_search_index.
 
 
   "Clear off other objects
-  if go_log_table is not initial or go_proxy_xml is not initial or go_idoc_tree is not initial.
+  IF go_log_table IS NOT INITIAL OR go_proxy_xml IS NOT INITIAL OR go_idoc_tree IS NOT INITIAL.
     go_main_split_container->remove_control( row = 1 column = 2 ).
-    free: go_main_view_container, go_log_table, go_proxy_xml, go_idoc_tree, go_proxy_tree.
-  endif.
+    FREE: go_main_view_container, go_log_table, go_proxy_xml, go_idoc_tree, go_proxy_tree.
+  ENDIF.
 
   "Create view container
-  if go_main_view_container is initial.
+  IF go_main_view_container IS INITIAL.
     go_main_view_container = go_main_split_container->get_container( row = 1 column = 2 ).
-    clear: go_view_split_container, go_view_tool_container, go_view_obj_container, go_view_toolbar.
-  endif.
+    CLEAR: go_view_split_container, go_view_tool_container, go_view_obj_container, go_view_toolbar.
+  ENDIF.
 
   "Create split toobar & objects, then set Toolbars
-  if go_view_split_container is initial.
-    create object go_view_split_container
-      exporting
+  IF go_view_split_container IS INITIAL.
+    CREATE OBJECT go_view_split_container
+      EXPORTING
         parent  = go_main_view_container
         rows    = 2
         columns = 1.
@@ -862,251 +923,251 @@ form data_display_proxy_tree using lk_intfms type gtk_intfms.
     go_view_tool_container  = go_view_split_container->get_container( row = 1 column = 1 ).
     go_view_obj_container  = go_view_split_container->get_container( row = 2 column = 1 ).
 
-    create object go_view_toolbar
-      exporting
+    CREATE OBJECT go_view_toolbar
+      EXPORTING
         parent = go_view_tool_container.
     li_proxy_tree_button[] = gi_proxy_tree_button[].
     go_view_toolbar->add_button_group( li_proxy_tree_button ).
     lk_proxy_toolbar_event-eventid = cl_gui_toolbar=>m_id_function_selected.  lk_proxy_toolbar_event-appl_event = ' '.
-    append lk_proxy_toolbar_event to li_proxy_toolbar_event.
+    APPEND lk_proxy_toolbar_event TO li_proxy_toolbar_event.
     go_view_toolbar->set_registered_events( li_proxy_toolbar_event ).
-    create object lo_proxy_toolbar_handle.
-    set handler lo_proxy_toolbar_handle->command     for go_view_toolbar.
-  endif.
+    CREATE OBJECT lo_proxy_toolbar_handle.
+    SET HANDLER lo_proxy_toolbar_handle->command     FOR go_view_toolbar.
+  ENDIF.
 
   "Reinitialize when selected again.
-  if go_proxy_tree is not initial.
+  IF go_proxy_tree IS NOT INITIAL.
     go_proxy_tree->free( ).
-    clear go_proxy_tree.
-  endif.
+    CLEAR go_proxy_tree.
+  ENDIF.
 
   "Create Tree
-  if go_proxy_tree is initial.
-    create object go_proxy_tree
-      exporting
+  IF go_proxy_tree IS INITIAL.
+    CREATE OBJECT go_proxy_tree
+      EXPORTING
         id_parent    = go_view_obj_container
         id_tree_text = 'XML'.
-    perform data_display_proxy_tree_config.
+    PERFORM data_display_proxy_tree_config.
     go_proxy_tree->register_node_ctxtmn_requested( ).
     go_proxy_tree->register_node_ctxtmn_selected( ).
     go_proxy_tree->register_node_1st_open( ).
 
-    create object lo_proxy_tree_handle.
-    authority-check object 'ZBC_INTF'
-             id '/PSTECH/II' field lk_intfms-interface_id
-             id 'ACTVT' field '02'.
-    if sy-subrc = 0.
-      set handler lo_proxy_tree_handle->node_menu_request     for go_proxy_tree.
-      set handler lo_proxy_tree_handle->node_menu_select      for go_proxy_tree.
-    endif.
-    set handler lo_proxy_tree_handle->node_open             for go_proxy_tree.
-  endif.
+    CREATE OBJECT lo_proxy_tree_handle.
+    AUTHORITY-CHECK OBJECT 'ZBC_INTF'
+             ID '/PSTECH/II' FIELD lk_intfms-interface_id
+             ID 'ACTVT' FIELD '02'.
+    IF sy-subrc = 0.
+      SET HANDLER lo_proxy_tree_handle->node_menu_request     FOR go_proxy_tree.
+      SET HANDLER lo_proxy_tree_handle->node_menu_select      FOR go_proxy_tree.
+    ENDIF.
+    SET HANDLER lo_proxy_tree_handle->node_open             FOR go_proxy_tree.
+  ENDIF.
 
-  if gv_xml_document is initial.
+  IF gv_xml_document IS INITIAL.
     "Retrieve XML
-    create object lo_xms_persist_adm.
-    try.
+    CREATE OBJECT lo_xms_persist_adm.
+    TRY.
         lo_xms_persist_adm->get_xi_payload(
-          exporting
+          EXPORTING
             im_msgguid         = lk_intfms-proxy_msgguid
             im_pid             = lk_intfms-proxy_pid
             im_version         = '000'
-          importing
+          IMPORTING
             ex_messagepayload  = li_msg_payload ).
-      catch cx_xms_syserr_persist.
-    endtry.
+      CATCH cx_xms_syserr_persist.
+    ENDTRY.
 
     "Retrieve Payload & show XML
-    read table li_msg_payload assigning <lk_msg_payload> index 1.
-    if sy-subrc = 0.
+    READ TABLE li_msg_payload ASSIGNING <lk_msg_payload> INDEX 1.
+    IF sy-subrc = 0.
       gk_intfms = lk_intfms.
-      perform data_display_proxy_xml2tree using <lk_msg_payload>-payload changing go_proxy_tree.
-    endif.
-  else.
-    perform data_display_proxy_xml2tree using gv_xml_document changing go_proxy_tree.
-  endif.
+      PERFORM data_display_proxy_xml2tree USING <lk_msg_payload>-payload CHANGING go_proxy_tree.
+    ENDIF.
+  ELSE.
+    PERFORM data_display_proxy_xml2tree USING gv_xml_document CHANGING go_proxy_tree.
+  ENDIF.
 
-endform.                    "data_display_proxy_tree
+ENDFORM.                    "data_display_proxy_tree
 *&---------------------------------------------------------------------*
 *&      Form  data_display_proxy_tree2xml
 *&---------------------------------------------------------------------*
-form data_display_proxy_tree2xml using lo_tree type ref to /pstech/cl_bc_gui_edit_tree
-                              changing lv_xml  type xstring.
-  types: begin of ltk_xml_node,
-          tree_node type uac_node_id,
-          xml_node  type ref to if_ixml_mini_node,
-          value     type string,
-         end of ltk_xml_node.
-  data: li_tree_nodes      type uac_t_node_long,
-        li_tree_nodes_sort type uac_t_node_long.
+FORM data_display_proxy_tree2xml USING lo_tree TYPE REF TO lcl_gui_tree
+                              CHANGING lv_xml  TYPE xstring.
+  TYPES: BEGIN OF ltk_xml_node,
+          tree_node TYPE uac_node_id,
+          xml_node  TYPE REF TO if_ixml_mini_node,
+          value     TYPE string,
+         END OF ltk_xml_node.
+  DATA: li_tree_nodes      TYPE uac_t_node_long,
+        li_tree_nodes_sort TYPE uac_t_node_long.
 
-  data: lk_tree_cell  type uac_s_cell_long.
-  data: li_xml_nodes  type standard table of ltk_xml_node.
-  data: lk_xml_node   type ltk_xml_node.
-  data: lv_xml_node_name  type string,
-        lv_xml_node_value type string.
-  field-symbols: <lk_tree_node>       type uac_s_node_long.
-  field-symbols: <lk_tree_node_sort>  type uac_s_node_long.
-  field-symbols: <lk_xml_node>        type ltk_xml_node.
-  field-symbols: <lv_xml_node_value>  type any.
+  DATA: lk_tree_cell  TYPE uac_s_cell_long.
+  DATA: li_xml_nodes  TYPE STANDARD TABLE OF ltk_xml_node.
+  DATA: lk_xml_node   TYPE ltk_xml_node.
+  DATA: lv_xml_node_name  TYPE string,
+        lv_xml_node_value TYPE string.
+  FIELD-SYMBOLS: <lk_tree_node>       TYPE uac_s_node_long.
+  FIELD-SYMBOLS: <lk_tree_node_sort>  TYPE uac_s_node_long.
+  FIELD-SYMBOLS: <lk_xml_node>        TYPE ltk_xml_node.
+  FIELD-SYMBOLS: <lv_xml_node_value>  TYPE any.
 
-  data lv_string type string.
-  data: lo_ixml_dom         type ref to if_ixml_mini_dom.
-  data: lo_ixml_render      type ref to if_ixml_mini_renderer.
-  data: lo_ixml_node        type ref to if_ixml_mini_node.
+  DATA lv_string TYPE string.
+  DATA: lo_ixml_dom         TYPE REF TO if_ixml_mini_dom.
+  DATA: lo_ixml_render      TYPE REF TO if_ixml_mini_renderer.
+  DATA: lo_ixml_node        TYPE REF TO if_ixml_mini_node.
 
   lo_ixml_dom = cl_ixml_mini=>create_dom( ).
   lo_ixml_render = cl_ixml_mini=>create_renderer( ).
 
   li_tree_nodes = lo_tree->get_nodes( ).
-  perform  data_display_tree_sort using '0' li_tree_nodes changing li_tree_nodes_sort.
-  loop at li_tree_nodes_sort assigning <lk_tree_node>.
-    clear lk_xml_node.
-    read table li_xml_nodes assigning <lk_xml_node> with key tree_node = <lk_tree_node>-parent_node.
-    if sy-subrc = 0.
-      lo_tree->get_cell( exporting id_node_id = <lk_tree_node>-node_id id_column_id = '1' importing es_cell = lk_tree_cell ).
-      assign lk_tree_cell-dref_value->* to <lv_xml_node_value>.
+  PERFORM  data_display_tree_sort USING '0' li_tree_nodes CHANGING li_tree_nodes_sort.
+  LOOP AT li_tree_nodes_sort ASSIGNING <lk_tree_node>.
+    CLEAR lk_xml_node.
+    READ TABLE li_xml_nodes ASSIGNING <lk_xml_node> WITH KEY tree_node = <lk_tree_node>-parent_node.
+    IF sy-subrc = 0.
+      lo_tree->get_cell( EXPORTING id_node_id = <lk_tree_node>-node_id id_column_id = '1' IMPORTING es_cell = lk_tree_cell ).
+      ASSIGN lk_tree_cell-dref_value->* TO <lv_xml_node_value>.
       lv_xml_node_name = <lk_tree_node>-value.
       lv_xml_node_value = <lv_xml_node_value>.
 
       lk_xml_node-tree_node = <lk_tree_node>-node_id.
-      case <lk_tree_node>-style_id.
-        when 'XML_STRUC'.
-          lo_ixml_dom->add_element( exporting name = lv_xml_node_name parent = <lk_xml_node>-xml_node  importing new_node = lk_xml_node-xml_node ).
-        when 'XML_ELEM'.
-          lo_ixml_dom->add_element( exporting name = lv_xml_node_name parent = <lk_xml_node>-xml_node  importing new_node = lk_xml_node-xml_node ).
+      CASE <lk_tree_node>-style_id.
+        WHEN 'XML_STRUC'.
+          lo_ixml_dom->add_element( EXPORTING name = lv_xml_node_name parent = <lk_xml_node>-xml_node  IMPORTING new_node = lk_xml_node-xml_node ).
+        WHEN 'XML_ELEM'.
+          lo_ixml_dom->add_element( EXPORTING name = lv_xml_node_name parent = <lk_xml_node>-xml_node  IMPORTING new_node = lk_xml_node-xml_node ).
           lk_xml_node-value = lv_xml_node_value.
-        when 'XML_ATTR'.
-          lo_ixml_dom->add_attribute( exporting name = lv_xml_node_name value = lv_xml_node_value parent = <lk_xml_node>-xml_node ).
-      endcase.
+        WHEN 'XML_ATTR'.
+          lo_ixml_dom->add_attribute( EXPORTING name = lv_xml_node_name value = lv_xml_node_value parent = <lk_xml_node>-xml_node ).
+      ENDCASE.
 
-      append lk_xml_node to li_xml_nodes.
-    else.
+      APPEND lk_xml_node TO li_xml_nodes.
+    ELSE.
       lv_xml_node_name = <lk_tree_node>-value.
       lk_xml_node-tree_node = <lk_tree_node>-node_id.
-      lo_ixml_dom->add_element( exporting name = lv_xml_node_name  importing new_node = lk_xml_node-xml_node ).
-      append lk_xml_node to li_xml_nodes.
-    endif.
-  endloop.
+      lo_ixml_dom->add_element( EXPORTING name = lv_xml_node_name  IMPORTING new_node = lk_xml_node-xml_node ).
+      APPEND lk_xml_node TO li_xml_nodes.
+    ENDIF.
+  ENDLOOP.
 
-  loop at li_xml_nodes assigning <lk_xml_node> where value is not initial.
-    lo_ixml_dom->add_text( exporting value = <lk_xml_node>-value parent = <lk_xml_node>-xml_node ).
-  endloop.
-  clear lv_xml.
+  LOOP AT li_xml_nodes ASSIGNING <lk_xml_node> WHERE value IS NOT INITIAL.
+    lo_ixml_dom->add_text( EXPORTING value = <lk_xml_node>-value parent = <lk_xml_node>-xml_node ).
+  ENDLOOP.
+  CLEAR lv_xml.
 
-  lo_ixml_render->render_xstring( exporting dom = lo_ixml_dom importing stream = lv_xml ).
+  lo_ixml_render->render_xstring( EXPORTING dom = lo_ixml_dom IMPORTING stream = lv_xml ).
 
-endform.                    "data_display_proxy_tree2xml
+ENDFORM.                    "data_display_proxy_tree2xml
 *&---------------------------------------------------------------------*
 *&      Form  data_display_tree_sort
 *&---------------------------------------------------------------------*
-form  data_display_tree_sort using lv_nodeid          type uac_node_id
-                                   li_tree_nodes      type uac_t_node_long
-                          changing li_tree_nodes_sort type uac_t_node_long.
+FORM  data_display_tree_sort USING lv_nodeid          TYPE uac_node_id
+                                   li_tree_nodes      TYPE uac_t_node_long
+                          CHANGING li_tree_nodes_sort TYPE uac_t_node_long.
 
-  field-symbols: <lk_tree_node_curr> type uac_s_node_long,
-                 <lk_tree_node_next> type uac_s_node_long.
-  read table li_tree_nodes assigning <lk_tree_node_curr> with key node_id = lv_nodeid.
-  if sy-subrc = 0.
-    if <lk_tree_node_curr>-parent_node is initial.
-      append <lk_tree_node_curr> to li_tree_nodes_sort.
-    endif.
-    if <lk_tree_node_curr>-first_child is not initial.
-      read table li_tree_nodes assigning <lk_tree_node_next> with key node_id = <lk_tree_node_curr>-first_child.
-      if sy-subrc = 0.
-        append <lk_tree_node_next> to li_tree_nodes_sort.
-        perform data_display_tree_sort using <lk_tree_node_next>-node_id li_tree_nodes changing li_tree_nodes_sort.
-      endif.
-    endif.
-    if <lk_tree_node_curr>-next_sibling is not initial.
-      read table li_tree_nodes assigning <lk_tree_node_next> with key node_id = <lk_tree_node_curr>-next_sibling.
-      if sy-subrc = 0.
-        append <lk_tree_node_next> to li_tree_nodes_sort.
-        perform data_display_tree_sort using <lk_tree_node_next>-node_id li_tree_nodes changing li_tree_nodes_sort.
-      endif.
-    endif.
-  endif.
-endform.                    "data_display_tree_sort
+  FIELD-SYMBOLS: <lk_tree_node_curr> TYPE uac_s_node_long,
+                 <lk_tree_node_next> TYPE uac_s_node_long.
+  READ TABLE li_tree_nodes ASSIGNING <lk_tree_node_curr> WITH KEY node_id = lv_nodeid.
+  IF sy-subrc = 0.
+    IF <lk_tree_node_curr>-parent_node IS INITIAL.
+      APPEND <lk_tree_node_curr> TO li_tree_nodes_sort.
+    ENDIF.
+    IF <lk_tree_node_curr>-first_child IS NOT INITIAL.
+      READ TABLE li_tree_nodes ASSIGNING <lk_tree_node_next> WITH KEY node_id = <lk_tree_node_curr>-first_child.
+      IF sy-subrc = 0.
+        APPEND <lk_tree_node_next> TO li_tree_nodes_sort.
+        PERFORM data_display_tree_sort USING <lk_tree_node_next>-node_id li_tree_nodes CHANGING li_tree_nodes_sort.
+      ENDIF.
+    ENDIF.
+    IF <lk_tree_node_curr>-next_sibling IS NOT INITIAL.
+      READ TABLE li_tree_nodes ASSIGNING <lk_tree_node_next> WITH KEY node_id = <lk_tree_node_curr>-next_sibling.
+      IF sy-subrc = 0.
+        APPEND <lk_tree_node_next> TO li_tree_nodes_sort.
+        PERFORM data_display_tree_sort USING <lk_tree_node_next>-node_id li_tree_nodes CHANGING li_tree_nodes_sort.
+      ENDIF.
+    ENDIF.
+  ENDIF.
+ENDFORM.                    "data_display_tree_sort
 *&---------------------------------------------------------------------*
 *&      Form  data_display_proxy_xml2tree
 *&---------------------------------------------------------------------*
-form data_display_proxy_xml2tree using lv_xml type xstring
-                              changing lo_tree type ref to /pstech/cl_bc_gui_edit_tree.
-  types: begin of ltk_tree_nodes,
-           level  type i,
-           nodeid type uac_node_id,
-         end of ltk_tree_nodes.
-  data: li_proxy_xml                 type srt_xml_data_tab.
-  data: lk_proxy_xml                 type srt_xml_data.
-  data: lv_tree_node_lastid          type uac_node_id.
-  data: lv_tree_node_lastparent      type uac_s_node_long.
-  data: lv_tree_node_style           type uac_style_id.
-  data: lv_tree_node_relat           type uac_relationship.
-  data: lv_tree_node_leaf            type uac_flag.
-  data: li_tree_nodes                type sorted table of ltk_tree_nodes with unique key level.
-  data: lk_tree_nodes                type ltk_tree_nodes.
-  data: lv_tree_editable             type uac_flag.
-  data: lv_proxy_next_tabix          type sytabix.
-  field-symbols: <lk_proxy_xml>      type srt_xml_data.
-  field-symbols: <lk_proxy_xml_next> type srt_xml_data.
+FORM data_display_proxy_xml2tree USING lv_xml TYPE xstring
+                              CHANGING lo_tree TYPE REF TO lcl_gui_tree.
+  TYPES: BEGIN OF ltk_tree_nodes,
+           level  TYPE i,
+           nodeid TYPE uac_node_id,
+         END OF ltk_tree_nodes.
+  DATA: li_proxy_xml                 TYPE srt_xml_data_tab.
+  DATA: lk_proxy_xml                 TYPE srt_xml_data.
+  DATA: lv_tree_node_lastid          TYPE uac_node_id.
+  DATA: lv_tree_node_lastparent      TYPE uac_s_node_long.
+  DATA: lv_tree_node_style           TYPE uac_style_id.
+  DATA: lv_tree_node_relat           TYPE uac_relationship.
+  DATA: lv_tree_node_leaf            TYPE uac_flag.
+  DATA: li_tree_nodes                TYPE SORTED TABLE OF ltk_tree_nodes WITH UNIQUE KEY level.
+  DATA: lk_tree_nodes                TYPE ltk_tree_nodes.
+  DATA: lv_tree_editable             TYPE uac_flag.
+  DATA: lv_proxy_next_tabix          TYPE sytabix.
+  FIELD-SYMBOLS: <lk_proxy_xml>      TYPE srt_xml_data.
+  FIELD-SYMBOLS: <lk_proxy_xml_next> TYPE srt_xml_data.
 
-  authority-check object 'ZBC_INTF'
-         id '/PSTECH/II' field gk_intfms-interface_id
-         id 'ACTVT' field '02'.
-  if sy-subrc = 0.
+  AUTHORITY-CHECK OBJECT 'ZBC_INTF'
+         ID '/PSTECH/II' FIELD gk_intfms-interface_id
+         ID 'ACTVT' FIELD '02'.
+  IF sy-subrc = 0.
     lv_tree_editable = '1'.
-  else.
+  ELSE.
     lv_tree_editable = '0'.
-  endif.
+  ENDIF.
 
-  cl_soap_xml_parser=>get_data( exporting xdoc = lv_xml importing data = li_proxy_xml ).
-  delete li_proxy_xml where tag_name is initial.
+  cl_soap_xml_parser=>get_data( EXPORTING xdoc = lv_xml IMPORTING data = li_proxy_xml ).
+  DELETE li_proxy_xml WHERE tag_name IS INITIAL.
 
-  clear lv_tree_node_lastid.
-  loop at li_proxy_xml assigning <lk_proxy_xml>.
+  CLEAR lv_tree_node_lastid.
+  LOOP AT li_proxy_xml ASSIGNING <lk_proxy_xml>.
     lv_proxy_next_tabix = sy-tabix + 1.
-    unassign <lk_proxy_xml_next>.
-    read table li_proxy_xml assigning <lk_proxy_xml_next> index lv_proxy_next_tabix.
+    UNASSIGN <lk_proxy_xml_next>.
+    READ TABLE li_proxy_xml ASSIGNING <lk_proxy_xml_next> INDEX lv_proxy_next_tabix.
 
     lv_tree_node_leaf = 0.
 
-    case <lk_proxy_xml>-tag_type.
-      when 'NODE_ONLY'.
+    CASE <lk_proxy_xml>-tag_type.
+      WHEN 'NODE_ONLY'.
         lv_tree_node_style = 'XML_ELEM'.
-      when 'DATA'.
+      WHEN 'DATA'.
         lv_tree_node_style = 'XML_ELEM'.
         lv_tree_node_leaf = 1.
-      when 'ATTRIBUTE'.
+      WHEN 'ATTRIBUTE'.
         lv_tree_node_style = 'XML_ATTR'.
         <lk_proxy_xml>-tag_level = <lk_proxy_xml>-tag_level + 1.
         lv_tree_node_leaf = 1.
-      when others.
-        continue.
-    endcase.
+      WHEN OTHERS.
+        CONTINUE.
+    ENDCASE.
 
-    if <lk_proxy_xml_next> is assigned.
-      if <lk_proxy_xml_next>-tag_type = 'ATTRIBUTE' and <lk_proxy_xml>-tag_type ne 'ATTRIBUTE' .
+    IF <lk_proxy_xml_next> IS ASSIGNED.
+      IF <lk_proxy_xml_next>-tag_type = 'ATTRIBUTE' AND <lk_proxy_xml>-tag_type NE 'ATTRIBUTE' .
         lv_tree_node_leaf = 0.
-      endif.
-    endif.
+      ENDIF.
+    ENDIF.
 
-    if lk_proxy_xml-tag_level lt <lk_proxy_xml>-tag_level.
-      if <lk_proxy_xml>-tag_type ne 'ATTRIBUTE'.
-        lo_tree->get_node( exporting id_node_id = lv_tree_node_lastid importing es_node = lv_tree_node_lastparent ).
+    IF lk_proxy_xml-tag_level LT <lk_proxy_xml>-tag_level.
+      IF <lk_proxy_xml>-tag_type NE 'ATTRIBUTE'.
+        lo_tree->get_node( EXPORTING id_node_id = lv_tree_node_lastid IMPORTING es_node = lv_tree_node_lastparent ).
         lo_tree->change_node( id_node_id = lv_tree_node_lastparent-node_id id_style_id = 'XML_STRUC' ).
-      endif.
+      ENDIF.
       lv_tree_node_relat = '6'. "last child
-    elseif lk_proxy_xml-tag_level gt <lk_proxy_xml>-tag_level.
-      read table li_tree_nodes into lk_tree_nodes with key level = <lk_proxy_xml>-tag_level.
+    ELSEIF lk_proxy_xml-tag_level GT <lk_proxy_xml>-tag_level.
+      READ TABLE li_tree_nodes INTO lk_tree_nodes WITH KEY level = <lk_proxy_xml>-tag_level.
       lv_tree_node_lastid = lk_tree_nodes-nodeid.
       lv_tree_node_relat = '2'. "siblings
-    else.
-      if <lk_proxy_xml>-tag_type ne 'ATTRIBUTE' and lk_proxy_xml-tag_type eq 'ATTRIBUTE'.
+    ELSE.
+      IF <lk_proxy_xml>-tag_type NE 'ATTRIBUTE' AND lk_proxy_xml-tag_type EQ 'ATTRIBUTE'.
         lv_tree_node_lastparent = go_proxy_tree->get_parent( id_node_id = lv_tree_node_lastid ).
         lo_tree->change_node( id_node_id = lv_tree_node_lastparent-node_id id_style_id = 'XML_STRUC' ).
-      endif.
+      ENDIF.
       lv_tree_node_relat = '2'. "siblings
-    endif.
+    ENDIF.
 
     lv_tree_node_lastid = lo_tree->add_node( id_relat_node = lv_tree_node_lastid id_is_leaf = lv_tree_node_leaf  id_relationship = lv_tree_node_relat id_value = <lk_proxy_xml>-tag_name id_style_id = lv_tree_node_style ).
     lo_tree->add_cell( id_node_id = lv_tree_node_lastid id_column_id = '1' id_editable = lv_tree_editable id_value = <lk_proxy_xml>-tag_value ).
@@ -1114,119 +1175,119 @@ form data_display_proxy_xml2tree using lv_xml type xstring
     lk_tree_nodes-level = <lk_proxy_xml>-tag_level.
     lk_tree_nodes-nodeid = lv_tree_node_lastid.
 
-    if <lk_proxy_xml>-tag_type ne 'ATTRIBUTE'.
-      read table li_tree_nodes with key level = <lk_proxy_xml>-tag_level transporting no fields.
-      if sy-subrc = 0.
-        modify table li_tree_nodes from lk_tree_nodes.
-      else.
-        append lk_tree_nodes to li_tree_nodes.
-      endif.
-    endif.
+    IF <lk_proxy_xml>-tag_type NE 'ATTRIBUTE'.
+      READ TABLE li_tree_nodes WITH KEY level = <lk_proxy_xml>-tag_level TRANSPORTING NO FIELDS.
+      IF sy-subrc = 0.
+        MODIFY TABLE li_tree_nodes FROM lk_tree_nodes.
+      ELSE.
+        APPEND lk_tree_nodes TO li_tree_nodes.
+      ENDIF.
+    ENDIF.
 
     lk_proxy_xml = <lk_proxy_xml>.
-  endloop.
+  ENDLOOP.
   lo_tree->expand_node( id_node_id = '1' ).
-  perform data_display_tree_update changing lo_tree.
-endform.                    "data_display_proxy_xml2tree
+  PERFORM data_display_tree_update CHANGING lo_tree.
+ENDFORM.                    "data_display_proxy_xml2tree
 *&---------------------------------------------------------------------*
 *&      Form  data_display_tree_update
 *&---------------------------------------------------------------------*
-form data_display_tree_update changing lo_tree type ref to /pstech/cl_bc_gui_edit_tree.
-  data: li_tree_nodes type uac_t_node_long.
-  field-symbols <lk_tree_nodes> type uac_s_node_long.
+FORM data_display_tree_update CHANGING lo_tree TYPE REF TO lcl_gui_tree.
+  DATA: li_tree_nodes TYPE uac_t_node_long.
+  FIELD-SYMBOLS <lk_tree_nodes> TYPE uac_s_node_long.
 
-  if go_proxy_tree is not initial.
+  IF go_proxy_tree IS NOT INITIAL.
     li_tree_nodes = lo_tree->get_nodes( ).
-    loop at li_tree_nodes assigning <lk_tree_nodes>.
-      case <lk_tree_nodes>-style_id.
-        when 'XML_STRUC' or 'XML_STRUC2' .
+    LOOP AT li_tree_nodes ASSIGNING <lk_tree_nodes>.
+      CASE <lk_tree_nodes>-style_id.
+        WHEN 'XML_STRUC' OR 'XML_STRUC2' .
           lo_tree->change_cell( id_node_id = <lk_tree_nodes>-node_id id_column_id = '1' id_editable = '0' id_u_editable = '1' ).
-      endcase.
-    endloop.
-  endif.
+      ENDCASE.
+    ENDLOOP.
+  ENDIF.
 
   lo_tree->column_optimize( id_column_id = '&Hierarchy' ).
   lo_tree->column_optimize( id_column_id = '1' ).
 *  lo_tree->update_frontend( ).
-endform.                    "data_display_tree_update
+ENDFORM.                    "data_display_tree_update
 *&---------------------------------------------------------------------*
 *&      Form  data_display_tree_search
 *&---------------------------------------------------------------------*
-form data_display_tree_search changing lo_tree type ref to /pstech/cl_bc_gui_edit_tree.
-  data: lk_popup_struc      type sval.
-  data: li_popup_struc      type standard table of sval.
-  data: lv_search_pattern   type uac_value.
-  data: li_tree_node        type uac_t_node_long,
-        li_tree_node_sort   type uac_t_node_long,
-        li_tree_result_node type uac_t_node_long.
-  data: li_tree_result_cell type uac_t_cell_long.
-  field-symbols : <lk_tree_result>      type uac_s_node_long.
+FORM data_display_tree_search CHANGING lo_tree TYPE REF TO lcl_gui_tree.
+  DATA: lk_popup_struc      TYPE sval.
+  DATA: li_popup_struc      TYPE STANDARD TABLE OF sval.
+  DATA: lv_search_pattern   TYPE uac_value.
+  DATA: li_tree_node        TYPE uac_t_node_long,
+        li_tree_node_sort   TYPE uac_t_node_long,
+        li_tree_result_node TYPE uac_t_node_long.
+  DATA: li_tree_result_cell TYPE uac_t_cell_long.
+  FIELD-SYMBOLS : <lk_tree_result>      TYPE uac_s_node_long.
 
   lk_popup_struc-tabname = 'RSDXX'.
   lk_popup_struc-fieldname = 'FINDSTR'.
   lk_popup_struc-novaluehlp = 'X'.
-  append lk_popup_struc to li_popup_struc.
+  APPEND lk_popup_struc TO li_popup_struc.
 
-  clear: gi_tree_search_result, gv_tree_search_index.
+  CLEAR: gi_tree_search_result, gv_tree_search_index.
 
-  call function 'POPUP_GET_VALUES'
-    exporting
+  CALL FUNCTION 'POPUP_GET_VALUES'
+    EXPORTING
       popup_title     = 'Find'
       no_value_check  = 'X'
-    tables
+    TABLES
       fields          = li_popup_struc
-    exceptions
+    EXCEPTIONS
       error_in_fields = 1
-      others          = 2.
+      OTHERS          = 2.
 
-  read table li_popup_struc into lk_popup_struc index 1.
-  if lk_popup_struc-value is not initial.
-    concatenate '*' lk_popup_struc-value '*' into lv_search_pattern.
-    lo_tree->find_item_by_pattern( exporting id_pattern = lv_search_pattern importing et_nodes = li_tree_result_node et_cells = li_tree_result_cell ).
-  endif.
+  READ TABLE li_popup_struc INTO lk_popup_struc INDEX 1.
+  IF lk_popup_struc-value IS NOT INITIAL.
+    CONCATENATE '*' lk_popup_struc-value '*' INTO lv_search_pattern.
+    lo_tree->find_item_by_pattern( EXPORTING id_pattern = lv_search_pattern IMPORTING et_nodes = li_tree_result_node et_cells = li_tree_result_cell ).
+  ENDIF.
 
 
-  if li_tree_result_node[] is not initial or li_tree_result_cell[] is not initial.
+  IF li_tree_result_node[] IS NOT INITIAL OR li_tree_result_cell[] IS NOT INITIAL.
     li_tree_node = lo_tree->get_nodes( ).
-    read table li_tree_node assigning <lk_tree_result> with key parent_node = ''.
-    if sy-subrc = 0.
-      perform data_display_tree_sort using <lk_tree_result>-node_id li_tree_node changing li_tree_node_sort.
-      loop at li_tree_node_sort assigning <lk_tree_result>.
-        read table li_tree_result_node transporting no fields with key node_id = <lk_tree_result>-node_id.
-        if sy-subrc = 0.
-          append  <lk_tree_result> to gi_tree_search_result.
-        else.
-          read table li_tree_result_cell transporting no fields with key node_id = <lk_tree_result>-node_id.
-          if sy-subrc = 0.
-            append  <lk_tree_result> to gi_tree_search_result .
-          endif.
-        endif.
-      endloop.
-    endif.
-  endif.
+    READ TABLE li_tree_node ASSIGNING <lk_tree_result> WITH KEY parent_node = ''.
+    IF sy-subrc = 0.
+      PERFORM data_display_tree_sort USING <lk_tree_result>-node_id li_tree_node CHANGING li_tree_node_sort.
+      LOOP AT li_tree_node_sort ASSIGNING <lk_tree_result>.
+        READ TABLE li_tree_result_node TRANSPORTING NO FIELDS WITH KEY node_id = <lk_tree_result>-node_id.
+        IF sy-subrc = 0.
+          APPEND  <lk_tree_result> TO gi_tree_search_result.
+        ELSE.
+          READ TABLE li_tree_result_cell TRANSPORTING NO FIELDS WITH KEY node_id = <lk_tree_result>-node_id.
+          IF sy-subrc = 0.
+            APPEND  <lk_tree_result> TO gi_tree_search_result .
+          ENDIF.
+        ENDIF.
+      ENDLOOP.
+    ENDIF.
+  ENDIF.
 
-  perform data_display_tree_search_next changing lo_tree.
+  PERFORM data_display_tree_search_next CHANGING lo_tree.
 
-endform.                    "data_display_tree_search
+ENDFORM.                    "data_display_tree_search
 *&---------------------------------------------------------------------*
 *&      Form  data_display_tree_search_next
 *&---------------------------------------------------------------------*
-form data_display_tree_search_next changing lo_tree type ref to /pstech/cl_bc_gui_edit_tree.
-  field-symbols : <lk_tree_result>      type uac_s_node_long.
-  if gi_tree_search_result[] is not initial.
+FORM data_display_tree_search_next CHANGING lo_tree TYPE REF TO lcl_gui_tree.
+  FIELD-SYMBOLS : <lk_tree_result>      TYPE uac_s_node_long.
+  IF gi_tree_search_result[] IS NOT INITIAL.
     gv_tree_search_index = gv_tree_search_index + 1.
-    read table gi_tree_search_result assigning <lk_tree_result> index gv_tree_search_index.
-    if sy-subrc = 0.
-      if <lk_tree_result>-expanded ne '1'.
+    READ TABLE gi_tree_search_result ASSIGNING <lk_tree_result> INDEX gv_tree_search_index.
+    IF sy-subrc = 0.
+      IF <lk_tree_result>-expanded NE '1'.
         lo_tree->expand_node( id_node_id = <lk_tree_result>-node_id ).
-      endif.
+      ENDIF.
       lo_tree->set_selected_node( id_node_id = <lk_tree_result>-node_id ).
-    else.
-      clear gv_tree_search_index.
-      message 'End of search' type 'I'.
-    endif.
-  endif.
-endform.                    "data_display_tree_search_next
+    ELSE.
+      CLEAR gv_tree_search_index.
+      MESSAGE 'End of search' TYPE 'I'.
+    ENDIF.
+  ENDIF.
+ENDFORM.                    "data_display_tree_search_next
 *&---------------------------------------------------------------------*
 *&      Form  data_display_tree_hide_empty
 *&---------------------------------------------------------------------*
@@ -1234,25 +1295,25 @@ endform.                    "data_display_tree_search_next
 *----------------------------------------------------------------------*
 *      -->LO_TREE    text
 *----------------------------------------------------------------------*
-form data_display_tree_hide_empty changing lo_tree type ref to /pstech/cl_bc_gui_edit_tree.
+FORM data_display_tree_hide_empty CHANGING lo_tree TYPE REF TO lcl_gui_tree.
 
-  data: li_tree_node        type uac_t_node_long,
-        li_tree_node_sort   type uac_t_node_long,
-        li_tree_result_node type uac_t_node_long.
-  data: li_tree_result_cell type uac_t_cell_long.
-  field-symbols : <lk_tree_result>      type uac_s_node_long.
+  DATA: li_tree_node        TYPE uac_t_node_long,
+        li_tree_node_sort   TYPE uac_t_node_long,
+        li_tree_result_node TYPE uac_t_node_long.
+  DATA: li_tree_result_cell TYPE uac_t_cell_long.
+  FIELD-SYMBOLS : <lk_tree_result>      TYPE uac_s_node_long.
 
   li_tree_node = lo_tree->get_nodes( ).
 
-  read table li_tree_node assigning <lk_tree_result> with key parent_node = ''.
-  if sy-subrc = 0.
-    perform data_display_tree_sort using <lk_tree_result>-node_id li_tree_node changing li_tree_node_sort.
-    loop at li_tree_node_sort assigning <lk_tree_result>.
+  READ TABLE li_tree_node ASSIGNING <lk_tree_result> WITH KEY parent_node = ''.
+  IF sy-subrc = 0.
+    PERFORM data_display_tree_sort USING <lk_tree_result>-node_id li_tree_node CHANGING li_tree_node_sort.
+    LOOP AT li_tree_node_sort ASSIGNING <lk_tree_result>.
 
-    endloop.
-  endif.
+    ENDLOOP.
+  ENDIF.
 
-endform.                    "data_display_tree_hide_empty
+ENDFORM.                    "data_display_tree_hide_empty
 *&---------------------------------------------------------------------*
 *&      Form  data_display_tree_show_empty
 *&---------------------------------------------------------------------*
@@ -1260,29 +1321,29 @@ endform.                    "data_display_tree_hide_empty
 *----------------------------------------------------------------------*
 *      -->LO_TREE    text
 *----------------------------------------------------------------------*
-form data_display_tree_show_empty changing lo_tree type ref to /pstech/cl_bc_gui_edit_tree.
-  field-symbols : <lk_tree_result>      type uac_s_node_long.
-  if gi_tree_search_result[] is not initial.
+FORM data_display_tree_show_empty CHANGING lo_tree TYPE REF TO lcl_gui_tree.
+  FIELD-SYMBOLS : <lk_tree_result>      TYPE uac_s_node_long.
+  IF gi_tree_search_result[] IS NOT INITIAL.
     gv_tree_search_index = gv_tree_search_index + 1.
-    read table gi_tree_search_result assigning <lk_tree_result> index gv_tree_search_index.
-    if sy-subrc = 0.
-      if <lk_tree_result>-expanded ne '1'.
+    READ TABLE gi_tree_search_result ASSIGNING <lk_tree_result> INDEX gv_tree_search_index.
+    IF sy-subrc = 0.
+      IF <lk_tree_result>-expanded NE '1'.
         lo_tree->expand_node( id_node_id = <lk_tree_result>-node_id ).
-      endif.
+      ENDIF.
       lo_tree->set_selected_node( id_node_id = <lk_tree_result>-node_id ).
-    else.
-      clear gv_tree_search_index.
-      message 'End of search' type 'I'.
-    endif.
-  endif.
-endform.                    "data_display_tree_show_empty
+    ELSE.
+      CLEAR gv_tree_search_index.
+      MESSAGE 'End of search' TYPE 'I'.
+    ENDIF.
+  ENDIF.
+ENDFORM.                    "data_display_tree_show_empty
 *&---------------------------------------------------------------------*
 *&      Form  data_display_proxy_tree_config
 *&---------------------------------------------------------------------*
-form data_display_proxy_tree_config.
-  data: lk_node_style        type uac_s_node_style.
-  data: lk_column_style      type uac_s_column_style.
-  data: lk_cell_style        type uac_s_cell_style.
+FORM data_display_proxy_tree_config.
+  DATA: lk_node_style        TYPE uac_s_node_style.
+  DATA: lk_column_style      TYPE uac_s_column_style.
+  DATA: lk_cell_style        TYPE uac_s_cell_style.
 
   lk_column_style-font_style        = 0.
   lk_column_style-alignment         = 0.
@@ -1322,34 +1383,34 @@ form data_display_proxy_tree_config.
   lk_node_style-max_length        = 30.
   go_proxy_tree->add_node_style( is_node_style = lk_node_style id_style_id = 'XML_ATTR' ).
 
-endform.                    "data_display_idoc_settings
+ENDFORM.                    "data_display_idoc_settings
 *&---------------------------------------------------------------------*
 *&      Form  data_display_proxy_xml
 *&---------------------------------------------------------------------*
-form data_display_proxy_xml using lk_intfms type gtk_intfms.
-  data: li_proxy_toolbar_event    type cntl_simple_events,
-        lk_proxy_toolbar_event    type cntl_simple_event.
-  data: lo_proxy_toolbar_handle   type ref to lcl_tool_events_handle.
-  data: li_msg_payload     type sxms_messagepayload_tab.
-  data: lo_xms_persist_adm type ref to cl_xms_persist_adm.
-  field-symbols: <lk_msg_payload> type sxms_messagepayload.
+FORM data_display_proxy_xml USING lk_intfms TYPE gtk_intfms.
+  DATA: li_proxy_toolbar_event    TYPE cntl_simple_events,
+        lk_proxy_toolbar_event    TYPE cntl_simple_event.
+  DATA: lo_proxy_toolbar_handle   TYPE REF TO lcl_tool_events_handle.
+  DATA: li_msg_payload     TYPE sxms_messagepayload_tab.
+  DATA: lo_xms_persist_adm TYPE REF TO cl_xms_persist_adm.
+  FIELD-SYMBOLS: <lk_msg_payload> TYPE sxms_messagepayload.
 
   "Clear off other objects
-  if go_log_table is not initial or go_idoc_tree is not initial or go_proxy_tree is not initial.
+  IF go_log_table IS NOT INITIAL OR go_idoc_tree IS NOT INITIAL OR go_proxy_tree IS NOT INITIAL.
     go_main_split_container->remove_control( row = 1 column = 2 ).
-    free: go_main_view_container, go_log_table, go_proxy_xml, go_idoc_tree, go_proxy_tree.
-  endif.
+    FREE: go_main_view_container, go_log_table, go_proxy_xml, go_idoc_tree, go_proxy_tree.
+  ENDIF.
 
   "Create view container
-  if go_main_view_container is initial.
+  IF go_main_view_container IS INITIAL.
     go_main_view_container = go_main_split_container->get_container( row = 1 column = 2 ).
-    clear: go_view_split_container, go_view_tool_container, go_view_obj_container, go_view_toolbar.
-  endif.
+    CLEAR: go_view_split_container, go_view_tool_container, go_view_obj_container, go_view_toolbar.
+  ENDIF.
 
   "Create split toobar & objects, then set Toolbars
-  if go_view_split_container is initial.
-    create object go_view_split_container
-      exporting
+  IF go_view_split_container IS INITIAL.
+    CREATE OBJECT go_view_split_container
+      EXPORTING
         parent  = go_main_view_container
         rows    = 2
         columns = 1.
@@ -1361,146 +1422,146 @@ form data_display_proxy_xml using lk_intfms type gtk_intfms.
     go_view_tool_container = go_view_split_container->get_container( row = 1 column = 1 ).
     go_view_obj_container  = go_view_split_container->get_container( row = 2 column = 1 ).
 
-    create object go_view_toolbar
-      exporting
+    CREATE OBJECT go_view_toolbar
+      EXPORTING
         parent = go_view_tool_container.
     go_view_toolbar->add_button_group( gi_proxy_xml_button ).
     lk_proxy_toolbar_event-eventid = cl_gui_toolbar=>m_id_function_selected.  lk_proxy_toolbar_event-appl_event = ' '.
-    append lk_proxy_toolbar_event to li_proxy_toolbar_event.
+    APPEND lk_proxy_toolbar_event TO li_proxy_toolbar_event.
     go_view_toolbar->set_registered_events( li_proxy_toolbar_event ).
-    create object lo_proxy_toolbar_handle.
-    set handler lo_proxy_toolbar_handle->command     for go_view_toolbar.
-  endif.
+    CREATE OBJECT lo_proxy_toolbar_handle.
+    SET HANDLER lo_proxy_toolbar_handle->command     FOR go_view_toolbar.
+  ENDIF.
 
-  if go_proxy_xml is initial.
-    create object go_proxy_xml
-      exporting
+  IF go_proxy_xml IS INITIAL.
+    CREATE OBJECT go_proxy_xml
+      EXPORTING
         parent = go_view_obj_container.
     go_proxy_xml->set_source_type( 'XML' ).
     go_proxy_xml->set_content_type( 'application/xml' ).
 
-    authority-check object 'ZBC_INTF'
-             id '/PSTECH/II' field lk_intfms-interface_id
-             id 'ACTVT' field '02'.
-    if sy-subrc eq 0.
+    AUTHORITY-CHECK OBJECT 'ZBC_INTF'
+             ID '/PSTECH/II' FIELD lk_intfms-interface_id
+             ID 'ACTVT' FIELD '02'.
+    IF sy-subrc EQ 0.
       go_proxy_xml->set_readonly( abap_false ).
-    else.
+    ELSE.
       go_proxy_xml->set_readonly( abap_true ).
-    endif.
+    ENDIF.
 
     go_proxy_xml->set_change_mode( abap_true ).
-  endif.
+  ENDIF.
 
   "Retrieve XML
-  if gv_xml_document is initial.
-    create object lo_xms_persist_adm.
-    try.
+  IF gv_xml_document IS INITIAL.
+    CREATE OBJECT lo_xms_persist_adm.
+    TRY.
         lo_xms_persist_adm->get_xi_payload(
-          exporting
+          EXPORTING
             im_msgguid         = lk_intfms-proxy_msgguid
             im_pid             = lk_intfms-proxy_pid
             im_version         = '000'
-          importing
+          IMPORTING
             ex_messagepayload  = li_msg_payload ).
-      catch cx_xms_syserr_persist.
-    endtry.
+      CATCH cx_xms_syserr_persist.
+    ENDTRY.
 
     "Retrieve Payload & show XML
-    read table li_msg_payload assigning <lk_msg_payload> index 1.
-    if sy-subrc = 0.
+    READ TABLE li_msg_payload ASSIGNING <lk_msg_payload> INDEX 1.
+    IF sy-subrc = 0.
       gk_intfms = lk_intfms.
       go_proxy_xml->set_xstring( <lk_msg_payload>-payload ).
-    endif.
+    ENDIF.
     go_proxy_xml->set_change_mode( abap_false ).
-  else.
+  ELSE.
     go_proxy_xml->set_xstring( gv_xml_document ).
     go_proxy_xml->set_change_mode( abap_false ).
-  endif.
-endform.                    "data_display_xml
+  ENDIF.
+ENDFORM.                    "data_display_xml
 *&---------------------------------------------------------------------*
 *&      Form  data_display_log_alv
 *&---------------------------------------------------------------------*
-form data_display_log_alv using lk_intfms type gtk_intfms.
-  data li_log_msghndl            type bal_t_msgh.
-  data li_log_handle             type bal_t_logh.
-  data li_log_header             type balhdr_t.
-  data lk_log_header             type balhdr.
-  data lk_log_msg                type bal_s_msg.
-  data lk_log_table              type gtk_log_table.
-  data lo_alv_columns            type ref to cl_salv_columns_table.
-  data lo_alv_column             type ref to cl_salv_column_table.
-  field-symbols <lk_log_msghndl> type balmsghndl.
+FORM data_display_log_alv USING lk_intfms TYPE gtk_intfms.
+  DATA li_log_msghndl            TYPE bal_t_msgh.
+  DATA li_log_handle             TYPE bal_t_logh.
+  DATA li_log_header             TYPE balhdr_t.
+  DATA lk_log_header             TYPE balhdr.
+  DATA lk_log_msg                TYPE bal_s_msg.
+  DATA lk_log_table              TYPE gtk_log_table.
+  DATA lo_alv_columns            TYPE REF TO cl_salv_columns_table.
+  DATA lo_alv_column             TYPE REF TO cl_salv_column_table.
+  FIELD-SYMBOLS <lk_log_msghndl> TYPE balmsghndl.
 
   "Make sure that there's a log number
-  check lk_intfms-lognumber is not initial.
+  CHECK lk_intfms-lognumber IS NOT INITIAL.
 
   "Cleanup
-  if go_idoc_tree is not initial or go_proxy_xml is not initial or go_proxy_tree is not initial.
+  IF go_idoc_tree IS NOT INITIAL OR go_proxy_xml IS NOT INITIAL OR go_proxy_tree IS NOT INITIAL.
     go_main_split_container->remove_control( row = 1 column = 2 ).
-    free: go_main_view_container, go_log_table, go_proxy_xml, go_idoc_tree, go_proxy_tree.
-  endif.
+    FREE: go_main_view_container, go_log_table, go_proxy_xml, go_idoc_tree, go_proxy_tree.
+  ENDIF.
 
   "Re-create the container
-  if go_main_view_container is initial.
+  IF go_main_view_container IS INITIAL.
     go_main_view_container = go_main_split_container->get_container( row = 1 column = 2 ).
-  endif.
+  ENDIF.
 
-  select single * into lk_log_header from balhdr where lognumber = lk_intfms-lognumber.
-  select log_handle into table li_log_handle from balhdr where lognumber = lk_intfms-lognumber.
+  SELECT SINGLE * INTO lk_log_header FROM balhdr WHERE lognumber = lk_intfms-lognumber.
+  SELECT log_handle INTO TABLE li_log_handle FROM balhdr WHERE lognumber = lk_intfms-lognumber.
 
-  call function 'BAL_LOG_EXIST'
-    exporting
+  CALL FUNCTION 'BAL_LOG_EXIST'
+    EXPORTING
       i_log_handle  = lk_log_header-log_handle
-    exceptions
+    EXCEPTIONS
       log_not_found = 1.
-  if sy-subrc ne 0.
-    append lk_log_header to li_log_header.
-    call function 'BAL_DB_LOAD'
-      exporting
+  IF sy-subrc NE 0.
+    APPEND lk_log_header TO li_log_header.
+    CALL FUNCTION 'BAL_DB_LOAD'
+      EXPORTING
         i_t_log_header = li_log_header
-      exceptions
-        others         = 0.
-  endif.
+      EXCEPTIONS
+        OTHERS         = 0.
+  ENDIF.
 
   "retrieve msg handle
-  call function 'BAL_GLB_SEARCH_MSG'
-    exporting
+  CALL FUNCTION 'BAL_GLB_SEARCH_MSG'
+    EXPORTING
       i_t_log_handle = li_log_handle
-    importing
+    IMPORTING
       e_t_msg_handle = li_log_msghndl
-    exceptions
+    EXCEPTIONS
       msg_not_found  = 1
-      others         = 2.
-  check sy-subrc eq 0.
+      OTHERS         = 2.
+  CHECK sy-subrc EQ 0.
 
-  clear gi_log_table.
-  loop at li_log_msghndl assigning  <lk_log_msghndl> .
-    call function 'BAL_LOG_MSG_READ'
-      exporting
+  CLEAR gi_log_table.
+  LOOP AT li_log_msghndl ASSIGNING  <lk_log_msghndl> .
+    CALL FUNCTION 'BAL_LOG_MSG_READ'
+      EXPORTING
         i_s_msg_handle = <lk_log_msghndl>
-      importing
+      IMPORTING
         e_s_msg        = lk_log_msg
-      exceptions
+      EXCEPTIONS
         log_not_found  = 1
         msg_not_found  = 2
-        others         = 3.
-    case lk_log_msg-msgty.
-      when 'A' or 'E'. lk_log_table-log_ico = '@5C@'.
-      when 'I' or 'S'. lk_log_table-log_ico = '@5B@'.
-      when 'W'       . lk_log_table-log_ico = '@5D@'.
-    endcase.
-    message id lk_log_msg-msgid type lk_log_msg-msgty number lk_log_msg-msgno with lk_log_msg-msgv1 lk_log_msg-msgv2 lk_log_msg-msgv3 lk_log_msg-msgv4 into lk_log_table-log_msg.
-    append lk_log_table to gi_log_table.
-  endloop.
+        OTHERS         = 3.
+    CASE lk_log_msg-msgty.
+      WHEN 'A' OR 'E'. lk_log_table-log_ico = '@5C@'.
+      WHEN 'I' OR 'S'. lk_log_table-log_ico = '@5B@'.
+      WHEN 'W'       . lk_log_table-log_ico = '@5D@'.
+    ENDCASE.
+    MESSAGE ID lk_log_msg-msgid TYPE lk_log_msg-msgty NUMBER lk_log_msg-msgno WITH lk_log_msg-msgv1 lk_log_msg-msgv2 lk_log_msg-msgv3 lk_log_msg-msgv4 INTO lk_log_table-log_msg.
+    APPEND lk_log_table TO gi_log_table.
+  ENDLOOP.
 
-  if go_log_table is initial and gi_log_table[] is not initial .
-    try.
+  IF go_log_table IS INITIAL AND gi_log_table[] IS NOT INITIAL .
+    TRY.
         cl_salv_table=>factory(
-          exporting
+          EXPORTING
             r_container  = go_main_view_container
-          importing
+          IMPORTING
             r_salv_table = go_log_table
-          changing
+          CHANGING
             t_table      = gi_log_table ).
 
         "Columns
@@ -1514,89 +1575,89 @@ form data_display_log_alv using lk_intfms type gtk_intfms.
         lo_alv_column->set_short_text( text-kt1 ).
 
         go_log_table->display( ).
-      catch cx_salv_msg cx_salv_not_found.
-    endtry.
-  else.
+      CATCH cx_salv_msg cx_salv_not_found.
+    ENDTRY.
+  ELSE.
     go_log_table->refresh( ).
-  endif.
+  ENDIF.
 
-endform.                    "data_display_log
+ENDFORM.                    "data_display_log
 
 *&---------------------------------------------------------------------*
 *&      Module  STATUS_1001  OUTPUT
 *&---------------------------------------------------------------------*
-module status_1001 output.
-  perform data_display_screen.
-endmodule.                 " STATUS_1001  OUTPUT
+MODULE status_1001 OUTPUT.
+  PERFORM data_display_screen.
+ENDMODULE.                 " STATUS_1001  OUTPUT
 
 *----------------------------------------------------------------------*
 *  MODULE user_command_1001 INPUT
 *----------------------------------------------------------------------*
-module user_command_1001 input.
-  perform data_display_commands using sy-ucomm.
-  call method cl_gui_cfw=>flush.
-endmodule.                 " USER_COMMAND_1001  INPUT
+MODULE user_command_1001 INPUT.
+  PERFORM data_display_commands USING sy-ucomm.
+  CALL METHOD cl_gui_cfw=>flush.
+ENDMODULE.                 " USER_COMMAND_1001  INPUT
 *&---------------------------------------------------------------------*
 *&      Form  data_process_proxy_restart
 *&---------------------------------------------------------------------*
-form data_process_proxy_restart using lk_intfms type gtk_intfms.
-  data lo_xms_main          type ref to cl_xms_main.
-  data lx_xms_system_error  type ref to cx_xms_system_error. "#EC NEEDED
+FORM data_process_proxy_restart USING lk_intfms TYPE gtk_intfms.
+  DATA lo_xms_main          TYPE REF TO cl_xms_main.
+  DATA lx_xms_system_error  TYPE REF TO cx_xms_system_error. "#EC NEEDED
 
   lo_xms_main = cl_xms_main=>create_xmb( ).
 
 * reinstantiate the message-object
-  try.
-      call method lo_xms_main->restart_error_message
-        exporting
+  TRY.
+      CALL METHOD lo_xms_main->restart_error_message
+        EXPORTING
           im_message_guid = lk_intfms-proxy_msgguid
           im_version      = '000'
           im_pipeline_id  = lk_intfms-proxy_pid.
-    catch cx_xms_system_error into lx_xms_system_error.
-  endtry.
+    CATCH cx_xms_system_error INTO lx_xms_system_error.
+  ENDTRY.
 
-endform.                    "data_process_proxy_restart
+ENDFORM.                    "data_process_proxy_restart
 *&---------------------------------------------------------------------*
 *&      Form  DATA_PROCESS_PROXY_COPYPROC
 *&---------------------------------------------------------------------*
-form data_process_proxy_copyproc using lk_intfms type gtk_intfms.
-  data lv_guid_new          type sxmsguid.
-  data lk_intfms_new        type /pstech/bcintfms.
-  data lo_xms_main          type ref to cl_xms_main.
-  data lo_xms_system_error  type ref to cx_xms_system_error. "#EC NEEDED
-  data lo_xms_runtime       type ref to cl_xms_run_time_env.
-  data lk_xms_runtime_eoref type sxmseoref.
-  data lo_xms_message       type ref to if_xms_message.
-  data lo_xms_message_xmb   type ref to if_xms_message_xmb.
-  data l_timestamp          type timestamp.
-  data lo_xms_hoplist       type ref to cl_xms_msghdr30_hoplist.
-  data lv_xms_hoplist_count type i.
-  data lo_xms_engine        type ref to if_xms_engine.
-  data lv_adapter_type      type sxmspstype.
+FORM data_process_proxy_copyproc USING lk_intfms TYPE gtk_intfms.
+  DATA lv_guid_new          TYPE sxmsguid.
+  DATA lk_intfms_new        TYPE /pstech/bcintfms.
+  DATA lo_xms_main          TYPE REF TO cl_xms_main.
+  DATA lo_xms_system_error  TYPE REF TO cx_xms_system_error. "#EC NEEDED
+  DATA lo_xms_runtime       TYPE REF TO cl_xms_run_time_env.
+  DATA lk_xms_runtime_eoref TYPE sxmseoref.
+  DATA lo_xms_message       TYPE REF TO if_xms_message.
+  DATA lo_xms_message_xmb   TYPE REF TO if_xms_message_xmb.
+  DATA l_timestamp          TYPE timestamp.
+  DATA lo_xms_hoplist       TYPE REF TO cl_xms_msghdr30_hoplist.
+  DATA lv_xms_hoplist_count TYPE i.
+  DATA lo_xms_engine        TYPE REF TO if_xms_engine.
+  DATA lv_adapter_type      TYPE sxmspstype.
 
   lo_xms_main = cl_xms_main=>create_xmb( ).
 
   "Reinstantiate the message-object
-  try.
-      call method lo_xms_main->read_message_from_persist
-        exporting
+  TRY.
+      CALL METHOD lo_xms_main->read_message_from_persist
+        EXPORTING
           im_message_guid = lk_intfms-proxy_msgguid
           im_version      = '000'
           im_pipeline_id  = lk_intfms-proxy_pid
-        importing
+        IMPORTING
           ex_message      = lo_xms_message.
-    catch cx_xms_system_error into lo_xms_system_error.
-  endtry.
+    CATCH cx_xms_system_error INTO lo_xms_system_error.
+  ENDTRY.
 
-  if lo_xms_message is not initial.
-    call method cl_xms_main=>get_message_properties
-      exporting
+  IF lo_xms_message IS NOT INITIAL.
+    CALL METHOD cl_xms_main=>get_message_properties
+      EXPORTING
         im_message      = lo_xms_message
-      importing
+      IMPORTING
         ex_run_time_env = lo_xms_runtime.
 
     lk_xms_runtime_eoref-id = 'RESTART'.
-    concatenate  sy-uname ':' lk_intfms-interface_msgid into lk_xms_runtime_eoref-val.
+    CONCATENATE  sy-uname ':' lk_intfms-interface_msgid INTO lk_xms_runtime_eoref-val.
     lo_xms_runtime->set_user_name( sy-uname ).
     lo_xms_runtime->set_eo_ref_inbound( lk_xms_runtime_eoref ).
 
@@ -1608,604 +1669,604 @@ form data_process_proxy_copyproc using lk_intfms type gtk_intfms.
     "set attributes of the message-header
     lo_xms_message_xmb->set_message_id( lv_guid_new ).
     "set send date and time
-    get time stamp field l_timestamp.
+    GET TIME STAMP FIELD l_timestamp.
     lo_xms_message_xmb->set_time_sent( l_timestamp ).
 
-    call method cl_xms_main=>get_message_properties
-      exporting
+    CALL METHOD cl_xms_main=>get_message_properties
+      EXPORTING
         im_message = lo_xms_message
-      importing
+      IMPORTING
         ex_hoplist = lo_xms_hoplist.
 
-    if lo_xms_hoplist is not initial.
-      describe table lo_xms_hoplist->hoplist lines lv_xms_hoplist_count.
-      delete  lo_xms_hoplist->hoplist from lv_xms_hoplist_count.
-    endif.
+    IF lo_xms_hoplist IS NOT INITIAL.
+      DESCRIBE TABLE lo_xms_hoplist->hoplist LINES lv_xms_hoplist_count.
+      DELETE  lo_xms_hoplist->hoplist FROM lv_xms_hoplist_count.
+    ENDIF.
 
-    case lk_intfms-interface_dir.
-      when 'I'.
+    CASE lk_intfms-interface_dir.
+      WHEN 'I'.
         lv_adapter_type = 'PLAINHTTP'.
-      when 'O'.
+      WHEN 'O'.
         lv_adapter_type = ''.
-    endcase.
+    ENDCASE.
 
-    try.
+    TRY.
         lo_xms_engine = cl_xms_main=>create_engine( ).
-        call method lo_xms_engine->enter_engine
-          exporting
+        CALL METHOD lo_xms_engine->enter_engine
+          EXPORTING
             im_execute_flag = '1'
             im_adapter_id   = lv_adapter_type
-          changing
+          CHANGING
             ch_message      = lo_xms_message_xmb.
 
-      catch cx_xms_system_error into lo_xms_system_error.
-    endtry.
-    commit work.
-  endif.
+      CATCH cx_xms_system_error INTO lo_xms_system_error.
+    ENDTRY.
+    COMMIT WORK.
+  ENDIF.
 
-  if lk_intfms-interface_dir = 'O'.
+  IF lk_intfms-interface_dir = 'O'.
     lk_intfms_new = lk_intfms.
     lk_intfms_new-interface_msgid = lv_guid_new.
     lk_intfms_new-execute_date = sy-datum.
     lk_intfms_new-execute_time = sy-uzeit.
-    modify /pstech/bcintfms from lk_intfms_new.
-  endif.
+    MODIFY /pstech/bcintfms FROM lk_intfms_new.
+  ENDIF.
 
-endform.                    " DATA_PROCESS_PROXY_COPYPROC
+ENDFORM.                    " DATA_PROCESS_PROXY_COPYPROC
 
 *&---------------------------------------------------------------------*
 *&      Form  data_process_proxy_editproc
 *&---------------------------------------------------------------------*
-form data_process_proxy_editproc using lk_intfms type gtk_intfms.
-  data lv_contenttype       type string.
-  data lv_guid_new          type sxmsguid.
-  data lk_intfms_new        type /pstech/bcintfms.
-  data lo_xms_main          type ref to cl_xms_main.
-  data lo_xms_system_error  type ref to cx_xms_system_error. "#EC NEEDED
-  data lo_xms_runtime       type ref to cl_xms_run_time_env.
-  data lk_xms_runtime_eoref type sxmseoref.
-  data lo_xms_message       type ref to if_xms_message.
-  data lo_xms_message_xmb   type ref to if_xms_message_xmb.
-  data lo_xms_payload       type ref to if_xms_payload.
-  data lv_timestamp         type timestamp.
-  data lo_xms_hoplist       type ref to cl_xms_msghdr30_hoplist.
-  data lv_xms_hoplist_count type i.
-  data lo_xms_engine        type ref to if_xms_engine.
-  data lv_adapter_type      type sxmspstype.
+FORM data_process_proxy_editproc USING lk_intfms TYPE gtk_intfms.
+  DATA lv_contenttype       TYPE string.
+  DATA lv_guid_new          TYPE sxmsguid.
+  DATA lk_intfms_new        TYPE /pstech/bcintfms.
+  DATA lo_xms_main          TYPE REF TO cl_xms_main.
+  DATA lo_xms_system_error  TYPE REF TO cx_xms_system_error. "#EC NEEDED
+  DATA lo_xms_runtime       TYPE REF TO cl_xms_run_time_env.
+  DATA lk_xms_runtime_eoref TYPE sxmseoref.
+  DATA lo_xms_message       TYPE REF TO if_xms_message.
+  DATA lo_xms_message_xmb   TYPE REF TO if_xms_message_xmb.
+  DATA lo_xms_payload       TYPE REF TO if_xms_payload.
+  DATA lv_timestamp         TYPE timestamp.
+  DATA lo_xms_hoplist       TYPE REF TO cl_xms_msghdr30_hoplist.
+  DATA lv_xms_hoplist_count TYPE i.
+  DATA lo_xms_engine        TYPE REF TO if_xms_engine.
+  DATA lv_adapter_type      TYPE sxmspstype.
 
-  check gv_xml_document is not initial.
+  CHECK gv_xml_document IS NOT INITIAL.
 
   lo_xms_main = cl_xms_main=>create_xmb( ).
 
 * reinstantiate the message-object
-  try.
-      call method lo_xms_main->read_message_from_persist
-        exporting
+  TRY.
+      CALL METHOD lo_xms_main->read_message_from_persist
+        EXPORTING
           im_message_guid = lk_intfms-proxy_msgguid
           im_version      = '000'
           im_pipeline_id  = lk_intfms-proxy_pid
-        importing
+        IMPORTING
           ex_message      = lo_xms_message.
-    catch cx_xms_system_error into lo_xms_system_error.
-  endtry.
+    CATCH cx_xms_system_error INTO lo_xms_system_error.
+  ENDTRY.
 
-  if lo_xms_message is not initial.
+  IF lo_xms_message IS NOT INITIAL.
     "Create new GUID for the message
     lv_guid_new = cl_xms_msg_util=>create_guid( ).
 
     lo_xms_message_xmb ?= lo_xms_message.
 
     "Set Runtime Message
-    call method cl_xms_main=>get_message_properties
-      exporting
+    CALL METHOD cl_xms_main=>get_message_properties
+      EXPORTING
         im_message      = lo_xms_message
-      importing
+      IMPORTING
         ex_run_time_env = lo_xms_runtime.
 
     lk_xms_runtime_eoref-id = 'MODIFY'.
-    concatenate  sy-uname ':' lk_intfms-interface_msgid into lk_xms_runtime_eoref-val.
+    CONCATENATE  sy-uname ':' lk_intfms-interface_msgid INTO lk_xms_runtime_eoref-val.
     lo_xms_runtime->set_user_name( sy-uname ).
     lo_xms_runtime->set_eo_ref_inbound( lk_xms_runtime_eoref ).
 
     "set attributes of the message-header
     lo_xms_message_xmb->set_message_id( lv_guid_new ).
     "set send date and time
-    get time stamp field lv_timestamp.
+    GET TIME STAMP FIELD lv_timestamp.
     lo_xms_message_xmb->set_time_sent( lv_timestamp ).
 
     "Remove last hoplist
-    call method cl_xms_main=>get_message_properties
-      exporting
+    CALL METHOD cl_xms_main=>get_message_properties
+      EXPORTING
         im_message = lo_xms_message
-      importing
+      IMPORTING
         ex_hoplist = lo_xms_hoplist.
 
-    if lo_xms_hoplist is not initial.
-      describe table lo_xms_hoplist->hoplist lines lv_xms_hoplist_count.
-      delete  lo_xms_hoplist->hoplist from lv_xms_hoplist_count.
-    endif.
+    IF lo_xms_hoplist IS NOT INITIAL.
+      DESCRIBE TABLE lo_xms_hoplist->hoplist LINES lv_xms_hoplist_count.
+      DELETE  lo_xms_hoplist->hoplist FROM lv_xms_hoplist_count.
+    ENDIF.
 
     "Update Payload
-    try.
+    TRY.
         lo_xms_payload = lo_xms_message_xmb->get_payload_by_name( lo_xms_message_xmb->co_payloadname_main ).
         lv_contenttype = lo_xms_payload->getcontenttype( ).
         lo_xms_payload->setbinarycontent( data = gv_xml_document type = lv_contenttype ).
 
-        case lk_intfms-interface_dir.
-          when 'I'.
+        CASE lk_intfms-interface_dir.
+          WHEN 'I'.
             lv_adapter_type = 'PLAINHTTP'.
-          when 'O'.
+          WHEN 'O'.
             lv_adapter_type = ''.
-        endcase.
+        ENDCASE.
 
 
         lo_xms_engine = cl_xms_main=>create_engine( ).
-        call method lo_xms_engine->enter_engine
-          exporting
+        CALL METHOD lo_xms_engine->enter_engine
+          EXPORTING
             im_execute_flag = '1'
             im_adapter_id   = lv_adapter_type
-          changing
+          CHANGING
             ch_message      = lo_xms_message_xmb.
 
-      catch cx_xms_system_error into lo_xms_system_error.
-    endtry.
-    commit work.
+      CATCH cx_xms_system_error INTO lo_xms_system_error.
+    ENDTRY.
+    COMMIT WORK.
 
-    if lk_intfms-interface_dir = 'O'.
+    IF lk_intfms-interface_dir = 'O'.
       lk_intfms_new = lk_intfms.
       lk_intfms_new-interface_msgid = lv_guid_new.
       lk_intfms_new-execute_date = sy-datum.
       lk_intfms_new-execute_time = sy-uzeit.
-      modify /pstech/bcintfms from lk_intfms_new.
-    endif.
+      MODIFY /pstech/bcintfms FROM lk_intfms_new.
+    ENDIF.
 
-  endif.
+  ENDIF.
 
 
-endform.                    " DATA_PROCESS_PROXY_EDITPROC
+ENDFORM.                    " DATA_PROCESS_PROXY_EDITPROC
 
 
 *&---------------------------------------------------------------------*
 *&      Form  screen_alvvar_default
 *&---------------------------------------------------------------------*
-form screen_alvvar_default changing lv_alvvar type slis_vari.
-  data: lk_alv_layout type salv_s_layout_info,
-        lk_alv_key    type salv_s_layout_key.
+FORM screen_alvvar_default CHANGING lv_alvvar TYPE slis_vari.
+  DATA: lk_alv_layout TYPE salv_s_layout_info,
+        lk_alv_key    TYPE salv_s_layout_key.
   lk_alv_key-report = sy-repid.
   lk_alv_layout = cl_salv_layout_service=>get_default_layout( s_key = lk_alv_key ).
   lv_alvvar = lk_alv_layout-layout.
-endform.                    "screen_alvvar_default
+ENDFORM.                    "screen_alvvar_default
 *&---------------------------------------------------------------------*
 *&      Form  screen_alvvar_searchvalue
 *&---------------------------------------------------------------------*
-form screen_alvvar_searchvalue  changing lv_alvvar type slis_vari.
-  data: lk_alv_layout type salv_s_layout_info,
-        lk_alv_key    type salv_s_layout_key.
+FORM screen_alvvar_searchvalue  CHANGING lv_alvvar TYPE slis_vari.
+  DATA: lk_alv_layout TYPE salv_s_layout_info,
+        lk_alv_key    TYPE salv_s_layout_key.
   lk_alv_key-report = sy-repid.
   lk_alv_layout = cl_salv_layout_service=>f4_layouts( s_key = lk_alv_key ).
   lv_alvvar = lk_alv_layout-layout.
-endform.                    "screen_alvvar_searchvalue
+ENDFORM.                    "screen_alvvar_searchvalue
 *&---------------------------------------------------------------------*
 *&      Form  screen_intfid_searchvalue
 *&---------------------------------------------------------------------*
-form screen_intfid_searchvalue.
-  types: begin of ltk_request,
-          intfid type /pstech/bcintfid,
-          desc   type /pstech/bcintfmm-interface_desc,
-         end of ltk_request.
+FORM screen_intfid_searchvalue.
+  TYPES: BEGIN OF ltk_request,
+          intfid TYPE /pstech/bcintfid,
+          desc   TYPE /pstech/bcintfmm-interface_desc,
+         END OF ltk_request.
 
-  data: li_request           type standard table of ltk_request.
-  data: li_return            type rsdm_f4_return_values.
-  field-symbols <lk_return>  type ddshretval.
-  field-symbols <lk_request> type ltk_request.
+  DATA: li_request           TYPE STANDARD TABLE OF ltk_request.
+  DATA: li_return            TYPE rsdm_f4_return_values.
+  FIELD-SYMBOLS <lk_return>  TYPE ddshretval.
+  FIELD-SYMBOLS <lk_request> TYPE ltk_request.
 
-  select interface_id interface_desc into table li_request from /pstech/bcintfmm.
+  SELECT interface_id interface_desc INTO TABLE li_request FROM /pstech/bcintfmm.
 
-  loop at li_request assigning <lk_request>.
-    authority-check object 'ZBC_INTF'
-             id '/PSTECH/II' field <lk_request>-intfid
-             id 'ACTVT' field '03'.
-    if sy-subrc ne 0.
-      delete li_request index sy-tabix.
-    endif.
-  endloop.
+  LOOP AT li_request ASSIGNING <lk_request>.
+    AUTHORITY-CHECK OBJECT 'ZBC_INTF'
+             ID '/PSTECH/II' FIELD <lk_request>-intfid
+             ID 'ACTVT' FIELD '03'.
+    IF sy-subrc NE 0.
+      DELETE li_request INDEX sy-tabix.
+    ENDIF.
+  ENDLOOP.
 
-  call function 'F4IF_INT_TABLE_VALUE_REQUEST'
-    exporting
+  CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'
+    EXPORTING
       retfield   = 'INTFID'   "field of internal table
       value_org  = 'S'
-    tables
+    TABLES
       value_tab  = li_request
       return_tab = li_return.
 
-  loop at li_return assigning <lk_return>.
+  LOOP AT li_return ASSIGNING <lk_return>.
     s_intfid-sign = 'I'.
     s_intfid-option = 'EQ'.
     s_intfid-low = <lk_return>-fieldval.
-  endloop.
+  ENDLOOP.
 
-endform.                    "screen_intfid_searchvalue
+ENDFORM.                    "screen_intfid_searchvalue
 *&---------------------------------------------------------------------*
 *&      Form  data_display_screen
 *&---------------------------------------------------------------------*
-form data_display_screen.
-  data lv_table_count type i.
+FORM data_display_screen.
+  DATA lv_table_count TYPE i.
 
-  describe table gi_intfms lines lv_table_count.
-  set titlebar '000' with lv_table_count.
-  set pf-status 'STATUS_1001'.
-  if go_main_container is initial.
-    create object go_main_container
-      exporting
+  DESCRIBE TABLE gi_intfms LINES lv_table_count.
+  "SET TITLEBAR '000' WITH lv_table_count.
+  "SET PF-STATUS 'STATUS_1001'.
+  IF go_main_container IS INITIAL.
+    CREATE OBJECT go_main_container
+      EXPORTING
         container_name = 'DISPLAY_CTRL'.
 
-    create object go_main_split_container
-      exporting
+    CREATE OBJECT go_main_split_container
+      EXPORTING
         parent  = go_main_container
         rows    = 1
         columns = 2.
 
     go_main_alv_container = go_main_split_container->get_container( row = 1 column = 1 ).
 
-    try.
+    TRY.
         cl_salv_table=>factory(
-          exporting
+          EXPORTING
             r_container  = go_main_alv_container
-          importing
+          IMPORTING
             r_salv_table = go_main_alv_table
-          changing
+          CHANGING
             t_table      = gi_intfms ).
-        perform data_display_main_alv_config.
-      catch cx_salv_msg.
-    endtry.
-  endif.
-endform.                    " data_display_screen
+        PERFORM data_display_main_alv_config.
+      CATCH cx_salv_msg.
+    ENDTRY.
+  ENDIF.
+ENDFORM.                    " data_display_screen
 *&---------------------------------------------------------------------*
 *&      Form  data_display_settings
 *&---------------------------------------------------------------------*
-form data_display_settings.
-  data: li_xml_filter_list type vrm_values, lk_xml_filter_list type vrm_value.
-  lk_xml_filter_list-key = '1'. lk_xml_filter_list-text = 'OR'.  append lk_xml_filter_list to li_xml_filter_list.
-  lk_xml_filter_list-key = '2'. lk_xml_filter_list-text = 'AND'. append lk_xml_filter_list to li_xml_filter_list.
+FORM data_display_settings.
+  DATA: li_xml_filter_list TYPE vrm_values, lk_xml_filter_list TYPE vrm_value.
+  lk_xml_filter_list-key = '1'. lk_xml_filter_list-text = 'OR'.  APPEND lk_xml_filter_list TO li_xml_filter_list.
+  lk_xml_filter_list-key = '2'. lk_xml_filter_list-text = 'AND'. APPEND lk_xml_filter_list TO li_xml_filter_list.
 
-  call function 'VRM_SET_VALUES'
-    exporting
+  CALL FUNCTION 'VRM_SET_VALUES'
+    EXPORTING
       id     = 'S_XMLO1'
       values = li_xml_filter_list.
 
   "View Toolbars
-  data: lk_button  type stb_button.
-  clear lk_button.
+  DATA: lk_button  TYPE stb_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'NODEEXPAND'.
   lk_button-icon       = '@3S@'.
   lk_button-quickinfo  = 'Expand All Nodes'.
-  append lk_button to gi_idoc_tree_button.
+  APPEND lk_button TO gi_idoc_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'NODECOLLAPSE'.
   lk_button-icon       = '@3T@'.
   lk_button-quickinfo  = 'Collapse All Nodes'.
-  append lk_button to gi_idoc_tree_button.
+  APPEND lk_button TO gi_idoc_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_idoc_tree_button.
+  APPEND lk_button TO gi_idoc_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'TREE_SEARCH'.
   lk_button-icon       = '@13@'.
   lk_button-quickinfo  = 'Find'.
-  append lk_button to gi_idoc_tree_button.
+  APPEND lk_button TO gi_idoc_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'TREE_SEARCH_NEXT'.
   lk_button-icon       = '@4E@'.
   lk_button-quickinfo  = 'Find'.
-  append lk_button to gi_idoc_tree_button.
+  APPEND lk_button TO gi_idoc_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_idoc_tree_button.
+  APPEND lk_button TO gi_idoc_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-icon       = '@2L@'.
   lk_button-function   = 'EDITPROCESS'.
   lk_button-quickinfo  = 'Save and Process'.
   lk_button-text       = 'Save and Process'.
-  append lk_button to gi_idoc_tree_button.
+  APPEND lk_button TO gi_idoc_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'NODEEXPAND'.
   lk_button-icon       = '@3S@'.
   lk_button-quickinfo  = 'Expand All Nodes'.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'NODECOLLAPSE'.
   lk_button-icon       = '@3T@'.
   lk_button-quickinfo  = 'Collapse All Nodes'.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'TREE_SEARCH'.
   lk_button-icon       = '@13@'.
   lk_button-quickinfo  = 'Find'.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'TREE_SEARCH_NEXT'.
   lk_button-icon       = '@4E@'.
   lk_button-quickinfo  = 'Find'.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'PROXY_XML'.
   lk_button-icon       = '@J4@'.
   lk_button-quickinfo  = 'XML Editor'.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-icon       = '@2L@'.
   lk_button-function   = 'EDITPROCESS'.
   lk_button-quickinfo  = 'Save and Process'.
   lk_button-text       = 'Save and Process'.
-  append lk_button to gi_proxy_tree_button.
+  APPEND lk_button TO gi_proxy_tree_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'PROXY_XML_TOGGLE'.
   lk_button-icon       = '@3I@'.
   lk_button-quickinfo  = 'Toggle Display/Change'.
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'PROXY_XML_STORE'.
   lk_button-icon       = '@49@'.
   lk_button-quickinfo  = 'Save to file ...'(005).
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'PROXY_TREE'.
   lk_button-icon       = '@JG@'.
   lk_button-quickinfo  = 'XML Tree'.
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-function   = 'PROXY_XML_PRETTY'.
   lk_button-icon       = '@FZ@'.
   lk_button-quickinfo  = 'Format and Indent'.
   lk_button-text       = 'Format and Indent'.
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 3.
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
-  clear lk_button.
+  CLEAR lk_button.
   lk_button-butn_type  = 0.
   lk_button-icon       = '@2L@'.
   lk_button-function   = 'EDITPROCESS'.
   lk_button-quickinfo  = 'Save and Process'.
   lk_button-text       = 'Save and Process'.
-  append lk_button to gi_proxy_xml_button.
+  APPEND lk_button TO gi_proxy_xml_button.
 
   "Tree Context
-  data: lk_context type uac_s_context_menu.
+  DATA: lk_context TYPE uac_s_context_menu.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'XML_DUPNODE'.
   lk_context-menu_function_code = 'XML_DUPNODE'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Duplicate Node'.
-  append lk_context to gi_proxy_tree_context.
+  APPEND lk_context TO gi_proxy_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = '00002'.
   lk_context-is_separator       = '1'.
-  append lk_context to gi_proxy_tree_context.
+  APPEND lk_context TO gi_proxy_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'XML_ADDELEM'.
   lk_context-menu_function_code = 'XML_ADDELEM'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Add Element'.
-  append lk_context to gi_proxy_tree_context.
+  APPEND lk_context TO gi_proxy_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'XML_ADDELEM2'.
   lk_context-menu_function_code = 'XML_ADDELEM2'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Add Sub-Element'.
-  append lk_context to gi_proxy_tree_context.
+  APPEND lk_context TO gi_proxy_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'XML_ADDATTR'.
   lk_context-menu_function_code = 'XML_ADDATTR'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Add Attribute'.
-  append lk_context to gi_proxy_tree_context.
+  APPEND lk_context TO gi_proxy_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = '00005'.
   lk_context-is_separator       = '1'.
   lk_context-disabled           = '0'.
-  append lk_context to gi_proxy_tree_context.
+  APPEND lk_context TO gi_proxy_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'XML_DELNODE'.
   lk_context-menu_function_code = 'XML_DELNODE'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Delete Node'.
   lk_context-icon               = '@18@'.
-  append lk_context to gi_proxy_tree_context.
+  APPEND lk_context TO gi_proxy_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'IDOC_DUPNODE'.
   lk_context-menu_function_code = 'IDOC_DUPNODE'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Duplicate Structure'.
-  append lk_context to gi_idoc_tree_context.
+  APPEND lk_context TO gi_idoc_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = '00001'.
   lk_context-is_separator       = '1'.
   lk_context-disabled           = '0'.
-  append lk_context to gi_idoc_tree_context.
+  APPEND lk_context TO gi_idoc_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'IDOC_ADDSTR1'.
   lk_context-menu_function_code = 'IDOC_ADDSTR1'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Add Structure'.
-  append lk_context to gi_idoc_tree_context.
+  APPEND lk_context TO gi_idoc_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'IDOC_ADDSTR2'.
   lk_context-menu_function_code = 'IDOC_ADDSTR2'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Add Sub-Structure'.
-  append lk_context to gi_idoc_tree_context.
+  APPEND lk_context TO gi_idoc_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = '00002'.
   lk_context-is_separator       = '1'.
   lk_context-disabled           = '0'.
-  append lk_context to gi_idoc_tree_context.
+  APPEND lk_context TO gi_idoc_tree_context.
 
-  clear lk_context.
+  CLEAR lk_context.
   lk_context-menu_item_id       = 'IDOC_DELNODE'.
   lk_context-menu_function_code = 'IDOC_DELNODE'.
   lk_context-is_separator       = '0'.
   lk_context-disabled           = '0'.
   lk_context-value              = 'Delete Structure'.
-  append lk_context to gi_idoc_tree_context.
+  APPEND lk_context TO gi_idoc_tree_context.
 
 
-endform.                    "data_display_settings
+ENDFORM.                    "data_display_settings
 *&---------------------------------------------------------------------*
 *&      Form  DATA_DISPLAY_COMMANDS
 *&---------------------------------------------------------------------*
-form data_display_commands  using lv_okcode type syucomm.
-  data: lv_popup_answer    type c length 1.
-  data: lv_table_count     type i.
-  data: lv_total_count_msg type string.
-  data: lo_alv_selections  type ref to cl_salv_selections.
-  data: li_alv_rows        type salv_t_row.
-  data: lk_intfms          type gtk_intfms.
-  data: li_intfms          type gti_intfms.
-  data: lk_intfms_table    type /pstech/bcintfms.
-  data: li_intfms_table    type standard table of /pstech/bcintfms.
-  data: lv_tree_node_id    type uac_node_id.
-  data: li_tree_nodes      type uac_t_node_long.
-  data: li_submit_param    type rsparams_tt.
-  data: lk_submit_param    type rsparams.
+FORM data_display_commands  USING lv_okcode TYPE syucomm.
+  DATA: lv_popup_answer    TYPE c LENGTH 1.
+  DATA: lv_table_count     TYPE i.
+  DATA: lv_total_count_msg TYPE string.
+  DATA: lo_alv_selections  TYPE REF TO cl_salv_selections.
+  DATA: li_alv_rows        TYPE salv_t_row.
+  DATA: lk_intfms          TYPE gtk_intfms.
+  DATA: li_intfms          TYPE gti_intfms.
+  DATA: lk_intfms_table    TYPE /pstech/bcintfms.
+  DATA: li_intfms_table    TYPE STANDARD TABLE OF /pstech/bcintfms.
+  DATA: lv_tree_node_id    TYPE uac_node_id.
+  DATA: li_tree_nodes      TYPE uac_t_node_long.
+  DATA: li_submit_param    TYPE rsparams_tt.
+  DATA: lk_submit_param    TYPE rsparams.
 
-  field-symbols <lk_tree_nodes> type uac_s_node_long.
-  field-symbols <lk_alv_rows> like line of li_alv_rows.
-  field-symbols <lk_intfms>   type gtk_intfms.
+  FIELD-SYMBOLS <lk_tree_nodes> TYPE uac_s_node_long.
+  FIELD-SYMBOLS <lk_alv_rows> LIKE LINE OF li_alv_rows.
+  FIELD-SYMBOLS <lk_intfms>   TYPE gtk_intfms.
 
-  clear : lv_popup_answer, lv_table_count.
+  CLEAR : lv_popup_answer, lv_table_count.
 
-  case lv_okcode.
-    when 'EXIT' or 'CANC' or 'BACK' or 'OK'.
-      set screen 0.
-      leave screen.
+  CASE lv_okcode.
+    WHEN 'EXIT' OR 'CANC' OR 'BACK' OR 'OK' OR 'E' OR 'ENDE' OR 'ECAN'.
+      SET SCREEN 0.
+      LEAVE SCREEN.
 
-    when 'COUNT'.
-      describe table gi_intfms lines lv_table_count.
+    WHEN 'COUNT'.
+      DESCRIBE TABLE gi_intfms LINES lv_table_count.
       lv_total_count_msg = lv_table_count.
-      concatenate 'Total Messages:' lv_total_count_msg into lv_total_count_msg separated by space.
-      call function 'POPUP_TO_INFORM'
-        exporting
+      CONCATENATE 'Total Messages:' lv_total_count_msg INTO lv_total_count_msg SEPARATED BY space.
+      CALL FUNCTION 'POPUP_TO_INFORM'
+        EXPORTING
           titel = 'Message Total'
           txt1  = lv_total_count_msg
           txt2  = ' '.
 
-    when 'XMLTABLE'.
+    WHEN 'XMLTABLE'.
       go_main_alv_table->get_metadata( ).
       lo_alv_selections = go_main_alv_table->get_selections( ).
       li_alv_rows = lo_alv_selections->get_selected_rows( ).
-      clear: lk_submit_param, li_submit_param[].
-      loop at li_alv_rows assigning <lk_alv_rows>.
-        read table gi_intfms assigning <lk_intfms> index <lk_alv_rows>.
-        if <lk_intfms>-proxy_msgguid is not initial.
+      CLEAR: lk_submit_param, li_submit_param[].
+      LOOP AT li_alv_rows ASSIGNING <lk_alv_rows>.
+        READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX <lk_alv_rows>.
+        IF <lk_intfms>-proxy_msgguid IS NOT INITIAL.
           lk_submit_param-selname = 'S_GUID'.
           lk_submit_param-kind    = 'S'.
           lk_submit_param-sign    = 'I'.
           lk_submit_param-option  = 'EQ'.
           lk_submit_param-low     = <lk_intfms>-proxy_msgguid.
-          append lk_submit_param to li_submit_param.
-        endif.
-      endloop.
+          APPEND lk_submit_param TO li_submit_param.
+        ENDIF.
+      ENDLOOP.
 
-      clear lk_submit_param.
+      CLEAR lk_submit_param.
       lk_submit_param-selname = 'S_RFCGRP'.
       lk_submit_param-kind    = 'P'.
       lk_submit_param-sign    = 'I'.
       lk_submit_param-option  = 'EQ'.
       lk_submit_param-low     = s_parrfc.
-      append lk_submit_param to li_submit_param.
+      APPEND lk_submit_param TO li_submit_param.
 
-      clear lk_submit_param.
+      CLEAR lk_submit_param.
       lk_submit_param-selname = 'S_MAXPAR'.
       lk_submit_param-kind    = 'P'.
       lk_submit_param-sign    = 'I'.
       lk_submit_param-option  = 'EQ'.
       lk_submit_param-low     = s_parmax.
-      append lk_submit_param to li_submit_param.
-      submit /pstech/bci_intf_xmltable via selection-screen with selection-table li_submit_param and return.
+      APPEND lk_submit_param TO li_submit_param.
+      SUBMIT /pstech/bci_intf_xmltable VIA SELECTION-SCREEN WITH SELECTION-TABLE li_submit_param AND RETURN.
 
 
       "ALV commands
-    when 'DELE'.
+    WHEN 'DELE'.
       go_main_alv_table->get_metadata( ).
       lo_alv_selections = go_main_alv_table->get_selections( ).
       li_alv_rows = lo_alv_selections->get_selected_rows( ).
-      if li_alv_rows[] is not initial.
-        call function 'POPUP_TO_CONFIRM'
-          exporting
+      IF li_alv_rows[] IS NOT INITIAL.
+        CALL FUNCTION 'POPUP_TO_CONFIRM'
+          EXPORTING
             text_question         = 'Are you sure you want to delete these indexes ?'(f01)
             text_button_1         = 'Yes'(f02)
             icon_button_1         = '@01@'
@@ -2213,54 +2274,54 @@ form data_display_commands  using lv_okcode type syucomm.
             icon_button_2         = '@02@'
             default_button        = '1'
             display_cancel_button = ' '
-          importing
+          IMPORTING
             answer                = lv_popup_answer.
-      endif.
+      ENDIF.
 
-      if lv_popup_answer = '1'.
-        loop at li_alv_rows assigning <lk_alv_rows>.
-          read table gi_intfms assigning <lk_intfms> index <lk_alv_rows>.
-          if sy-subrc = 0.
+      IF lv_popup_answer = '1'.
+        LOOP AT li_alv_rows ASSIGNING <lk_alv_rows>.
+          READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX <lk_alv_rows>.
+          IF sy-subrc = 0.
             lk_intfms_table = <lk_intfms>.
-            append lk_intfms_table to li_intfms_table.
-          endif.
-        endloop.
-        loop at li_intfms_table into lk_intfms_table.
+            APPEND lk_intfms_table TO li_intfms_table.
+          ENDIF.
+        ENDLOOP.
+        LOOP AT li_intfms_table INTO lk_intfms_table.
 
-          authority-check object 'ZBC_INTF'
-                id '/PSTECH/II' field lk_intfms_table-interface_id
-                id 'ACTVT' field '06'.
-          if sy-subrc = 0.
-            delete gi_intfms
-              where interface_id    eq lk_intfms_table-interface_id and
-                    interface_key1  eq lk_intfms_table-interface_key1 and
-                    interface_key2  eq lk_intfms_table-interface_key2 and
-                    interface_key3  eq lk_intfms_table-interface_key3 and
-                    interface_key4  eq lk_intfms_table-interface_key4 and
-                    interface_msgid eq lk_intfms_table-interface_msgid.
+          AUTHORITY-CHECK OBJECT 'ZBC_INTF'
+                ID '/PSTECH/II' FIELD lk_intfms_table-interface_id
+                ID 'ACTVT' FIELD '06'.
+          IF sy-subrc = 0.
+            DELETE gi_intfms
+              WHERE interface_id    EQ lk_intfms_table-interface_id AND
+                    interface_key1  EQ lk_intfms_table-interface_key1 AND
+                    interface_key2  EQ lk_intfms_table-interface_key2 AND
+                    interface_key3  EQ lk_intfms_table-interface_key3 AND
+                    interface_key4  EQ lk_intfms_table-interface_key4 AND
+                    interface_msgid EQ lk_intfms_table-interface_msgid.
             lv_table_count = lv_table_count + 1.
-          else.
-            delete li_intfms_table from lk_intfms_table.
-          endif.
-        endloop.
-        delete /pstech/bcintfms from table li_intfms_table.
+          ELSE.
+            DELETE li_intfms_table FROM lk_intfms_table.
+          ENDIF.
+        ENDLOOP.
+        DELETE /pstech/bcintfms FROM TABLE li_intfms_table.
 
-        message s011(sv) with lv_table_count.
-        clear li_alv_rows[].
+        MESSAGE s011(sv) WITH lv_table_count.
+        CLEAR li_alv_rows[].
 
         go_main_alv_table->get_metadata( ).
         lo_alv_selections = go_main_alv_table->get_selections( ).
         lo_alv_selections->set_selected_rows( li_alv_rows[] ).
         go_main_alv_table->refresh( ).
-      endif.
+      ENDIF.
 
-    when 'COPYPROCESS'.
+    WHEN 'COPYPROCESS'.
       go_main_alv_table->get_metadata( ).
       lo_alv_selections = go_main_alv_table->get_selections( ).
       li_alv_rows = lo_alv_selections->get_selected_rows( ).
-      if li_alv_rows[] is not initial.
-        call function 'POPUP_TO_CONFIRM'
-          exporting
+      IF li_alv_rows[] IS NOT INITIAL.
+        CALL FUNCTION 'POPUP_TO_CONFIRM'
+          EXPORTING
             text_question         = 'Are you sure you want to copy & process these indexes ?'(f04)
             text_button_1         = 'Yes'(f02)
             icon_button_1         = '@01@'
@@ -2268,33 +2329,33 @@ form data_display_commands  using lv_okcode type syucomm.
             icon_button_2         = '@02@'
             default_button        = '1'
             display_cancel_button = ' '
-          importing
+          IMPORTING
             answer                = lv_popup_answer.
-      endif.
-      if lv_popup_answer = '1'.
-        loop at li_alv_rows assigning <lk_alv_rows>.
-          read table gi_intfms  assigning <lk_intfms> index <lk_alv_rows>.
-          if sy-subrc = 0.
+      ENDIF.
+      IF lv_popup_answer = '1'.
+        LOOP AT li_alv_rows ASSIGNING <lk_alv_rows>.
+          READ TABLE gi_intfms  ASSIGNING <lk_intfms> INDEX <lk_alv_rows>.
+          IF sy-subrc = 0.
             lv_table_count = lv_table_count + 1.
-            case <lk_intfms>-interface_type.
-              when '0'.
-                perform data_process_proxy_copyproc using <lk_intfms>.
-              when '1'.
-                perform data_process_idoc_copyproc using <lk_intfms>.
-            endcase.
-          endif.
-        endloop.
-        message s020(xms_moni) with lv_table_count 'messages copied & processed'.
-      endif.
+            CASE <lk_intfms>-interface_type.
+              WHEN '0'.
+                PERFORM data_process_proxy_copyproc USING <lk_intfms>.
+              WHEN '1'.
+                PERFORM data_process_idoc_copyproc USING <lk_intfms>.
+            ENDCASE.
+          ENDIF.
+        ENDLOOP.
+        MESSAGE s020(xms_moni) WITH lv_table_count 'messages copied & processed'.
+      ENDIF.
 
-    when 'RESTART'.
+    WHEN 'RESTART'.
       go_main_alv_table->get_metadata( ).
       lo_alv_selections = go_main_alv_table->get_selections( ).
       li_alv_rows = lo_alv_selections->get_selected_rows( ).
-      clear : li_intfms[].
-      if li_alv_rows[] is not initial.
-        call function 'POPUP_TO_CONFIRM'
-          exporting
+      CLEAR : li_intfms[].
+      IF li_alv_rows[] IS NOT INITIAL.
+        CALL FUNCTION 'POPUP_TO_CONFIRM'
+          EXPORTING
             text_question         = 'Are you sure you want to restart error messages from these indexes ?'(f06)
             text_button_1         = 'Yes'(f02)
             icon_button_1         = '@01@'
@@ -2302,103 +2363,103 @@ form data_display_commands  using lv_okcode type syucomm.
             icon_button_2         = '@02@'
             default_button        = '1'
             display_cancel_button = ' '
-          importing
+          IMPORTING
             answer                = lv_popup_answer.
-      endif.
-      if lv_popup_answer = '1'.
-        loop at li_alv_rows assigning <lk_alv_rows>.
-          read table gi_intfms assigning <lk_intfms> index <lk_alv_rows>.
-          if sy-subrc = 0.
+      ENDIF.
+      IF lv_popup_answer = '1'.
+        LOOP AT li_alv_rows ASSIGNING <lk_alv_rows>.
+          READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX <lk_alv_rows>.
+          IF sy-subrc = 0.
             lv_table_count = lv_table_count + 1.
-            case <lk_intfms>-interface_type.
-              when '0'.
-                perform data_process_proxy_restart using <lk_intfms>.
-              when '1'.
-                append <lk_intfms> to li_intfms.
-            endcase.
-          endif.
-        endloop.
+            CASE <lk_intfms>-interface_type.
+              WHEN '0'.
+                PERFORM data_process_proxy_restart USING <lk_intfms>.
+              WHEN '1'.
+                APPEND <lk_intfms> TO li_intfms.
+            ENDCASE.
+          ENDIF.
+        ENDLOOP.
 
-        if li_intfms[] is not initial.
-          perform data_process_idoc_restart using li_intfms[].
-        endif.
+        IF li_intfms[] IS NOT INITIAL.
+          PERFORM data_process_idoc_restart USING li_intfms[].
+        ENDIF.
 
-        message s020(xms_moni) with lv_table_count 'messages copied & processed'.
-      endif.
+        MESSAGE s020(xms_moni) WITH lv_table_count 'messages copied & processed'.
+      ENDIF.
 
-    when 'REFRSH'.
-      clear gi_intfms[].
-      perform data_retrieve.
+    WHEN 'REFRSH'.
+      CLEAR gi_intfms[].
+      PERFORM data_retrieve.
       go_main_alv_table->refresh( ).
 
-    when 'TREE_SEARCH'.
-      if go_proxy_tree is not initial.
-        perform data_display_tree_search changing go_proxy_tree.
-      endif.
-      if go_idoc_tree is not initial.
-        perform data_display_tree_search changing go_idoc_tree.
-      endif.
+    WHEN 'TREE_SEARCH'.
+      IF go_proxy_tree IS NOT INITIAL.
+        PERFORM data_display_tree_search CHANGING go_proxy_tree.
+      ENDIF.
+      IF go_idoc_tree IS NOT INITIAL.
+        PERFORM data_display_tree_search CHANGING go_idoc_tree.
+      ENDIF.
 
-    when 'TREE_SEARCH_NEXT'.
-      if go_proxy_tree is not initial.
-        perform data_display_tree_search_next changing go_proxy_tree.
-      endif.
-      if go_idoc_tree is not initial.
-        perform data_display_tree_search_next changing go_idoc_tree.
-      endif.
+    WHEN 'TREE_SEARCH_NEXT'.
+      IF go_proxy_tree IS NOT INITIAL.
+        PERFORM data_display_tree_search_next CHANGING go_proxy_tree.
+      ENDIF.
+      IF go_idoc_tree IS NOT INITIAL.
+        PERFORM data_display_tree_search_next CHANGING go_idoc_tree.
+      ENDIF.
 
-    when 'TREE_HIDE_EMPTY_FIELD'.
-      if go_idoc_tree is not initial.
-        perform data_display_tree_search_next changing go_idoc_tree.
-      endif.
-    when 'TREE_SHOW_EMPTY_FIELD'.
-      if go_idoc_tree is not initial.
-        perform data_display_tree_search_next changing go_idoc_tree.
-      endif.
+    WHEN 'TREE_HIDE_EMPTY_FIELD'.
+      IF go_idoc_tree IS NOT INITIAL.
+        PERFORM data_display_tree_search_next CHANGING go_idoc_tree.
+      ENDIF.
+    WHEN 'TREE_SHOW_EMPTY_FIELD'.
+      IF go_idoc_tree IS NOT INITIAL.
+        PERFORM data_display_tree_search_next CHANGING go_idoc_tree.
+      ENDIF.
 
-    when 'PROXY_XML'.
-      if go_proxy_tree is not initial.
-        perform data_display_proxy_tree2xml using go_proxy_tree changing gv_xml_document.
-      endif.
-      perform data_display_proxy_xml using gk_intfms.
+    WHEN 'PROXY_XML'.
+      IF go_proxy_tree IS NOT INITIAL.
+        PERFORM data_display_proxy_tree2xml USING go_proxy_tree CHANGING gv_xml_document.
+      ENDIF.
+      PERFORM data_display_proxy_xml USING gk_intfms.
 
-    when 'PROXY_TREE'.
-      if go_proxy_xml is not initial.
+    WHEN 'PROXY_TREE'.
+      IF go_proxy_xml IS NOT INITIAL.
         gv_xml_document = go_proxy_xml->get_xstring( ).
-      endif.
-      perform data_display_proxy_tree using gk_intfms.
+      ENDIF.
+      PERFORM data_display_proxy_tree USING gk_intfms.
 
 
       "XML Commands
-    when 'PROXY_XML_TOGGLE'.
-      if go_proxy_xml is not initial.
-        if go_proxy_xml->get_change_mode( ) = abap_true.
+    WHEN 'PROXY_XML_TOGGLE'.
+      IF go_proxy_xml IS NOT INITIAL.
+        IF go_proxy_xml->get_change_mode( ) = abap_true.
           go_proxy_xml->set_change_mode( abap_false ).
-        else.
+        ELSE.
           go_proxy_xml->pretty_print( ).
           go_proxy_xml->set_change_mode( abap_true ).
-        endif.
-      endif.
+        ENDIF.
+      ENDIF.
 
-    when 'PROXY_XML_STORE'.
-      if go_proxy_xml is not initial.
-        data : lv_payload type xstring.
+    WHEN 'PROXY_XML_STORE'.
+      IF go_proxy_xml IS NOT INITIAL.
+        DATA : lv_payload TYPE xstring.
         lv_payload = go_proxy_xml->get_xstring( ).
-        try.
+        TRY.
             cl_proxy_adapter_test=>download_payload( lv_payload ).
-          catch cx_proxy_gen_error.                     "#EC NO_HANDLER
-        endtry.
-      endif.
+          CATCH cx_proxy_gen_error.                     "#EC NO_HANDLER
+        ENDTRY.
+      ENDIF.
 
-    when 'PROXY_XML_PRETTY'.
-      if go_proxy_xml is not initial.
+    WHEN 'PROXY_XML_PRETTY'.
+      IF go_proxy_xml IS NOT INITIAL.
         go_proxy_xml->pretty_print( ).
-      endif.
+      ENDIF.
 
-    when 'EDITPROCESS'.
-      clear lv_popup_answer.
-      call function 'POPUP_TO_CONFIRM'
-        exporting
+    WHEN 'EDITPROCESS'.
+      CLEAR lv_popup_answer.
+      CALL FUNCTION 'POPUP_TO_CONFIRM'
+        EXPORTING
           text_question         = 'Are you sure you want to process this message ?'(f05)
           text_button_1         = 'Yes'(f02)
           icon_button_1         = '@01@'
@@ -2406,268 +2467,268 @@ form data_display_commands  using lv_okcode type syucomm.
           icon_button_2         = '@02@'
           default_button        = '1'
           display_cancel_button = ' '
-        importing
+        IMPORTING
           answer                = lv_popup_answer.
-      if lv_popup_answer = '1'.
-        case gk_intfms-interface_type.
-          when '0'.
-            if go_proxy_xml is not initial.
+      IF lv_popup_answer = '1'.
+        CASE gk_intfms-interface_type.
+          WHEN '0'.
+            IF go_proxy_xml IS NOT INITIAL.
               gv_xml_document = go_proxy_xml->get_xstring( ).
-            endif.
-            if go_proxy_tree is not initial.
-              perform data_display_proxy_tree2xml using go_proxy_tree changing gv_xml_document.
-            endif.
-            perform data_process_proxy_editproc using gk_intfms.
-            message s020(xms_moni) with 'XML message saved & processed'.
-          when '1'.
-            if go_idoc_tree is not initial.
-              perform data_process_idoc_edittree.
-              message s020(xms_moni) with 'IDoc message saved & processed'.
-            endif.
-        endcase.
-      endif.
+            ENDIF.
+            IF go_proxy_tree IS NOT INITIAL.
+              PERFORM data_display_proxy_tree2xml USING go_proxy_tree CHANGING gv_xml_document.
+            ENDIF.
+            PERFORM data_process_proxy_editproc USING gk_intfms.
+            MESSAGE s020(xms_moni) WITH 'XML message saved & processed'.
+          WHEN '1'.
+            IF go_idoc_tree IS NOT INITIAL.
+              PERFORM data_process_idoc_edittree.
+              MESSAGE s020(xms_moni) WITH 'IDoc message saved & processed'.
+            ENDIF.
+        ENDCASE.
+      ENDIF.
 
       "Tree Commands
-    when 'NODEEXPAND'.
-      if go_idoc_tree is not initial.
-        go_idoc_tree->get_selected_node( importing ed_node_id = lv_tree_node_id ).
-        go_idoc_tree->expand_node( id_node_id = lv_tree_node_id id_levels = /pstech/cl_bc_gui_edit_tree=>cd_entire_subtree ).
-      endif.
-      if go_proxy_tree is not initial.
-        go_proxy_tree->get_selected_node( importing ed_node_id = lv_tree_node_id ).
-        go_proxy_tree->expand_node( id_node_id = lv_tree_node_id id_levels = /pstech/cl_bc_gui_edit_tree=>cd_entire_subtree ).
-      endif.
+    WHEN 'NODEEXPAND'.
+      IF go_idoc_tree IS NOT INITIAL.
+        go_idoc_tree->get_selected_node( IMPORTING ed_node_id = lv_tree_node_id ).
+        go_idoc_tree->expand_node( id_node_id = lv_tree_node_id id_levels = lcl_gui_tree=>cd_entire_subtree ).
+      ENDIF.
+      IF go_proxy_tree IS NOT INITIAL.
+        go_proxy_tree->get_selected_node( IMPORTING ed_node_id = lv_tree_node_id ).
+        go_proxy_tree->expand_node( id_node_id = lv_tree_node_id id_levels = lcl_gui_tree=>cd_entire_subtree ).
+      ENDIF.
 
-    when 'NODECOLLAPSE'.
-      if go_idoc_tree is not initial.
-        go_idoc_tree->get_selected_node( importing ed_node_id = lv_tree_node_id ).
-        if lv_tree_node_id is initial.
+    WHEN 'NODECOLLAPSE'.
+      IF go_idoc_tree IS NOT INITIAL.
+        go_idoc_tree->get_selected_node( IMPORTING ed_node_id = lv_tree_node_id ).
+        IF lv_tree_node_id IS INITIAL.
           li_tree_nodes = go_idoc_tree->get_nodes( ).
-          loop at li_tree_nodes assigning <lk_tree_nodes> where parent_node is initial.
+          LOOP AT li_tree_nodes ASSIGNING <lk_tree_nodes> WHERE parent_node IS INITIAL.
             go_idoc_tree->collapse_node( id_node_id = <lk_tree_nodes>-node_id ).
-          endloop.
-        else.
+          ENDLOOP.
+        ELSE.
           go_idoc_tree->collapse_node( id_node_id = lv_tree_node_id ).
-        endif.
-      endif.
-      if go_proxy_tree is not initial.
-        go_proxy_tree->get_selected_node( importing ed_node_id = lv_tree_node_id ).
-        if lv_tree_node_id is initial.
+        ENDIF.
+      ENDIF.
+      IF go_proxy_tree IS NOT INITIAL.
+        go_proxy_tree->get_selected_node( IMPORTING ed_node_id = lv_tree_node_id ).
+        IF lv_tree_node_id IS INITIAL.
           li_tree_nodes = go_proxy_tree->get_nodes( ).
-          loop at li_tree_nodes assigning <lk_tree_nodes> where parent_node is initial.
+          LOOP AT li_tree_nodes ASSIGNING <lk_tree_nodes> WHERE parent_node IS INITIAL.
             go_proxy_tree->collapse_node( id_node_id = <lk_tree_nodes>-node_id ).
-          endloop.
-        else.
+          ENDLOOP.
+        ELSE.
           go_proxy_tree->collapse_node( id_node_id = lv_tree_node_id ).
-        endif.
-      endif.
+        ENDIF.
+      ENDIF.
 
-  endcase.
-endform.                    " DATA_DISPLAY_COMMANDS
+  ENDCASE.
+ENDFORM.                    " DATA_DISPLAY_COMMANDS
 *&---------------------------------------------------------------------*
 *&      Form  data_display_tree_commands
 *&---------------------------------------------------------------------*
-form data_display_tree_commands using lo_tree            type ref to /pstech/cl_bc_gui_edit_tree
-                                      lv_tree_nodeid_sel type uac_node_id
-                                      lv_okcode          type uac_menu_function_code.
-  types: begin of ltk_idoc_segments,
-           segtyp type edilsegtyp,
-         end of ltk_idoc_segments.
-  data: lv_tree_nodeid_new      type uac_node_id,
-        lv_tree_nodeid_new_elem type uac_node_id,
-        lv_tree_nodeid_new_attr type uac_node_id.
-  data: lk_tree_node_new        type uac_s_node_long,
-        lk_tree_node_sel        type uac_s_node_long,
-        lk_tree_node_parent     type uac_s_node_long,
-        lk_tree_node_last       type uac_s_node_long.
+FORM data_display_tree_commands USING lo_tree            TYPE REF TO lcl_gui_tree
+                                      lv_tree_nodeid_sel TYPE uac_node_id
+                                      lv_okcode          TYPE uac_menu_function_code.
+  TYPES: BEGIN OF ltk_idoc_segments,
+           segtyp TYPE edilsegtyp,
+         END OF ltk_idoc_segments.
+  DATA: lv_tree_nodeid_new      TYPE uac_node_id,
+        lv_tree_nodeid_new_elem TYPE uac_node_id,
+        lv_tree_nodeid_new_attr TYPE uac_node_id.
+  DATA: lk_tree_node_new        TYPE uac_s_node_long,
+        lk_tree_node_sel        TYPE uac_s_node_long,
+        lk_tree_node_parent     TYPE uac_s_node_long,
+        lk_tree_node_last       TYPE uac_s_node_long.
 
-  data: li_idoc_segments        type standard table of ltk_idoc_segments.
-  data: lv_idoc_parseg          type idocsyn-parseg.
-  data: lk_idoc_control         type edidc.
-  data: li_idoc_segment_sel     type rsdm_f4_return_values.
-  data: li_tree_nodes           type uac_t_node_long.
-  data: lv_idoc_node_curr       type uac_node_id,
-        lv_idoc_node_last       type uac_node_id.
-  data: lo_idoc_segment         type ref to data.
-  data: lo_data_typedescr       type ref to cl_abap_typedescr.
-  data: li_data_fields          type dd_x031l_table.
-  data: lv_idoc_last_num        type n length 6.
-  field-symbols <lk_data_fields>      type x031l.
-  field-symbols:<lk_idoc_segment>     type any,
-                <lk_idoc_field>       type any.
-  field-symbols <lk_idoc_segment_sel> type ddshretval.
+  DATA: li_idoc_segments        TYPE STANDARD TABLE OF ltk_idoc_segments.
+  DATA: lv_idoc_parseg          TYPE idocsyn-parseg.
+  DATA: lk_idoc_control         TYPE edidc.
+  DATA: li_idoc_segment_sel     TYPE rsdm_f4_return_values.
+  DATA: li_tree_nodes           TYPE uac_t_node_long.
+  DATA: lv_idoc_node_curr       TYPE uac_node_id,
+        lv_idoc_node_last       TYPE uac_node_id.
+  DATA: lo_idoc_segment         TYPE REF TO data.
+  DATA: lo_data_typedescr       TYPE REF TO cl_abap_typedescr.
+  DATA: li_data_fields          TYPE dd_x031l_table.
+  DATA: lv_idoc_last_num        TYPE n LENGTH 6.
+  FIELD-SYMBOLS <lk_data_fields>      TYPE x031l.
+  FIELD-SYMBOLS:<lk_idoc_segment>     TYPE any,
+                <lk_idoc_field>       TYPE any.
+  FIELD-SYMBOLS <lk_idoc_segment_sel> TYPE ddshretval.
 
-  case lv_okcode.
-    when 'XML_DUPNODE' or 'IDOC_DUPNODE'.
+  CASE lv_okcode.
+    WHEN 'XML_DUPNODE' OR 'IDOC_DUPNODE'.
       lv_tree_nodeid_new = lo_tree->copy_subtree( id_source_node_id = lv_tree_nodeid_sel id_target_node_id = lv_tree_nodeid_sel id_with_cells = '1' ).
       lo_tree->change_node( id_node_id = lv_tree_nodeid_new id_editable = '1' id_u_editable = '1' id_style_id = lk_tree_node_new-style_id ).
       lo_tree->expand_node( id_node_id = lv_tree_nodeid_new ).
       lo_tree->set_selected_node( id_node_id = lv_tree_nodeid_new ).
-    when 'XML_DELNODE' or 'IDOC_DELNODE'.
+    WHEN 'XML_DELNODE' OR 'IDOC_DELNODE'.
       lo_tree->remove_subtree( id_node_id = lv_tree_nodeid_sel ).
-    when 'XML_ADDELEM'.
-      lv_tree_nodeid_new_elem = lo_tree->add_node( id_relat_node = lv_tree_nodeid_sel id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_following_sibling id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ELEM' ).
+    WHEN 'XML_ADDELEM'.
+      lv_tree_nodeid_new_elem = lo_tree->add_node( id_relat_node = lv_tree_nodeid_sel id_relationship = lcl_gui_tree=>cd_following_sibling id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ELEM' ).
       lo_tree->add_cell( id_node_id = lv_tree_nodeid_new_elem id_column_id = '1' id_editable = '1' id_value = '' ).
       lo_tree->set_selected_node( id_node_id = lv_tree_nodeid_new_elem ).
-    when 'XML_ADDELEM2'.
-      lo_tree->get_node( exporting id_node_id = lv_tree_nodeid_sel importing es_node = lk_tree_node_sel ).
-      if lk_tree_node_sel-style_id = 'XML_ELEM'.
+    WHEN 'XML_ADDELEM2'.
+      lo_tree->get_node( EXPORTING id_node_id = lv_tree_nodeid_sel IMPORTING es_node = lk_tree_node_sel ).
+      IF lk_tree_node_sel-style_id = 'XML_ELEM'.
         lo_tree->change_node( id_node_id = lv_tree_nodeid_sel id_editable = '0' id_u_editable = '0' id_style_id = 'XML_STRUC' ).
         lo_tree->change_cell( id_node_id = lv_tree_nodeid_sel id_column_id = '1' id_value = '' id_u_value = '1' id_editable = '0' id_u_editable = '1' ).
-      endif.
-      if lk_tree_node_sel-is_leaf = '1'.
+      ENDIF.
+      IF lk_tree_node_sel-is_leaf = '1'.
         lo_tree->change_node_leaf( id_node_id = lv_tree_nodeid_sel id_is_leaf = '0' ).
         lv_tree_nodeid_new = lo_tree->copy_subtree( id_source_node_id = lv_tree_nodeid_sel id_target_node_id = lv_tree_nodeid_sel id_with_cells = '1' ).
-        lv_tree_nodeid_new_elem = lo_tree->add_node( id_relat_node = lv_tree_nodeid_new id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ELEM' ).
+        lv_tree_nodeid_new_elem = lo_tree->add_node( id_relat_node = lv_tree_nodeid_new id_relationship = lcl_gui_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ELEM' ).
         lo_tree->add_cell( id_node_id = lv_tree_nodeid_new_elem id_column_id = '1' id_editable = '1' id_value = '' ).
         lo_tree->expand_node( id_node_id = lv_tree_nodeid_new ).
         lo_tree->remove_subtree( id_node_id = lv_tree_nodeid_sel ).
         lo_tree->set_selected_node( id_node_id = lv_tree_nodeid_new_elem ).
-      else.
-        lv_tree_nodeid_new_elem = lo_tree->add_node( id_relat_node = lv_tree_nodeid_sel id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ELEM' ).
+      ELSE.
+        lv_tree_nodeid_new_elem = lo_tree->add_node( id_relat_node = lv_tree_nodeid_sel id_relationship = lcl_gui_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ELEM' ).
         lo_tree->add_cell( id_node_id = lv_tree_nodeid_new_elem id_column_id = '1' id_editable = '1' id_value = '' ).
         lo_tree->expand_node( id_node_id = lv_tree_nodeid_new ).
         lo_tree->set_selected_node( id_node_id = lv_tree_nodeid_new_elem ).
-      endif.
-    when 'XML_ADDATTR'.
-      lo_tree->get_node( exporting id_node_id = lv_tree_nodeid_sel importing es_node = lk_tree_node_sel ).
-      if lk_tree_node_sel-is_leaf = '1'.
+      ENDIF.
+    WHEN 'XML_ADDATTR'.
+      lo_tree->get_node( EXPORTING id_node_id = lv_tree_nodeid_sel IMPORTING es_node = lk_tree_node_sel ).
+      IF lk_tree_node_sel-is_leaf = '1'.
         lo_tree->change_node_leaf( id_node_id = lv_tree_nodeid_sel id_is_leaf = '0' ).
         lv_tree_nodeid_new = lo_tree->copy_subtree( id_source_node_id = lv_tree_nodeid_sel id_target_node_id = lv_tree_nodeid_sel id_with_cells = '1' ).
-        lv_tree_nodeid_new_attr = lo_tree->add_node( id_relat_node = lv_tree_nodeid_new id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ATTR' ).
+        lv_tree_nodeid_new_attr = lo_tree->add_node( id_relat_node = lv_tree_nodeid_new id_relationship = lcl_gui_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ATTR' ).
         lo_tree->add_cell( id_node_id = lv_tree_nodeid_new_attr id_column_id = '1' id_editable = '1' id_value = '' ).
         lo_tree->expand_node( id_node_id = lv_tree_nodeid_new ).
         lo_tree->remove_subtree( id_node_id = lv_tree_nodeid_sel ).
         lo_tree->set_selected_node( id_node_id = lv_tree_nodeid_new_attr ).
-      else.
-        lv_tree_nodeid_new_attr = lo_tree->add_node( id_relat_node = lv_tree_nodeid_sel id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ATTR' ).
+      ELSE.
+        lv_tree_nodeid_new_attr = lo_tree->add_node( id_relat_node = lv_tree_nodeid_sel id_relationship = lcl_gui_tree=>cd_last_child id_value = ''  id_is_leaf = '1'  id_editable = '1' id_style_id = 'XML_ATTR' ).
         lo_tree->add_cell( id_node_id = lv_tree_nodeid_new_attr id_column_id = '1' id_editable = '1' id_value = '' ).
         lo_tree->expand_node( id_node_id = lv_tree_nodeid_new ).
         lo_tree->set_selected_node( id_node_id = lv_tree_nodeid_new_attr ).
-      endif.
-    when 'IDOC_ADDSTR1' or 'IDOC_ADDSTR2'.
-      lo_tree->get_node( exporting id_node_id = lv_tree_nodeid_sel importing es_node = lk_tree_node_sel ).
-      if lk_tree_node_sel-style_id eq 'IDOC_NODE'.
-        lo_tree->get_node( exporting id_node_id = lk_tree_node_sel-parent_node  importing es_node = lk_tree_node_sel ).
-      endif.
+      ENDIF.
+    WHEN 'IDOC_ADDSTR1' OR 'IDOC_ADDSTR2'.
+      lo_tree->get_node( EXPORTING id_node_id = lv_tree_nodeid_sel IMPORTING es_node = lk_tree_node_sel ).
+      IF lk_tree_node_sel-style_id EQ 'IDOC_NODE'.
+        lo_tree->get_node( EXPORTING id_node_id = lk_tree_node_sel-parent_node  IMPORTING es_node = lk_tree_node_sel ).
+      ENDIF.
 
-      if lv_okcode = 'IDOC_ADDSTR1'.
-        lo_tree->get_node( exporting id_node_id = lk_tree_node_sel-parent_node  importing es_node = lk_tree_node_parent ).
-      endif.
+      IF lv_okcode = 'IDOC_ADDSTR1'.
+        lo_tree->get_node( EXPORTING id_node_id = lk_tree_node_sel-parent_node  IMPORTING es_node = lk_tree_node_parent ).
+      ENDIF.
 
-      if lk_tree_node_sel-value ne 'Control Record' or lk_tree_node_sel-value ne 'Status Records'.
-        select single * into lk_idoc_control from edidc where docnum = gk_intfms-idoc_docnum.
+      IF lk_tree_node_sel-value NE 'Control Record' OR lk_tree_node_sel-value NE 'Status Records'.
+        SELECT SINGLE * INTO lk_idoc_control FROM edidc WHERE docnum = gk_intfms-idoc_docnum.
 
-        if lv_okcode = 'IDOC_ADDSTR1'.
-          if lk_tree_node_parent-value eq 'Data Records'.
-            select segtyp into table li_idoc_segments from idocsyn where idoctyp = lk_idoc_control-idoctp and nr = 1.
-          else.
-            if lk_tree_node_parent-value is not initial.
+        IF lv_okcode = 'IDOC_ADDSTR1'.
+          IF lk_tree_node_parent-value EQ 'Data Records'.
+            SELECT segtyp INTO TABLE li_idoc_segments FROM idocsyn WHERE idoctyp = lk_idoc_control-idoctp AND nr = 1.
+          ELSE.
+            IF lk_tree_node_parent-value IS NOT INITIAL.
               lv_idoc_parseg = lk_tree_node_parent-value.
-              select segtyp into table li_idoc_segments from idocsyn where idoctyp = lk_idoc_control-idoctp and parseg = lv_idoc_parseg.
-            endif.
-          endif.
-        else.
-          if lk_tree_node_sel-value = 'Data Records'.
-            select segtyp into table li_idoc_segments from idocsyn where idoctyp = lk_idoc_control-idoctp and nr = 1.
-          else.
-            if lk_tree_node_sel-value is not initial.
+              SELECT segtyp INTO TABLE li_idoc_segments FROM idocsyn WHERE idoctyp = lk_idoc_control-idoctp AND parseg = lv_idoc_parseg.
+            ENDIF.
+          ENDIF.
+        ELSE.
+          IF lk_tree_node_sel-value = 'Data Records'.
+            SELECT segtyp INTO TABLE li_idoc_segments FROM idocsyn WHERE idoctyp = lk_idoc_control-idoctp AND nr = 1.
+          ELSE.
+            IF lk_tree_node_sel-value IS NOT INITIAL.
               lv_idoc_parseg = lk_tree_node_sel-value.
-              select segtyp into table li_idoc_segments from idocsyn where idoctyp = lk_idoc_control-idoctp and parseg = lv_idoc_parseg.
-            endif.
-          endif.
-        endif.
+              SELECT segtyp INTO TABLE li_idoc_segments FROM idocsyn WHERE idoctyp = lk_idoc_control-idoctp AND parseg = lv_idoc_parseg.
+            ENDIF.
+          ENDIF.
+        ENDIF.
 
-        call function 'F4IF_INT_TABLE_VALUE_REQUEST'
-          exporting
+        CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'
+          EXPORTING
             retfield   = 'SEGTYP'
             value_org  = 'S'
-          tables
+          TABLES
             value_tab  = li_idoc_segments
             return_tab = li_idoc_segment_sel.
-      endif.
+      ENDIF.
 
-      read table li_idoc_segment_sel assigning <lk_idoc_segment_sel> index 1.
-      if sy-subrc = 0.
-        create data lo_idoc_segment type (<lk_idoc_segment_sel>-fieldval).
-        assign lo_idoc_segment->* to <lk_idoc_segment>.
+      READ TABLE li_idoc_segment_sel ASSIGNING <lk_idoc_segment_sel> INDEX 1.
+      IF sy-subrc = 0.
+        CREATE DATA lo_idoc_segment TYPE (<lk_idoc_segment_sel>-fieldval).
+        ASSIGN lo_idoc_segment->* TO <lk_idoc_segment>.
         lo_data_typedescr = cl_abap_typedescr=>describe_by_name( <lk_idoc_segment_sel>-fieldval ).
         li_data_fields = lo_data_typedescr->get_ddic_object( ).
         li_tree_nodes = lo_tree->get_nodes( ).
-        delete li_tree_nodes where node_id np 'EDIDD*'.
-        sort li_tree_nodes by node_id descending.
-        read table li_tree_nodes into lk_tree_node_last index 1.
+        DELETE li_tree_nodes WHERE node_id NP 'EDIDD*'.
+        SORT li_tree_nodes BY node_id DESCENDING.
+        READ TABLE li_tree_nodes INTO lk_tree_node_last INDEX 1.
         lv_idoc_last_num = lk_tree_node_last-node_id+6 + 1.
-        concatenate 'EDIDD' lv_idoc_last_num into lv_idoc_node_curr.
-        if lv_okcode = 'IDOC_ADDSTR1'.
-          lo_tree->add_node( id_node_id = lv_idoc_node_curr id_relat_node = lk_tree_node_sel-node_id id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_following_sibling id_value = <lk_idoc_segment_sel>-fieldval id_style_id = 'IDOC_STRUC' ).
-        else.
-          lo_tree->add_node( id_node_id = lv_idoc_node_curr id_relat_node = lk_tree_node_sel-node_id id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = <lk_idoc_segment_sel>-fieldval id_style_id = 'IDOC_STRUC' ).
-        endif.
-        loop at li_data_fields assigning <lk_data_fields>.
-          assign component <lk_data_fields>-fieldname of structure <lk_idoc_segment> to <lk_idoc_field>.
-          lv_idoc_node_last = lo_tree->add_node( id_value = <lk_data_fields>-fieldname id_relat_node = lv_idoc_node_curr id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'IDOC_NODE' ).
+        CONCATENATE 'EDIDD' lv_idoc_last_num INTO lv_idoc_node_curr.
+        IF lv_okcode = 'IDOC_ADDSTR1'.
+          lo_tree->add_node( id_node_id = lv_idoc_node_curr id_relat_node = lk_tree_node_sel-node_id id_relationship = lcl_gui_tree=>cd_following_sibling id_value = <lk_idoc_segment_sel>-fieldval id_style_id = 'IDOC_STRUC' ).
+        ELSE.
+          lo_tree->add_node( id_node_id = lv_idoc_node_curr id_relat_node = lk_tree_node_sel-node_id id_relationship = lcl_gui_tree=>cd_last_child id_value = <lk_idoc_segment_sel>-fieldval id_style_id = 'IDOC_STRUC' ).
+        ENDIF.
+        LOOP AT li_data_fields ASSIGNING <lk_data_fields>.
+          ASSIGN COMPONENT <lk_data_fields>-fieldname OF STRUCTURE <lk_idoc_segment> TO <lk_idoc_field>.
+          lv_idoc_node_last = lo_tree->add_node( id_value = <lk_data_fields>-fieldname id_relat_node = lv_idoc_node_curr id_relationship = lcl_gui_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'IDOC_NODE' ).
           lo_tree->add_cell( id_node_id = lv_idoc_node_last id_column_id = '1' id_editable = '1' id_value = '' id_style_id = 'CELL1' ).
-        endloop.
+        ENDLOOP.
         lo_tree->expand_node( id_node_id = lv_idoc_node_curr ).
-      endif.
-  endcase.
+      ENDIF.
+  ENDCASE.
 *  lo_tree->update_frontend( ).
-endform.                    "data_display_tree_commands
+ENDFORM.                    "data_display_tree_commands
 *&---------------------------------------------------------------------*
 *&      Form  data_display_idoc_tree
 *&---------------------------------------------------------------------*
-form data_display_idoc_tree using lk_intfms type gtk_intfms.
-  data: li_idoc_toolbar_event   type cntl_simple_events,
-        lk_idoc_toolbar_event   type cntl_simple_event.
-  data: lo_idoc_toolbar_handle   type ref to lcl_tool_events_handle.
-  data: li_idoc_data            type standard table of edid4.
-  data: li_idoc_status          type standard table of edids.
-  data: lk_idoc_control         type edidc.
-  data: lo_idoc_segment         type ref to data.
-  data: lo_data_typedescr       type ref to cl_abap_typedescr.
-  data: li_data_fields          type dd_x031l_table.
-  data: lv_idoc_node_curr       type uac_node_id,
-        lv_idoc_node_main       type uac_node_id,
-        lv_idoc_node_last       type uac_node_id.
-  data: lv_idoc_status_statva   type edi_statva.
-  data: lv_idoc_status_stalight type edi_slight.
-  data: lv_idoc_status_node     type string,
-        lv_idoc_status_nodetext type string,
-        lv_idoc_status_nodedate type string.
-  data: lv_idoc_status_nodetime type c length 8.
-  data: lv_tree_editable        type uac_flag.
-  field-symbols: <lk_idoc_data>        type edid4.
-  field-symbols: <lk_idoc_status>      type edids.
-  field-symbols: <lk_data_fields>      type x031l.
-  field-symbols: <lk_idoc_field>       type any,
-                 <lk_idoc_segment>     type any.
+FORM data_display_idoc_tree USING lk_intfms TYPE gtk_intfms.
+  DATA: li_idoc_toolbar_event   TYPE cntl_simple_events,
+        lk_idoc_toolbar_event   TYPE cntl_simple_event.
+  DATA: lo_idoc_toolbar_handle   TYPE REF TO lcl_tool_events_handle.
+  DATA: li_idoc_data            TYPE STANDARD TABLE OF edid4.
+  DATA: li_idoc_status          TYPE STANDARD TABLE OF edids.
+  DATA: lk_idoc_control         TYPE edidc.
+  DATA: lo_idoc_segment         TYPE REF TO data.
+  DATA: lo_data_typedescr       TYPE REF TO cl_abap_typedescr.
+  DATA: li_data_fields          TYPE dd_x031l_table.
+  DATA: lv_idoc_node_curr       TYPE uac_node_id,
+        lv_idoc_node_main       TYPE uac_node_id,
+        lv_idoc_node_last       TYPE uac_node_id.
+  DATA: lv_idoc_status_statva   TYPE edi_statva.
+  DATA: lv_idoc_status_stalight TYPE edi_slight.
+  DATA: lv_idoc_status_node     TYPE string,
+        lv_idoc_status_nodetext TYPE string,
+        lv_idoc_status_nodedate TYPE string.
+  DATA: lv_idoc_status_nodetime TYPE c LENGTH 8.
+  DATA: lv_tree_editable        TYPE uac_flag.
+  FIELD-SYMBOLS: <lk_idoc_data>        TYPE edid4.
+  FIELD-SYMBOLS: <lk_idoc_status>      TYPE edids.
+  FIELD-SYMBOLS: <lk_data_fields>      TYPE x031l.
+  FIELD-SYMBOLS: <lk_idoc_field>       TYPE any,
+                 <lk_idoc_segment>     TYPE any.
 
-  authority-check object 'ZBC_INTF'
-         id '/PSTECH/II' field lk_intfms-interface_id
-         id 'ACTVT' field '02'.
-  if sy-subrc = 0.
+  AUTHORITY-CHECK OBJECT 'ZBC_INTF'
+         ID '/PSTECH/II' FIELD lk_intfms-interface_id
+         ID 'ACTVT' FIELD '02'.
+  IF sy-subrc = 0.
     lv_tree_editable = '1'.
-  else.
+  ELSE.
     lv_tree_editable = '0'.
-  endif.
+  ENDIF.
 
 
-  clear: gi_tree_search_result, gv_tree_search_index.
-  if go_log_table is not initial or go_proxy_xml is not initial or go_proxy_tree is not initial.
+  CLEAR: gi_tree_search_result, gv_tree_search_index.
+  IF go_log_table IS NOT INITIAL OR go_proxy_xml IS NOT INITIAL OR go_proxy_tree IS NOT INITIAL.
     go_main_split_container->remove_control( row = 1 column = 2 ).
-    free: go_main_view_container, go_log_table, go_proxy_xml, go_proxy_tree, go_idoc_tree.
-  endif.
+    FREE: go_main_view_container, go_log_table, go_proxy_xml, go_proxy_tree, go_idoc_tree.
+  ENDIF.
 
 
-  if go_main_view_container is initial.
+  IF go_main_view_container IS INITIAL.
     go_main_view_container = go_main_split_container->get_container( row = 1 column = 2 ).
-    clear: go_view_split_container, go_view_tool_container, go_view_obj_container, go_view_toolbar.
-  endif.
+    CLEAR: go_view_split_container, go_view_tool_container, go_view_obj_container, go_view_toolbar.
+  ENDIF.
 
-  if go_view_split_container is initial.
-    create object go_view_split_container
-      exporting
+  IF go_view_split_container IS INITIAL.
+    CREATE OBJECT go_view_split_container
+      EXPORTING
         parent  = go_main_view_container
         rows    = 2
         columns = 1.
@@ -2679,107 +2740,107 @@ form data_display_idoc_tree using lk_intfms type gtk_intfms.
     go_view_tool_container  = go_view_split_container->get_container( row = 1 column = 1 ).
     go_view_obj_container  = go_view_split_container->get_container( row = 2 column = 1 ).
 
-    create object go_view_toolbar
-      exporting
+    CREATE OBJECT go_view_toolbar
+      EXPORTING
         parent = go_view_tool_container.
     go_view_toolbar->add_button_group( gi_idoc_tree_button ).
     lk_idoc_toolbar_event-eventid = cl_gui_toolbar=>m_id_function_selected.  lk_idoc_toolbar_event-appl_event = ' '.
-    append lk_idoc_toolbar_event to li_idoc_toolbar_event.
+    APPEND lk_idoc_toolbar_event TO li_idoc_toolbar_event.
     go_view_toolbar->set_registered_events( li_idoc_toolbar_event ).
-    create object lo_idoc_toolbar_handle.
-    set handler lo_idoc_toolbar_handle->command     for go_view_toolbar.
-  endif.
+    CREATE OBJECT lo_idoc_toolbar_handle.
+    SET HANDLER lo_idoc_toolbar_handle->command     FOR go_view_toolbar.
+  ENDIF.
 
-  if go_idoc_tree is not initial.
+  IF go_idoc_tree IS NOT INITIAL.
     go_idoc_tree->free( ).
-    clear go_idoc_tree.
-  endif.
+    CLEAR go_idoc_tree.
+  ENDIF.
 
-  if go_idoc_tree is initial.
-    create object go_idoc_tree
-      exporting
+  IF go_idoc_tree IS INITIAL.
+    CREATE OBJECT go_idoc_tree
+      EXPORTING
         id_parent    = go_view_obj_container
         id_tree_text = 'IDoc'.
-    perform data_display_idoc_tree_config using lv_tree_editable.
-  endif.
+    PERFORM data_display_idoc_tree_config USING lv_tree_editable.
+  ENDIF.
 
   gk_intfms = lk_intfms.
 
   "Create Main IDoc Node
-  go_idoc_tree->add_node( id_node_id = 'IDOC' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = 'IDoc' id_style_id = 'IDOC' ).
+  go_idoc_tree->add_node( id_node_id = 'IDOC' id_relationship = lcl_gui_tree=>cd_last_child id_value = 'IDoc' id_style_id = 'IDOC' ).
   go_idoc_tree->add_cell( id_node_id = 'IDOC' id_column_id = '1' id_editable = '0' id_value = lk_intfms-idoc_docnum ).
 
   "Create IDoc Control Record
-  select single * into lk_idoc_control    from edidc where docnum = lk_intfms-idoc_docnum.
+  SELECT SINGLE * INTO lk_idoc_control    FROM edidc WHERE docnum = lk_intfms-idoc_docnum.
   lo_data_typedescr = cl_abap_typedescr=>describe_by_name( 'EDIDC' ).
   li_data_fields = lo_data_typedescr->get_ddic_object( ).
-  go_idoc_tree->add_node( id_node_id = 'EDIDC' id_relat_node = 'IDOC' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = 'Control Record' id_style_id = 'IDOC_STRUC' ).
-  loop at li_data_fields assigning <lk_data_fields> from 2.
-    assign component <lk_data_fields>-fieldname of structure lk_idoc_control to <lk_idoc_field>.
-    lv_idoc_node_last = go_idoc_tree->add_node( id_value = <lk_data_fields>-fieldname id_relat_node = 'EDIDC' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'IDOC_NODE' ).
+  go_idoc_tree->add_node( id_node_id = 'EDIDC' id_relat_node = 'IDOC' id_relationship = lcl_gui_tree=>cd_last_child id_value = 'Control Record' id_style_id = 'IDOC_STRUC' ).
+  LOOP AT li_data_fields ASSIGNING <lk_data_fields> FROM 2.
+    ASSIGN COMPONENT <lk_data_fields>-fieldname OF STRUCTURE lk_idoc_control TO <lk_idoc_field>.
+    lv_idoc_node_last = go_idoc_tree->add_node( id_value = <lk_data_fields>-fieldname id_relat_node = 'EDIDC' id_relationship = lcl_gui_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'IDOC_NODE' ).
     go_idoc_tree->add_cell( id_node_id = lv_idoc_node_last id_column_id = '1' id_editable = lv_tree_editable id_value = <lk_idoc_field> ).
-  endloop.
+  ENDLOOP.
 
   "Create IDoc Data Records
-  select * into table li_idoc_data from edid4 where docnum = lk_intfms-idoc_docnum.
-  go_idoc_tree->add_node( id_node_id = 'EDIDD000000' id_relat_node = 'IDOC' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = 'Data Records' id_style_id = 'IDOC_STRUC' ).
-  loop at li_idoc_data assigning <lk_idoc_data>.
-    clear lo_idoc_segment.
+  SELECT * INTO TABLE li_idoc_data FROM edid4 WHERE docnum = lk_intfms-idoc_docnum.
+  go_idoc_tree->add_node( id_node_id = 'EDIDD000000' id_relat_node = 'IDOC' id_relationship = lcl_gui_tree=>cd_last_child id_value = 'Data Records' id_style_id = 'IDOC_STRUC' ).
+  LOOP AT li_idoc_data ASSIGNING <lk_idoc_data>.
+    CLEAR lo_idoc_segment.
 
-    create data lo_idoc_segment type (<lk_idoc_data>-segnam).
-    assign lo_idoc_segment->* to <lk_idoc_segment>.
+    CREATE DATA lo_idoc_segment TYPE (<lk_idoc_data>-segnam).
+    ASSIGN lo_idoc_segment->* TO <lk_idoc_segment>.
     <lk_idoc_segment> = <lk_idoc_data>-sdata.
 
     lo_data_typedescr = cl_abap_typedescr=>describe_by_name( <lk_idoc_data>-segnam ).
     li_data_fields = lo_data_typedescr->get_ddic_object( ).
 
-    concatenate 'EDIDD' <lk_idoc_data>-psgnum into lv_idoc_node_last.
-    concatenate 'EDIDD' <lk_idoc_data>-segnum into lv_idoc_node_curr.
+    CONCATENATE 'EDIDD' <lk_idoc_data>-psgnum INTO lv_idoc_node_last.
+    CONCATENATE 'EDIDD' <lk_idoc_data>-segnum INTO lv_idoc_node_curr.
 
-    go_idoc_tree->add_node( id_node_id = lv_idoc_node_curr id_relat_node = lv_idoc_node_last id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = <lk_idoc_data>-segnam id_style_id = 'IDOC_STRUC' ).
+    go_idoc_tree->add_node( id_node_id = lv_idoc_node_curr id_relat_node = lv_idoc_node_last id_relationship = lcl_gui_tree=>cd_last_child id_value = <lk_idoc_data>-segnam id_style_id = 'IDOC_STRUC' ).
 
-    loop at li_data_fields assigning <lk_data_fields>.
-      assign component <lk_data_fields>-fieldname of structure <lk_idoc_segment> to <lk_idoc_field>.
-      lv_idoc_node_last = go_idoc_tree->add_node( id_value = <lk_data_fields>-fieldname id_relat_node = lv_idoc_node_curr id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'IDOC_NODE' ).
+    LOOP AT li_data_fields ASSIGNING <lk_data_fields>.
+      ASSIGN COMPONENT <lk_data_fields>-fieldname OF STRUCTURE <lk_idoc_segment> TO <lk_idoc_field>.
+      lv_idoc_node_last = go_idoc_tree->add_node( id_value = <lk_data_fields>-fieldname id_relat_node = lv_idoc_node_curr id_relationship = lcl_gui_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'IDOC_NODE' ).
       go_idoc_tree->add_cell( id_node_id = lv_idoc_node_last id_column_id = '1' id_editable = lv_tree_editable id_value = <lk_idoc_field> id_style_id = 'CELL1' ).
-    endloop.
-  endloop.
+    ENDLOOP.
+  ENDLOOP.
 
   "IDoc Statuses
-  select * into table li_idoc_status    from edids where docnum = lk_intfms-idoc_docnum.
-  sort li_idoc_status by countr descending.
-  go_idoc_tree->add_node( id_node_id = 'EDIDS' id_relat_node = 'IDOC' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_value = 'Status Records' id_style_id = 'IDOC_STRUC' ).
-  loop at li_idoc_status assigning <lk_idoc_status>.
-    clear: lv_idoc_status_statva, lv_idoc_status_stalight, lv_idoc_status_nodedate, lv_idoc_status_nodetime, lv_idoc_status_nodetext.
-    select single statva   into lv_idoc_status_statva   from teds3    where status = <lk_idoc_status>-status.
-    select single stalight into lv_idoc_status_stalight from stalight where statva = lv_idoc_status_statva.
+  SELECT * INTO TABLE li_idoc_status    FROM edids WHERE docnum = lk_intfms-idoc_docnum.
+  SORT li_idoc_status BY countr DESCENDING.
+  go_idoc_tree->add_node( id_node_id = 'EDIDS' id_relat_node = 'IDOC' id_relationship = lcl_gui_tree=>cd_last_child id_value = 'Status Records' id_style_id = 'IDOC_STRUC' ).
+  LOOP AT li_idoc_status ASSIGNING <lk_idoc_status>.
+    CLEAR: lv_idoc_status_statva, lv_idoc_status_stalight, lv_idoc_status_nodedate, lv_idoc_status_nodetime, lv_idoc_status_nodetext.
+    SELECT SINGLE statva   INTO lv_idoc_status_statva   FROM teds3    WHERE status = <lk_idoc_status>-status.
+    SELECT SINGLE stalight INTO lv_idoc_status_stalight FROM stalight WHERE statva = lv_idoc_status_statva.
 
-    call function 'CONVERSION_EXIT_MODAT_OUTPUT'
-      exporting
+    CALL FUNCTION 'CONVERSION_EXIT_MODAT_OUTPUT'
+      EXPORTING
         input  = <lk_idoc_status>-logdat
-      importing
+      IMPORTING
         output = lv_idoc_status_nodedate.
     .
-    call function 'CONVERSION_EXIT_TIMLO_OUTPUT'
-      exporting
+    CALL FUNCTION 'CONVERSION_EXIT_TIMLO_OUTPUT'
+      EXPORTING
         input  = <lk_idoc_status>-logtim
-      importing
+      IMPORTING
         output = lv_idoc_status_nodetime.
 
-    concatenate <lk_idoc_status>-status lv_idoc_status_nodedate lv_idoc_status_nodetime into lv_idoc_status_node separated by space.
+    CONCATENATE <lk_idoc_status>-status lv_idoc_status_nodedate lv_idoc_status_nodetime INTO lv_idoc_status_node SEPARATED BY space.
 
-    case lv_idoc_status_stalight.
-      when '1'.
-        lv_idoc_node_last = go_idoc_tree->add_node( id_value = lv_idoc_status_node id_relat_node = 'EDIDS' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'EDIDS_W' ).
-      when '2'.
-        lv_idoc_node_last = go_idoc_tree->add_node( id_value = lv_idoc_status_node id_relat_node = 'EDIDS' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'EDIDS_S' ).
-      when '3'.
-        lv_idoc_node_last = go_idoc_tree->add_node( id_value = lv_idoc_status_node id_relat_node = 'EDIDS' id_relationship = /pstech/cl_bc_gui_edit_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'EDIDS_E' ).
-    endcase.
+    CASE lv_idoc_status_stalight.
+      WHEN '1'.
+        lv_idoc_node_last = go_idoc_tree->add_node( id_value = lv_idoc_status_node id_relat_node = 'EDIDS' id_relationship = lcl_gui_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'EDIDS_W' ).
+      WHEN '2'.
+        lv_idoc_node_last = go_idoc_tree->add_node( id_value = lv_idoc_status_node id_relat_node = 'EDIDS' id_relationship = lcl_gui_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'EDIDS_S' ).
+      WHEN '3'.
+        lv_idoc_node_last = go_idoc_tree->add_node( id_value = lv_idoc_status_node id_relat_node = 'EDIDS' id_relationship = lcl_gui_tree=>cd_last_child id_is_leaf = '1' id_style_id = 'EDIDS_E' ).
+    ENDCASE.
 
-    message id <lk_idoc_status>-stamid type 'I' number <lk_idoc_status>-stamno with <lk_idoc_status>-stapa1 <lk_idoc_status>-stapa2 <lk_idoc_status>-stapa3 <lk_idoc_status>-stapa4 into lv_idoc_status_nodetext.
+    MESSAGE ID <lk_idoc_status>-stamid TYPE 'I' NUMBER <lk_idoc_status>-stamno WITH <lk_idoc_status>-stapa1 <lk_idoc_status>-stapa2 <lk_idoc_status>-stapa3 <lk_idoc_status>-stapa4 INTO lv_idoc_status_nodetext.
     go_idoc_tree->add_cell( id_node_id = lv_idoc_node_last id_column_id = '1' id_editable = '0' id_value = lv_idoc_status_nodetext ).
-  endloop.
+  ENDLOOP.
 
   go_idoc_tree->expand_node( id_node_id = 'EDIDD000000' id_levels  = 2 ).
   go_idoc_tree->expand_node( id_node_id = 'EDIDS' id_levels  = 1 ).
@@ -2787,16 +2848,16 @@ form data_display_idoc_tree using lk_intfms type gtk_intfms.
 
 
 
-  perform data_display_tree_update changing go_idoc_tree.
-endform.                    "data_display_idoc
+  PERFORM data_display_tree_update CHANGING go_idoc_tree.
+ENDFORM.                    "data_display_idoc
 *&---------------------------------------------------------------------*
 *&      Form  data_display_idoc_tree_config
 *&---------------------------------------------------------------------*
-form data_display_idoc_tree_config using lv_edit type uac_flag.
-  data: lk_node_style       type uac_s_node_style.
-  data: lk_column_style     type uac_s_column_style.
-  data: lk_cell_style       type uac_s_cell_style.
-  data: lo_idoc_tree_handle type ref to lcl_tree_events_handle.
+FORM data_display_idoc_tree_config USING lv_edit TYPE uac_flag.
+  DATA: lk_node_style       TYPE uac_s_node_style.
+  DATA: lk_column_style     TYPE uac_s_column_style.
+  DATA: lk_cell_style       TYPE uac_s_cell_style.
+  DATA: lo_idoc_tree_handle TYPE REF TO lcl_tree_events_handle.
 
   lk_column_style-font_style        = 0.
   lk_column_style-alignment         = 0.
@@ -2880,427 +2941,590 @@ form data_display_idoc_tree_config using lv_edit type uac_flag.
   go_idoc_tree->register_node_ctxtmn_selected( ).
   go_idoc_tree->register_node_1st_open( ).
 
-  create object lo_idoc_tree_handle.
-  if lv_edit = '1'.
-    set handler lo_idoc_tree_handle->node_menu_request     for go_idoc_tree.
-    set handler lo_idoc_tree_handle->node_menu_select      for go_idoc_tree.
-  endif.
-  set handler lo_idoc_tree_handle->node_open             for go_idoc_tree.
-endform.                    "data_display_idoc_settings
+  CREATE OBJECT lo_idoc_tree_handle.
+  IF lv_edit = '1'.
+    SET HANDLER lo_idoc_tree_handle->node_menu_request     FOR go_idoc_tree.
+    SET HANDLER lo_idoc_tree_handle->node_menu_select      FOR go_idoc_tree.
+  ENDIF.
+  SET HANDLER lo_idoc_tree_handle->node_open             FOR go_idoc_tree.
+ENDFORM.                    "data_display_idoc_settings
+
+*----------------------------------------------------------------------*
+*       CLASS lcl_gui_tree IMPLEMENTATION
+*----------------------------------------------------------------------*
+CLASS lcl_gui_tree IMPLEMENTATION.
+  METHOD change_node_leaf.
+    FIELD-SYMBOLS: <lk_node> TYPE uac_s_node_long.
+    READ TABLE mt_nodes ASSIGNING <lk_node>  WITH TABLE KEY  tree_id = id_tree_id node_id = id_node_id.
+    IF sy-subrc = 0.
+      <lk_node>-is_leaf = id_is_leaf.
+    ENDIF.
+  ENDMETHOD.                    "change_node_leaf
+  METHOD constructor.
+    CALL METHOD super->constructor
+      EXPORTING
+        id_parent              = id_parent
+        id_lifetime            = id_lifetime
+        id_name                = id_name
+        id_style               = id_style
+        id_class_id            = id_class_id
+        id_expand_no_children  = id_expand_no_children
+      EXCEPTIONS
+        error_cntl_create      = 1
+        gui_type_not_supported = 2
+        cntl_error             = 3
+        OTHERS                 = 4.
+
+    IF sy-subrc <> 0.
+      RAISE error_cntl_create.
+    ENDIF.
+
+    CALL METHOD _add_tree
+      EXPORTING
+        id_column_text = id_tree_text
+      IMPORTING
+        ed_tree_id     = md_tree_id
+      EXCEPTIONS
+        cntl_error     = 1
+        system_error   = 2
+        OTHERS         = 3.
+
+    CASE sy-subrc.
+      WHEN 1. RAISE cntl_error.
+      WHEN 2. RAISE system_error.
+      WHEN 3. RAISE cntl_error.
+    ENDCASE.
+
+    CALL METHOD _display_tree
+      EXPORTING
+        id_multi_selection = id_multi_selection
+      EXCEPTIONS
+        cntl_error         = 1
+        system_error       = 2.
+
+    CASE sy-subrc.
+      WHEN 1. RAISE cntl_error.
+      WHEN 2. RAISE system_error.
+    ENDCASE.
+  ENDMETHOD.                    "constructor
+  METHOD register_events .
+    DATA: ld_application_event TYPE abap_bool.
+
+    CASE application_event.
+      WHEN true.  ld_application_event = abap_true.
+      WHEN false. ld_application_event = abap_false.
+    ENDCASE.
+
+    DEFINE register.
+      if &1 eq true.
+
+        call method register_event_for_id
+          exporting
+            id_event_id   = &2
+            id_appl_event = ld_application_event
+          exceptions
+            cntl_error    = 1.
+
+        if sy-subrc ne 0.
+          raise cntl_error.
+        endif.
+
+      endif.
+    END-OF-DEFINITION.
+    register     node_selected              ev_node_selected.
+    register     node_double_click          ev_node_double_click.
+    register     node_value_changed         ev_on_node_value_changed.
+    register     node_context_menu          ev_node_context_menu_request.
+    register     node_context_menu          ev_node_context_menu_selected.
+    register     multi_selection_change     ev_multi_selection_change.
+    register     keypressed                 ev_cell_keypressed.
+    register     keypressed                 ev_node_keypressed.
+    register     cell_selected              ev_cell_selected.
+    register     cell_double_click          ev_cell_double_click.
+    register     cell_value_changed         ev_on_cell_value_changed.
+    register     cell_context_menu          ev_cell_context_menu_requested.
+    register     cell_context_menu          ev_cell_context_menu_selected.
+    register     cell_dropdown              ev_cell_dropdown_requested.
+    register     cell_dropdown              ev_cell_dropdown_selected.
+    register     column_double_click        ev_column_double_click.
+    register     column_context_menu        ev_column_context_menu_request.
+    register     column_context_menu        ev_column_context_menu_selectd.
+    register     group_context_menu         ev_group_item_cntxt_request.
+    register     group_context_menu         ev_group_item_cntxt_selected.
+    register     sort_order_changed         ev_on_sort_order_changed.
+    register     column_order_changed       ev_on_column_order_changed.
+    register     group_changes              ev_group_item_added.
+    register     group_changes              ev_group_item_removed.
+    register     group_changes              ev_group_order_changed.
+    register     control_context_menu       ev_ctrl_ctxt_menu_request.
+    register     control_context_menu       ev_ctrl_ctxt_menu_selectd.
+  ENDMETHOD.                    "
+
+  METHOD set_styles.
+    IF NOT it_node_style IS INITIAL.
+
+      CALL METHOD send_table_to_dp
+        EXPORTING
+          p_property_name = 'NodeStyle'
+          pt_data         = it_node_style
+        EXCEPTIONS
+          dp_error        = 1
+          OTHERS          = 2.
+
+      IF sy-subrc <> 0.
+        RAISE cntl_error.
+      ENDIF.
+
+    ENDIF.
+
+
+    IF NOT it_cell_style IS INITIAL.
+
+      CALL METHOD send_table_to_dp
+        EXPORTING
+          p_property_name = 'CellStyle'
+          pt_data         = it_cell_style
+        EXCEPTIONS
+          dp_error        = 1
+          OTHERS          = 2.
+
+      IF sy-subrc <> 0.
+        RAISE cntl_error.
+      ENDIF.
+
+    ENDIF.
+
+    IF NOT it_column_style IS INITIAL.
+      CALL METHOD send_table_to_dp
+        EXPORTING
+          p_property_name = 'ColumnStyle'
+          pt_data         = it_column_style
+        EXCEPTIONS
+          dp_error        = 1
+          OTHERS          = 2.
+
+      IF sy-subrc <> 0.
+        RAISE cntl_error.
+      ENDIF.
+
+    ENDIF.
+
+  ENDMETHOD.                    "set_styles
+ENDCLASS.                    "lcl_gui_tree IMPLEMENTATION
 *---------------------------------------------------------------------*
 *       CLASS lcl_handle_events IMPLEMENTATION
 *---------------------------------------------------------------------*
-class lcl_alv_events_handle implementation.
-  method command.
-    perform data_display_commands using e_salv_function.
-  endmethod.                    "on_user_command
-  method linkclick.
-    field-symbols: <lk_intfms> type gtk_intfms.
-    case column.
-      when 'INTF_MSGID_ICO'.
-        clear gv_xml_document.
-        read table gi_intfms assigning <lk_intfms> index row.
-        if sy-subrc = 0.
-          case <lk_intfms>-interface_type.
-            when '0'.
-              perform data_display_proxy_tree using <lk_intfms>.
-            when '1'.
-              perform data_display_idoc_tree using <lk_intfms>.
-          endcase.
-        endif.
+CLASS lcl_alv_events_handle IMPLEMENTATION.
+  METHOD command.
+    PERFORM data_display_commands USING e_salv_function.
+  ENDMETHOD.                    "on_user_command
+  METHOD linkclick.
+    FIELD-SYMBOLS: <lk_intfms> TYPE gtk_intfms.
+    CASE column.
+      WHEN 'INTF_MSGID_ICO'.
+        CLEAR gv_xml_document.
+        READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX row.
+        IF sy-subrc = 0.
+          CASE <lk_intfms>-interface_type.
+            WHEN '0'.
+              PERFORM data_display_proxy_tree USING <lk_intfms>.
+            WHEN '1'.
+              PERFORM data_display_idoc_tree USING <lk_intfms>.
+          ENDCASE.
+        ENDIF.
 
-      when 'INTF_ALOG_ICO'.
-        if go_log_table is not initial.
-          clear : gi_log_table.
+      WHEN 'INTF_ALOG_ICO'.
+        IF go_log_table IS NOT INITIAL.
+          CLEAR : gi_log_table.
           go_log_table->refresh( ).
-        endif.
-        read table gi_intfms assigning <lk_intfms> index row.
-        if sy-subrc = 0.
-          perform data_display_log_alv using <lk_intfms>.
-        endif.
+        ENDIF.
+        READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX row.
+        IF sy-subrc = 0.
+          PERFORM data_display_log_alv USING <lk_intfms>.
+        ENDIF.
 
-    endcase.
-  endmethod.                    "doubleclick
-  method doubleclick.
-    field-symbols: <lk_intfms> type gtk_intfms.
-    case column.
-      when 'INTERFACE_MSGID'.
-        read table gi_intfms assigning <lk_intfms> index row.
-        if sy-subrc = 0.
-          perform data_display_proxy_xml using <lk_intfms>.
-        endif.
-      when 'LOG_MSGTY' or 'LOG_MSGID' or 'LOG_MSGNO' or 'LOG_MSGTXT'.
-        read table gi_intfms assigning <lk_intfms> index row.
-        if sy-subrc = 0.
-          perform data_display_log_alv using <lk_intfms>.
-        endif.
-      when 'INTERFACE_KEY1' or 'INTERFACE_KEY2' or 'INTERFACE_KEY3' or 'INTERFACE_KEY4'.
-    endcase.
-  endmethod.                    "doubleclick
-endclass.                    "lcl_handle_events IMPLEMENTATION
+    ENDCASE.
+  ENDMETHOD.                    "doubleclick
+  METHOD doubleclick.
+    FIELD-SYMBOLS: <lk_intfms> TYPE gtk_intfms.
+    CASE column.
+      WHEN 'INTERFACE_MSGID'.
+        READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX row.
+        IF sy-subrc = 0.
+          PERFORM data_display_proxy_xml USING <lk_intfms>.
+        ENDIF.
+      WHEN 'LOG_MSGTY' OR 'LOG_MSGID' OR 'LOG_MSGNO' OR 'LOG_MSGTXT'.
+        READ TABLE gi_intfms ASSIGNING <lk_intfms> INDEX row.
+        IF sy-subrc = 0.
+          PERFORM data_display_log_alv USING <lk_intfms>.
+        ENDIF.
+      WHEN 'INTERFACE_KEY1' OR 'INTERFACE_KEY2' OR 'INTERFACE_KEY3' OR 'INTERFACE_KEY4'.
+    ENDCASE.
+  ENDMETHOD.                    "doubleclick
+ENDCLASS.                    "lcl_handle_events IMPLEMENTATION
 *----------------------------------------------------------------------*
 *       CLASS lcl_tool_events_handle IMPLEMENTATION
 *----------------------------------------------------------------------*
-class lcl_tool_events_handle implementation.
-  method command.
-    perform data_display_commands using fcode.
-  endmethod.                    "on_user_command
-endclass.               "lcl_tool_events_handle
+CLASS lcl_tool_events_handle IMPLEMENTATION.
+  METHOD command.
+    PERFORM data_display_commands USING fcode.
+  ENDMETHOD.                    "on_user_command
+ENDCLASS.               "lcl_tool_events_handle
 *----------------------------------------------------------------------*
 *       CLASS lcl_tree_events_handle IMPLEMENTATION
 *----------------------------------------------------------------------*
-class lcl_tree_events_handle implementation.
-  method node_open.
-    if go_proxy_tree is not initial.
+CLASS lcl_tree_events_handle IMPLEMENTATION.
+  METHOD node_open.
+    IF go_proxy_tree IS NOT INITIAL.
       go_proxy_tree->column_optimize( id_column_id = '&Hierarchy' ).
       go_proxy_tree->column_optimize( id_column_id = '1' ).
-    endif.
-    if go_idoc_tree is not initial.
+    ENDIF.
+    IF go_idoc_tree IS NOT INITIAL.
       go_idoc_tree->column_optimize( id_column_id = '&Hierarchy' ).
       go_idoc_tree->column_optimize( id_column_id = '1' ).
-    endif.
-  endmethod.                    "node_open
-  method node_menu_request.
-    if go_proxy_tree is not initial.
+    ENDIF.
+  ENDMETHOD.                    "node_open
+  METHOD node_menu_request.
+    IF go_proxy_tree IS NOT INITIAL.
       go_proxy_tree->display_context_menu( gi_proxy_tree_context ).
-    endif.
-    if go_idoc_tree is not initial.
+    ENDIF.
+    IF go_idoc_tree IS NOT INITIAL.
       go_idoc_tree->display_context_menu( gi_idoc_tree_context ).
-    endif.
-  endmethod.                    "node_menu_request
-  method node_menu_select.
-    if go_proxy_tree is not initial.
-      perform data_display_tree_commands using go_proxy_tree node_id fcode.
-    endif.
-    if go_idoc_tree is not initial.
-      perform data_display_tree_commands using go_idoc_tree node_id fcode.
-    endif.
-  endmethod.                    "node_menu_select
-endclass.                    "lcl_tree_events_handle IMPLEMENTATION
+    ENDIF.
+  ENDMETHOD.                    "node_menu_request
+  METHOD node_menu_select.
+    IF go_proxy_tree IS NOT INITIAL.
+      PERFORM data_display_tree_commands USING go_proxy_tree node_id fcode.
+    ENDIF.
+    IF go_idoc_tree IS NOT INITIAL.
+      PERFORM data_display_tree_commands USING go_idoc_tree node_id fcode.
+    ENDIF.
+  ENDMETHOD.                    "node_menu_select
+ENDCLASS.                    "lcl_tree_events_handle IMPLEMENTATION
 *&---------------------------------------------------------------------*
 *&      Form  DATA_PROCESS_IDOC_COPYPROC
 *&---------------------------------------------------------------------*
-form data_process_idoc_copyproc  using lk_intfms type gtk_intfms.
-  data: lk_idoc_control          type edidc.
-  data: li_idoc_control          type standard table of edidc.
-  data: li_idoc_edid4            type standard table of edid4.
-  data: li_idoc_data             type standard table of edidd.
-  data: lk_idoc_process_data_in  type tede2.
-  data: lk_intfms_new            type gtk_intfms.
-  data: lv_idoc_subrc            type sysubrc.
-  field-symbols: <lk_idoc_edid4> type edid4.
-  field-symbols: <lk_idoc_data>  type edidd.
+FORM data_process_idoc_copyproc  USING lk_intfms TYPE gtk_intfms.
+  DATA: lk_idoc_control          TYPE edidc.
+  DATA: li_idoc_control          TYPE STANDARD TABLE OF edidc.
+  DATA: li_idoc_edid4            TYPE STANDARD TABLE OF edid4.
+  DATA: li_idoc_data             TYPE STANDARD TABLE OF edidd.
+  DATA: lk_idoc_process_data_in  TYPE tede2.
+  DATA: lk_intfms_new            TYPE gtk_intfms.
+  DATA: lv_idoc_subrc            TYPE sysubrc.
+  FIELD-SYMBOLS: <lk_idoc_edid4> TYPE edid4.
+  FIELD-SYMBOLS: <lk_idoc_data>  TYPE edidd.
 
   "Create IDoc Control Record
-  select single * into lk_idoc_control  from edidc where docnum = lk_intfms-idoc_docnum.
-  clear lk_idoc_control-docnum.
+  SELECT SINGLE * INTO lk_idoc_control  FROM edidc WHERE docnum = lk_intfms-idoc_docnum.
+  CLEAR lk_idoc_control-docnum.
 
   "Create IDoc Data Records
-  select * into table li_idoc_edid4 from edid4 where docnum = lk_intfms-idoc_docnum..
-  loop at li_idoc_edid4 assigning <lk_idoc_edid4>.
-    append initial line to li_idoc_data assigning <lk_idoc_data>.
+  SELECT * INTO TABLE li_idoc_edid4 FROM edid4 WHERE docnum = lk_intfms-idoc_docnum..
+  LOOP AT li_idoc_edid4 ASSIGNING <lk_idoc_edid4>.
+    APPEND INITIAL LINE TO li_idoc_data ASSIGNING <lk_idoc_data>.
     <lk_idoc_data>-segnum = <lk_idoc_edid4>-segnum.
     <lk_idoc_data>-segnam = <lk_idoc_edid4>-segnam.
     <lk_idoc_data>-psgnum = <lk_idoc_edid4>-psgnum.
     <lk_idoc_data>-hlevel = <lk_idoc_edid4>-hlevel.
     <lk_idoc_data>-dtint2 = <lk_idoc_edid4>-dtint2.
     <lk_idoc_data>-sdata  = <lk_idoc_edid4>-sdata.
-  endloop.
+  ENDLOOP.
 
-  case lk_idoc_control-direct.
-    when '1'.
-      call function 'IDOC_OUTBOUND_WRITE_TO_DB'
-        tables
+  CASE lk_idoc_control-direct.
+    WHEN '1'.
+      CALL FUNCTION 'IDOC_OUTBOUND_WRITE_TO_DB'
+        TABLES
           int_edidd      = li_idoc_data
-        changing
+        CHANGING
           int_edidc      = lk_idoc_control
-        exceptions
+        EXCEPTIONS
           idoc_not_saved = 1
-          others         = 2.
+          OTHERS         = 2.
 
-      append lk_idoc_control to li_idoc_control.
-      clear li_idoc_data[].
+      APPEND lk_idoc_control TO li_idoc_control.
+      CLEAR li_idoc_data[].
 
-      call function 'EDI_OUTPUT_NEW'
-        exporting
+      CALL FUNCTION 'EDI_OUTPUT_NEW'
+        EXPORTING
           onl_option = 'B'
           error_flag = ' '
-        tables
+        TABLES
           i_edidc    = li_idoc_control
           i_edidd    = li_idoc_data
-        exceptions
-          others     = 0.
-    when '2'.
-      call function 'IDOC_INBOUND_WRITE_TO_DB'
-        exporting
+        EXCEPTIONS
+          OTHERS     = 0.
+    WHEN '2'.
+      CALL FUNCTION 'IDOC_INBOUND_WRITE_TO_DB'
+        EXPORTING
           pi_return_data_flag     = ' '
-        importing
+        IMPORTING
           pe_idoc_number          = lk_idoc_control-docnum
           pe_state_of_processing  = lv_idoc_subrc
           pe_inbound_process_data = lk_idoc_process_data_in
-        tables
+        TABLES
           t_data_records          = li_idoc_data
-        changing
+        CHANGING
           pc_control_record       = lk_idoc_control
-        exceptions
+        EXCEPTIONS
           idoc_not_saved          = 1
-          others                  = 2.
-      if lv_idoc_subrc = 0.
-        append lk_idoc_control to li_idoc_control.
-        call function 'IDOC_START_INBOUND'
-          exporting
+          OTHERS                  = 2.
+      IF lv_idoc_subrc = 0.
+        APPEND lk_idoc_control TO li_idoc_control.
+        CALL FUNCTION 'IDOC_START_INBOUND'
+          EXPORTING
             pi_inbound_process_data = lk_idoc_process_data_in
             pi_called_online        = 'X'
             succ_show_flag          = 'X'
-          tables
+          TABLES
             t_control_records       = li_idoc_control
-          exceptions
-            others                  = 1.
-      endif.
-  endcase.
+          EXCEPTIONS
+            OTHERS                  = 1.
+      ENDIF.
+  ENDCASE.
 
-  if lk_intfms-interface_dir = 'O'.
+  IF lk_intfms-interface_dir = 'O'.
     lk_intfms_new = lk_intfms.
     lk_intfms_new-interface_msgid = lk_idoc_control-docnum.
     lk_intfms_new-execute_date = sy-datum.
     lk_intfms_new-execute_time = sy-uzeit.
-    modify /pstech/bcintfms from lk_intfms_new.
-  endif.
-endform.                    " DATA_PROCESS_IDOC_COPYPROC
+    MODIFY /pstech/bcintfms FROM lk_intfms_new.
+  ENDIF.
+ENDFORM.                    " DATA_PROCESS_IDOC_COPYPROC
 *&---------------------------------------------------------------------*
 *&      Form  DATA_PROCESS_IDOC_EDITTREE
 *&---------------------------------------------------------------------*
-form data_process_idoc_edittree.
-  data li_idoc_tree_nodes      type uac_t_node_long.
-  data lk_idoc_control         type edidc.
-  data li_idoc_control         type standard table of edidc.
-  data li_idoc_data            type standard table of edidd.
-  data lk_idoc_process_data_in type tede2.
-  data lv_idoc_subrc           type sysubrc.
-  data lk_idoc_data            type edidd.
-  data lv_idoc_tree_value      type string.
-  data lk_intfms_new           type gtk_intfms.
-  data lo_data_struc           type ref to data.
-  field-symbols: <lk_idoc_tree_nodes> type uac_s_node_long.
-  field-symbols: <lv_data_field>      type any,
-                 <lv_data_struc>      type any,
-                 <lv_tree_value>      type any.
+FORM data_process_idoc_edittree.
+  DATA li_idoc_tree_nodes      TYPE uac_t_node_long.
+  DATA lk_idoc_control         TYPE edidc.
+  DATA li_idoc_control         TYPE STANDARD TABLE OF edidc.
+  DATA li_idoc_data            TYPE STANDARD TABLE OF edidd.
+  DATA lk_idoc_process_data_in TYPE tede2.
+  DATA lv_idoc_subrc           TYPE sysubrc.
+  DATA lk_idoc_data            TYPE edidd.
+  DATA lv_idoc_tree_value      TYPE string.
+  DATA lk_intfms_new           TYPE gtk_intfms.
+  DATA lo_data_struc           TYPE REF TO data.
+  FIELD-SYMBOLS: <lk_idoc_tree_nodes> TYPE uac_s_node_long.
+  FIELD-SYMBOLS: <lv_data_field>      TYPE any,
+                 <lv_data_struc>      TYPE any,
+                 <lv_tree_value>      TYPE any.
 
   li_idoc_tree_nodes = go_idoc_tree->get_nodes( ).
 
-  loop at li_idoc_tree_nodes assigning <lk_idoc_tree_nodes>.
-    clear: lv_idoc_tree_value.
-    case <lk_idoc_tree_nodes>-parent_node(5).
-      when 'EDIDC'.
-        assign component <lk_idoc_tree_nodes>-value of structure lk_idoc_control to <lv_data_field>.
-        go_idoc_tree->get_cell( exporting id_node_id = <lk_idoc_tree_nodes>-node_id id_column_id = '1' importing ed_value = lv_idoc_tree_value ).
+  LOOP AT li_idoc_tree_nodes ASSIGNING <lk_idoc_tree_nodes>.
+    CLEAR: lv_idoc_tree_value.
+    CASE <lk_idoc_tree_nodes>-parent_node(5).
+      WHEN 'EDIDC'.
+        ASSIGN COMPONENT <lk_idoc_tree_nodes>-value OF STRUCTURE lk_idoc_control TO <lv_data_field>.
+        go_idoc_tree->get_cell( EXPORTING id_node_id = <lk_idoc_tree_nodes>-node_id id_column_id = '1' IMPORTING ed_value = lv_idoc_tree_value ).
         <lv_data_field> = lv_idoc_tree_value.
-      when 'EDIDD'.
-        if <lk_idoc_tree_nodes>-node_id(5) = 'EDIDD'.
-          if lo_data_struc is not initial.
+      WHEN 'EDIDD'.
+        IF <lk_idoc_tree_nodes>-node_id(5) = 'EDIDD'.
+          IF lo_data_struc IS NOT INITIAL.
             lk_idoc_data-sdata = <lv_data_struc>.
-            append lk_idoc_data to li_idoc_data.
-            clear: lo_data_struc.
-            unassign: <lv_data_struc>.
-          endif.
+            APPEND lk_idoc_data TO li_idoc_data.
+            CLEAR: lo_data_struc.
+            UNASSIGN: <lv_data_struc>.
+          ENDIF.
           lk_idoc_data-segnam = <lk_idoc_tree_nodes>-value.
-          create data lo_data_struc type (<lk_idoc_tree_nodes>-value).
-          assign lo_data_struc->* to  <lv_data_struc>.
-        else.
-          assign component <lk_idoc_tree_nodes>-value of structure <lv_data_struc> to <lv_data_field>.
-          go_idoc_tree->get_cell( exporting id_node_id = <lk_idoc_tree_nodes>-node_id id_column_id = '1' importing ed_value = lv_idoc_tree_value ).
+          CREATE DATA lo_data_struc TYPE (<lk_idoc_tree_nodes>-value).
+          ASSIGN lo_data_struc->* TO  <lv_data_struc>.
+        ELSE.
+          ASSIGN COMPONENT <lk_idoc_tree_nodes>-value OF STRUCTURE <lv_data_struc> TO <lv_data_field>.
+          go_idoc_tree->get_cell( EXPORTING id_node_id = <lk_idoc_tree_nodes>-node_id id_column_id = '1' IMPORTING ed_value = lv_idoc_tree_value ).
           <lv_data_field> = lv_idoc_tree_value.
-        endif.
-    endcase.
-  endloop.
+        ENDIF.
+    ENDCASE.
+  ENDLOOP.
 
   "Append last node
   lk_idoc_data-sdata = <lv_data_struc>.
-  append lk_idoc_data to li_idoc_data.
-  clear: lo_data_struc.
-  unassign: <lv_data_struc>.
+  APPEND lk_idoc_data TO li_idoc_data.
+  CLEAR: lo_data_struc.
+  UNASSIGN: <lv_data_struc>.
 
   "Remove Previous DocNum
-  clear lk_idoc_control-docnum.
+  CLEAR lk_idoc_control-docnum.
 
-  case lk_idoc_control-direct.
-    when '1'.
-      call function 'IDOC_OUTBOUND_WRITE_TO_DB'
-        tables
+  CASE lk_idoc_control-direct.
+    WHEN '1'.
+      CALL FUNCTION 'IDOC_OUTBOUND_WRITE_TO_DB'
+        TABLES
           int_edidd      = li_idoc_data
-        changing
+        CHANGING
           int_edidc      = lk_idoc_control
-        exceptions
+        EXCEPTIONS
           idoc_not_saved = 1
-          others         = 2.
-      append lk_idoc_control to li_idoc_control.
-      clear li_idoc_data[].
+          OTHERS         = 2.
+      APPEND lk_idoc_control TO li_idoc_control.
+      CLEAR li_idoc_data[].
 
-      call function 'EDI_OUTPUT_NEW'
-        exporting
+      CALL FUNCTION 'EDI_OUTPUT_NEW'
+        EXPORTING
           onl_option = 'B'
           error_flag = ' '
-        tables
+        TABLES
           i_edidc    = li_idoc_control
           i_edidd    = li_idoc_data
-        exceptions
-          others     = 0.
-    when '2'.
-      call function 'IDOC_INBOUND_WRITE_TO_DB'
-        exporting
+        EXCEPTIONS
+          OTHERS     = 0.
+    WHEN '2'.
+      CALL FUNCTION 'IDOC_INBOUND_WRITE_TO_DB'
+        EXPORTING
           pi_return_data_flag     = ' '
-        importing
+        IMPORTING
           pe_idoc_number          = lk_idoc_control-docnum
           pe_state_of_processing  = lv_idoc_subrc
           pe_inbound_process_data = lk_idoc_process_data_in
-        tables
+        TABLES
           t_data_records          = li_idoc_data
-        changing
+        CHANGING
           pc_control_record       = lk_idoc_control
-        exceptions
+        EXCEPTIONS
           idoc_not_saved          = 1
-          others                  = 2.
-      if lv_idoc_subrc = 0.
-        append lk_idoc_control to li_idoc_control.
-        call function 'IDOC_START_INBOUND'
-          exporting
+          OTHERS                  = 2.
+      IF lv_idoc_subrc = 0.
+        APPEND lk_idoc_control TO li_idoc_control.
+        CALL FUNCTION 'IDOC_START_INBOUND'
+          EXPORTING
             pi_inbound_process_data = lk_idoc_process_data_in
             pi_called_online        = 'X'
             succ_show_flag          = 'X'
-          tables
+          TABLES
             t_control_records       = li_idoc_control
-          exceptions
-            others                  = 1.
-      endif.
-  endcase.
+          EXCEPTIONS
+            OTHERS                  = 1.
+      ENDIF.
+  ENDCASE.
 
-  if gk_intfms-interface_dir = 'O'.
+  IF gk_intfms-interface_dir = 'O'.
     lk_intfms_new = gk_intfms.
     lk_intfms_new-interface_msgid = lk_idoc_control-docnum.
     lk_intfms_new-execute_date = sy-datum.
     lk_intfms_new-execute_time = sy-uzeit.
-    modify /pstech/bcintfms from lk_intfms_new.
-  endif.
+    MODIFY /pstech/bcintfms FROM lk_intfms_new.
+  ENDIF.
 
-endform.                    " DATA_PROCESS_IDOC_EDITPROC
+ENDFORM.                    " DATA_PROCESS_IDOC_EDITPROC
 *&---------------------------------------------------------------------*
 *&      Form  DATA_PROCESS_IDOC_RESTART
 *&---------------------------------------------------------------------*
-form data_process_idoc_restart using li_intfms type gti_intfms.
-  data li_idoc_docnum  type bdrg_doc_tab.
-  data li_idoc_control type standard table of edidc.
-  field-symbols: <lk_idoc_control> type edidc.
-  field-symbols: <lk_idoc_docnum>  type bdrg_doc.
+FORM data_process_idoc_restart USING li_intfms TYPE gti_intfms.
+  DATA li_idoc_docnum  TYPE bdrg_doc_tab.
+  DATA li_idoc_control TYPE STANDARD TABLE OF edidc.
+  FIELD-SYMBOLS: <lk_idoc_control> TYPE edidc.
+  FIELD-SYMBOLS: <lk_idoc_docnum>  TYPE bdrg_doc.
 
-  if li_intfms[] is not initial.
-    select * into table li_idoc_control from edidc for all entries in li_intfms where docnum = li_intfms-idoc_docnum.
-  endif.
+  IF li_intfms[] IS NOT INITIAL.
+    SELECT * INTO TABLE li_idoc_control FROM edidc FOR ALL ENTRIES IN li_intfms WHERE docnum = li_intfms-idoc_docnum.
+  ENDIF.
 
   "Status 30
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control> where status = '30'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control> WHERE status = '30'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rseout00 with docnum in li_idoc_docnum and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rseout00 WITH docnum IN li_idoc_docnum AND RETURN.
+  ENDIF.
 
   " Status 02 04 05 25 29
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control> where status = '02' or status = '04' or status = '05' or status = '25' or status = '29'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control> WHERE status = '02' OR status = '04' OR status = '05' OR status = '25' OR status = '29'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdagain with so_docnu in li_idoc_docnum with p_output = ' ' and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdagain WITH so_docnu IN li_idoc_docnum WITH p_output = ' ' AND RETURN.
+  ENDIF.
 
   " Status 26
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control>  where status = '26'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control>  WHERE status = '26'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdsyneo with so_docnu in li_idoc_docnum with p_output = ' '  and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdsyneo WITH so_docnu IN li_idoc_docnum WITH p_output = ' '  AND RETURN.
+  ENDIF.
 
   " Status 32
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control> where status = '32'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control> WHERE status = '32'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdagaie with p_idoc in li_idoc_docnum with p_direct = '1' with p_output = ' ' and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdagaie WITH p_idoc IN li_idoc_docnum WITH p_direct = '1' WITH p_output = ' ' AND RETURN.
+  ENDIF.
 
   " Status 51
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control>  where status = '51'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control>  WHERE status = '51'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdmani2 with so_docnu in li_idoc_docnum with p_output = ' ' and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdmani2 WITH so_docnu IN li_idoc_docnum WITH p_output = ' ' AND RETURN.
+  ENDIF.
 
   " Status 56 61 63 65
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control> where status = '56' or status = '61' or status = '63' or status = '65'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control> WHERE status = '56' OR status = '61' OR status = '63' OR status = '65'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdagai2 with so_docnu in li_idoc_docnum with p_output = ' ' and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdagai2 WITH so_docnu IN li_idoc_docnum WITH p_output = ' ' AND RETURN.
+  ENDIF.
 
   " Status 60
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control> where status = '60'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control> WHERE status = '60'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdsynei with so_docnu in li_idoc_docnum with p_output = ' ' and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdsynei WITH so_docnu IN li_idoc_docnum WITH p_output = ' ' AND RETURN.
+  ENDIF.
 
   " Status 64 66
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control> where status = '64' or status = '66'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control> WHERE status = '64' OR status = '66'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdapp01 with docnum in li_idoc_docnum with p_output = ' ' and return.
-  endif.
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdapp01 WITH docnum IN li_idoc_docnum WITH p_output = ' ' AND RETURN.
+  ENDIF.
 
   " Status 69
-  clear: li_idoc_docnum[].
-  loop at li_idoc_control assigning <lk_idoc_control> where status = '69'.
-    append initial line to li_idoc_docnum assigning <lk_idoc_docnum>.
+  CLEAR: li_idoc_docnum[].
+  LOOP AT li_idoc_control ASSIGNING <lk_idoc_control> WHERE status = '69'.
+    APPEND INITIAL LINE TO li_idoc_docnum ASSIGNING <lk_idoc_docnum>.
     <lk_idoc_docnum>-sign = 'I'.
     <lk_idoc_docnum>-option = 'EQ'.
     <lk_idoc_docnum>-low = <lk_idoc_control>-docnum.
-  endloop.
-  if li_idoc_docnum[] is not initial.
-    submit rbdagaie  with p_idoc in li_idoc_docnum with p_direct = '2' with p_output = ' ' and return.
-  endif.
-endform.                    "DATA_PROCESS_IDOC_RESTART
+  ENDLOOP.
+  IF li_idoc_docnum[] IS NOT INITIAL.
+    SUBMIT rbdagaie  WITH p_idoc IN li_idoc_docnum WITH p_direct = '2' WITH p_output = ' ' AND RETURN.
+  ENDIF.
+ENDFORM.                    "DATA_PROCESS_IDOC_RESTART
