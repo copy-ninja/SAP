@@ -1,0 +1,99 @@
+report zbc_rest_auth_report.
+
+types: begin of gtk_final,
+        srv_identifier  type /iwfnd/i_med_srh-srv_identifier,
+        hash            type usobhash-name,
+       end of gtk_final.
+data gk_final       type gtk_final.
+data gi_final       type standard table of gtk_final.
+data gk_gwserv      type /iwfnd/i_med_srh.
+data gi_gwserv      type standard table of /iwfnd/i_med_srh.
+data gv_sname       type usobhash-obj_name.
+
+select-options: s_srvid for gk_gwserv-srv_identifier.
+
+select * into table gi_gwserv from /iwfnd/i_med_srh where srv_identifier in s_srvid.
+
+loop at gi_gwserv into gk_gwserv.
+  clear: gk_final, gv_sname.
+  gk_final-srv_identifier = gk_gwserv-srv_identifier.
+
+  gv_sname = gk_gwserv-srv_identifier.
+  call function 'AUTH_TRACE_INTERN_HASH'
+    exporting
+      pgmid                     = 'R3TR'
+      object                    = 'IWSG'
+      obj_name                  = gv_sname
+      service_type              = ' '
+      service                   = ' '
+    importing
+      hash_value                = gk_final-hash
+    exceptions
+      hash_error                = 1
+      hash_invalid_input        = 2
+      hash_too_long             = 3
+      kernel_function_not_found = 4
+      others                    = 5.
+
+  append gk_final to gi_final.
+endloop.
+
+sort gi_final.
+
+perform data_report.
+
+*&---------------------------------------------------------------------*
+*&      Form  data_report
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+form data_report.
+  data: lo_alv_table type ref to cl_salv_table .
+  data: lo_msg       type ref to cx_root.
+  data: lo_grid      type ref to cl_salv_form_layout_grid.
+  data: lv_result    type string.
+  data: lo_columns   type ref to cl_salv_columns.
+  data: li_columns   type salv_t_column_ref.
+  field-symbols <lk_columns>   type salv_s_column_ref.
+  data: lv_columnname_l type scrtext_l.
+  data: lv_columnname_m type scrtext_m.
+  data: lv_columnname_s type scrtext_s.
+  data: lo_functions type ref to cl_salv_functions_list.
+* Create an ALV table
+  try.
+      call method cl_salv_table=>factory
+        importing
+          r_salv_table = lo_alv_table
+        changing
+          t_table      = gi_final.
+    catch cx_salv_msg into lo_msg.
+      lv_result = lo_msg->get_text( ).
+      message lv_result type 'E'.
+  endtry.
+
+* Activate all standard ALV generic Functions
+  lo_functions = lo_alv_table->get_functions( ).
+  lo_functions->set_default( abap_true ).
+
+* Set the columns technical
+  lo_columns = lo_alv_table->get_columns( ).
+  lo_columns->set_optimize( abap_true ).
+
+
+  lo_columns = lo_alv_table->get_columns( ).
+  li_columns = lo_columns->get( ).
+
+  loop at li_columns assigning <lk_columns>.
+    lv_columnname_l = <lk_columns>-columnname.
+    lv_columnname_m = <lk_columns>-columnname.
+    lv_columnname_s = <lk_columns>-columnname.
+    <lk_columns>-r_column->set_long_text( lv_columnname_l ).
+    <lk_columns>-r_column->set_medium_text( lv_columnname_m ).
+    <lk_columns>-r_column->set_short_text( lv_columnname_s ).
+  endloop.
+
+
+* Display the table
+  lo_alv_table->display( ).
+
+endform.                    "data_report
